@@ -2,21 +2,20 @@
 \include{../style/cours-style.sty}
 
 % Title
-\title{Linux - Avancé pour Administrateur/PowerUser - LINUX2}
+\title[LINUX2]{Linux - Avancé pour Administrateur/PowerUser - LINUX2}
 \author{Christophe Brun}
 \institute{Digicomp}
 \date{17 avril 2024}
 \beamertemplatenavigationsymbolsempty
 
-% Graphix with arrows in between
-\newcommand*{\vcenterimage}[1]{\vcenter{\hbox{\includegraphics[width=5cm]{#1}}}}
-\newcommand*{\vcenterarrow}{\vcenter{\hbox{$\Longrightarrow$}}}
-
 \titlegraphic{
     \bigbreak
-    \includegraphics[width=2cm]{image/logo-papit}
-    \includegraphics[width=2cm]{image/digicomp-logo}
+    \includegraphics{image/digicomp-logo}
+    \bigbreak
+    Digital competence. Made of People.
+    \bigbreak
 }
+
 \begin{document}
 
     \begin{frame}
@@ -40,11 +39,11 @@
         \transdissolve
         \begin{columns}
             \column{0.7\textwidth}
-            \begin{footnotesize}
+            \begin{scriptsize}
                 \begin{itemize}
                     \item Connaître l'architecture Linux
                     \item Travailler avec des commandes avancées dans le terminal
-                    \item Utiliser les commandes de filtre (\lstinline{sed}, \lstinline{grep}, \lstinline{awk}, etc.)
+                    \item Utiliser les commandes de filtre (\lstinline{sed}, \lstinline{grep}, \lstinline{awk}, \textit{etc}.)
                     \item Gérer les utilisateurs et groupes
                     \item Définir et modifier les autorisations
                     \item Appliquer des privilèges personnalisés
@@ -57,7 +56,7 @@
                     \item Connaître Shell comme langage de programmation
                     \item Concevoir et écrire vos propres petits scripts Shell
                 \end{itemize}
-            \end{footnotesize}
+            \end{scriptsize}
             \column{0.3\textwidth}
             \includegraphics[width=4cm]{image/IT-man-and-penguin}
         \end{columns}
@@ -96,5 +95,891 @@
             \includegraphics[width=5cm]{image/trombine-christophe}
         \end{columns}
     \end{frame}
+
+    \subsection{Historique}\label{subsec:historique}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Historique de Linux}
+        \framesubtitle{Linux, quelques caractéristiques de la première version\footnote{The early days of Linux, Lars Wirzenius, \url{https://lwn.net/Articles/928581/}}}
+        \begin{footnotesize}
+            \begin{itemize}
+                \item La première libérée par Linus Torvald, date de 1991 et sa licence ne permet pas l'usage commercial.
+                \item Compilé avec GCC 1.4, A.K.A. \textit{GNU C Compiler} de Richard Stallman.
+                La publication de GCC en version 0.9 date de 1987.
+                L.~Torvald a déjà porté GCC sous Minix, un OS éducatif\footnote{GCC,\url{https://gunkies.org/wiki/Gcc}}\footnotestep\footnote{A Brief Historu of GCC, \url{https://gcc.gnu.org/wiki/History}}.
+                \item 1992, Linux est distribué sous license GNU GPL, donc pour tout usage, même commercial.
+                \item 1992, intégration de X11, le serveur graphique, pour favoriser l'usage en \textit{desktop}.
+                \item 1993, formation de la communauté Debian.
+                \item Fin des années 90, les investissements d'IBM pour supporter Linux atteignent le milliard de dollars\footnote{A strong history and commitment to open source, \url{https://www.ibm.com/opensource/story/}}.
+            \end{itemize}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Historique de Linux}
+        \framesubtitle{Historique de tous les OS\footnote{chococigar, \url{https://github.com/chococigar/cup-of-cs/blob/main/img/history\_of\_os.png}}}
+        \centering
+        \includegraphics[width=9cm]{image/history_of_os}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Historique de Linux}
+        \framesubtitle{Linux, historique des single/multi users OS}
+        Multi user au sens \textit{Time-Sharing}, i.e., plus d'un utilisateur en même temps.
+
+        Les premiers OS Multi user était OS/360 d'IBM dans les années 60.
+        Un concurrent est développé par Bell Labs, une filiale d'AT\&T (Avant le démantèlement en 1982), c'est Unix en 1969.
+
+        Linux est ainsi multi user dès le début.
+        Par opposition à Windows, qui par défaut (sans RDP ni bricolage), ne l'est pas.
+        C'est Windows Server qui est multi user.
+        \bigbreak
+        Cette différence est cruciale, car elle a fait de cet OS un candidat idéal pour les serveurs (Web, BDD, \textit{etc}).
+    \end{frame}
+
+    \begin{frame}
+        \footnotetext{Why Linux runs 90 percent of the public cloud workload, \url{https://www.cbtnuggets.com/blog/certifications/open-source/why-linux-runs-90-percent-of-the-public-cloud-workload}}
+        \footnotetext{\label{cbt}When everything is in the cloud, does the OS matter?, \url{https://www.redhat.com/en/blog/when-everything-cloud-does-os-matter}}
+        \footnotetext{20 great years of Linux and supercomputer, \url{https://www.zdnet.com/article/20-great-years-of-linux-and-supercomputers/?ref=itsfoss.com}}
+        \transdissolve
+        \frametitle{Historique de Linux}
+        \framesubtitle{Adoption}
+        \begin{columns}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item 2018, 90 \% des serveurs du cloud tournent sous Linux\footnotemark.
+                \item 2018, 70 \% des serveurs sont déployés dans le cloud\footnotemark.
+                \item 2018, 62 \% de l'embarqué\cref{cbt}.
+                \item 2012, 95 \% des supercalculateurs\footnotemark.
+            \end{itemize}
+            \column{0.5\textwidth}
+            \centering
+            \includegraphics[width=6cm]{image/linux-supercomputer-growth}
+        \end{columns}
+    \end{frame}
+
+    \subsection{Kernel et distribution}\label{subsec:kernel-et-distribution}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Définitions\footnote{Glossary, \url{https://help.ubuntu.com/community/Glossary}}}
+        \begin{itemize}
+            \item \textbf{Kernel} ou \textbf{Noyau}~: Le composant central d'un système d'exploitation qui contrôle tous les processus de bas niveau d'un ordinateur, tels que la gestion de la mémoire, les threads et les entrées/sorties.
+            En un sens, le noyau agit comme le gardien de l'ordinateur vis-à-vis du matériel.
+            Les applications font des appels système via le noyau pour demander des ressources et interagir avec le matériel.
+            \item \textbf{Distribution}~: Désigne une version de GNU/Linux ou d'un autre système d'exploitation open source, bien que certaines personnes soutiennent que le terme devrait inclure les différents systèmes d'exploitation Windows et Apple.
+            Ubuntu est la version la plus populaire, mais il en existe de nombreuses autres, telles que RedHat, qui est bien connue pour les serveurs.
+            La plupart des autres distros sont conçues pour un type particulier d'architecture, comme les téléphones, les netbooks, les routeurs, les serveurs, \textit{etc}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{La timeline de toutes les distributions\footnote{FabioLolix, \url{https://github.com/FabioLolix/linuxtimeline}}\footnotestep\footnote{Put the fun back into computing. Use Linux, BSD., \url{https://distrowatch.com/}}}
+        \begin{columns}
+            \column{0.8\textwidth}
+            Insights~:
+            \begin{itemize}
+                \item Les 3 plus grosses branches sont Debian, Red Hat et Ubuntu.
+                \item Très nombreuses.
+                \item Certaines branches meurent même après de longues années d'existence (Mandrake, Centos, \textit{etc}.).
+                \item Certaines distributions passent d'une branche à l'autre.
+            \end{itemize}
+            Quid de l'impact sur la maintenance de la distribution~?
+            \column{0.2\textwidth}
+            \centering
+            \includegraphics[width=1.5cm]{image/linux-all-distro-timeline}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{La timeline de toutes les distributions}
+        Red-Hat, filiale d'IBM, fait l'opposition entre les distributions \textit{entreprise} et les \textit{community}.
+        En mettant en avant leur support de 10 ans contre 2 ans pour Fedora, une distribution communautaire de la même branche\footnote{What's the best Linux distro for you?, \url{https://www.redhat.com/en/topics/linux/whats-the-best-linux-distro-for-you}}.
+        \bigbreak
+        Ubuntu a un business model légèrement différent, ils proposent 5 ans de support pour les versions LTS et une extension de 10 ans dans la version payant appelée \textquote{Ubuntu Pro}\footnote{The Ubuntu lifecycle and release cadence, \url{https://ubuntu.com/about/release-cycle}}.
+        \bigbreak
+        Mais peut-être que l'exemple de Red-Hat n'est pas le bon, Debian, une distro communautaire également, communique un support des versions LTS de 5 ans minimum\footnote{Debian Long Term Support, \url{https://wiki.debian.org/LTS}}\ldots
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{La timeline des principales distributions\footnote{\label{main-distro}Philipp Leclercq, \url{https://github.com/PhilLecl/SanitizedLinuxTimeline}}}
+        \centering
+        \includegraphics[width=12cm]{image/linux-main-distro-timeline}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Les licences des principales distributions\cref{main-distro}}
+        \centering
+        \includegraphics[width=12cm]{image/main-distro-license.drawio}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Les packages managers des principales distributions\cref{main-distro}}
+        \centering
+        \includegraphics[width=12cm]{image/main-distro-package-manager.drawio}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Une aide pour choisir sa distribution}
+        Le site Distrowatch propose un utilitaire pour trouver des distributions candidates en fonction d'un large nombre de critères, \url{https://distrowatch.com/search.php}.
+        \bigbreak
+        \centering
+        \includegraphics[width=12cm]{image/distrowatch-search}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Une aide pour choisir sa distribution}
+        Admettons que tous les 2/3 packages managers mainstreams se valent.
+        \bigbreak
+        Un des critères différenciant, en plus du support que nous avons vu, est l'architecture.
+        \bigbreak
+        Qu'est-ce que le critère \textquote{architecture} et pourquoi est-ce important lors d'une migration~?
+        \pause
+        \bigbreak
+        \begin{itemize}
+            \item Une modernisation d'un hardware vieillissant qui peut être remplacé par une machine virtuelle faisant tourner les mêmes applications.
+            \item Un hardware qui n'est plus supporté par la distribution actuelle et doit donc migrer.
+        \end{itemize}
+        Dans les 2 exemples, avoir une même architecture permettra ainsi une migration plus \textit{lean}.
+        Sans rewrite, voire, sans recompilation.
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Des critères manquants~?}
+        Y-a-t-il des critères pertinents qui pourraient manquer~?
+        \bigbreak
+        \centering
+        \includegraphics[width=6cm]{image/question-mark}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Des critères manquants~?}
+        L'énorme succès d'une distribution à part, Alpine Linux, pousser par les technologies de virtualisation et de conteneurisation.
+        \bigbreak
+        Une des premières phrases de présentation est \textit{Alpine Linux is built around musl libc and busybox. A container requires no more than 8 MB and a minimal installation to disk requires around 130 MB of storage.}\footnote{About, \url{https://alpinelinux.org/about/}}.
+        \bigbreak
+        De leur analyse, qui est sûrement la bonne, leur succès vient du compilateur musl et de la librairie C libc musl.
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Des critères manquants~?}
+        Red-Hat recrute beaucoup d'experts de LLVM ces dernières années\footnote{Red Hat Is Hiring More LLVM Compiler Engineers, \url{https://www.phoronix.com/news/Red-Hat-More-LLVM-Engineers}}.
+
+        Certaines distributions peuvent ou sont compilé avec LLVM comme FreeBSD\footnote{Building FreeBSD with clang/llvm, \url{https://wiki.freebsd.org/BuildingFreeBSDWithClang}}, Chimera\footnote{About Chimera Linux, \url{https://chimera-linux.org/about/}}, OpenMandriva\footnote{La communauté OpenMandriva annonce la disponibilité d'OpenMandriva Lx 4.0, \url{https://linux.developpez.com/actu/266344/La-communaute-OpenMandriva-annonce-la-disponibilite-d-OpenMandriva-Lx-4-0-qui-apporte-de-nombreuses-nouveautes-liees-a-LLVM-Clang/}}\ldots
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Plusieurs combinaisons de compilateurs et libraries C}
+        \centering
+        \includegraphics[width=8cm]{image/interchange-lib-compiler.drawio}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Les distributions}
+        \framesubtitle{Conclusion}
+        \begin{columns}
+            \column{0.6\textwidth}
+            Une distribution Linux est construite de manière modulaire~:
+            \begin{itemize}
+                \item Version de noyau.
+                \item Packages manager.
+                \item Architecture.
+                \item Licence.
+                \item Support.
+                \item Librairie C~.
+                \item Compilateur.
+                \item \textit{Many more}.
+            \end{itemize}
+            \column{0.4\textwidth}
+            \centering
+            \includegraphics[width=5.5cm]{image/craftsman-focused}
+        \end{columns}
+        \bigbreak
+        À vous de trouver la meilleure combinaison pour vos besoins.
+    \end{frame}
+
+
+    \section{Shell et commandes de base}\label{shell-and-command}
+
+    \subsection{Shell}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Qu'est-ce~?}
+        Shell c'est~:
+        \begin{itemize}
+            \item C'est un exécutable.
+            \item Un interpréteur de ligne de commande.
+            Ne pas confondre avec des Shell spécifique comme le Python Shell ou le MySQL Shell qui interagissent spécifiquement avec ces applications.
+            \item Et donc un interpréteur de scripts Shell.
+            \item C'est une interface entre l'OS et l'humain.
+            \item Existe sur la plupart des plateformes Linux, Unix, Windows (\lstinline{Bash}, installé avec Git par exemple), \textit{etc}.
+            \item Une portabilité poussée par une standardisation, comme la standardisation POSIX~.
+            \item Des Shells plus \textit{user friendly} et plus lourds comme \lstinline{zsh}.
+            \item Des Shells éxotiques comme \lstinline{tcsh} et \lstinline{csh}.
+            \item
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Qu'est-ce~?}
+        2 Shells sous une même distribution \textquote{légère} comme Alpine Linux~:
+        \begin{lstlisting}[language=bash]
+root@71641013d445:/usr/src/celia# sh
+# ls
+ Dockerfile       README.pdf         UML-Sequence.drawio       celia.ipynb
+# which sh
+/usr/bin/sh
+# which ls
+/usr/bin/ls
+# bash
+root@71641013d445:/usr/src/celia# which bash
+/usr/bin/bash
+root@71641013d445:/usr/src/celia# which ls
+/usr/bin/ls
+root@71641013d445:/usr/src/celia# ls
+ Dockerfile       README.pdf         UML-Sequence.drawio       celia.ipynb
+        \end{lstlisting}
+        \bigbreak
+        Comment interpréter ce code~?
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Qu'est-ce~?}
+        \begin{itemize}
+            \item \lstinline{sh} et \lstinline{bash} appellent les mêmes exécutables.
+            \item Shell n'est qu'une interface.
+            \item Même dans une distribution \textquote{lightweight}, il y a 2 interpréteurs Shell~!
+        \end{itemize}
+        \bigbreak
+        \lstinline{bash}, n'est pas installé par défault sur la dernière version de FreeBSD 14, uniquement \lstinline{sh}.
+        Qu'en penser~?
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Bourne Shell VS Bourne Again Shell\footnote{Difference between sh and bash, \url{https://www.geeksforgeeks.org/difference-between-sh-and-bash/}}}
+        \begin{footnotesize}
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|p{5.5cm}|p{5.5cm}|}
+                    \hline
+                    \textbf{bash}                                     & \textbf{sh}                               \\ \hline
+                    Bourne Again SHell                                & SHell                                     \\ \hline
+                    Developed by Brain Fox                            & Developed by Stephen R. Bourne            \\ \hline
+                    Successor of sh                                   & Predecessor of bash                       \\ \hline
+                    bash is the default SHELL                         & sh is not the default SHELL               \\ \hline
+                    \lstinline{\#\!/bin/bash}                         & \lstinline{\#\!/bin/sh}                   \\ \hline
+                    It has more functionality with up-gradation.      & It has less functionality.                \\ \hline
+                    Supports job controls.                            & Does not support job control.             \\ \hline
+                    bash is not a valid POSIX shell.                  & sh is a valid POSIX shell.                \\ \hline
+                    Easy to use                                       & Not as easy as bash                       \\ \hline
+                    Less portable than sh.                            & More portable than bash.                  \\ \hline
+                    Extended version of language                      & Original language                         \\ \hline
+                    Bash scripting is scripting specifically for Bash & Shell scripting is scripting in any shell \\ \hline
+                    Supports command history.                         & Does not support command history.         \\ \hline
+                \end{tabular}
+            \end{table}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Bourne Shell VS Bourne Again Shell}
+        Peut-on lister les avantages/inconvénients de l'un et l'autre~?
+        \bigbreak
+        \centering
+        \includegraphics[width=6cm]{image/question-mark}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Le poid de cette interface\footnote{Exigences matérielles pour utiliser Ubuntu, \url{https://doc.ubuntu-fr.org/exigences_minimales}}}
+        Minimum 30 Go d'espace disque disponible pour une installation avec GNOME contre 5 Go ou 6 Go pour une installation Server ou Cloud.
+        \bigbreak
+        L'absence de bureau, avoir uniquement cette interface, est une des raisons de cette différence de taille.
+
+        L'interface graphique n'est donc pas installé dans les distributions dédiées aux serveurs.
+        Shell et l'accès Shell distant sécurisé \lstinline{SSH} (Secure SHell), sont utilisés.
+        Un client SSH comme Putty, SSH de GitBASH sous Windows ou un terminal sous Linux permettent d'accéder à un server Linux.
+        \bigbreak
+        GitBash permet d'unifier les deux environnements Linux et Windows, de pratiquer le Bash sur toute plateforme.
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Pourquoi a-t-on un Shell ou l'autre~?}
+        Quand je me connecte avec mon utilisateur, j'ai souvent \lstinline{bash} comme Shell.
+        Pourquoi pas \lstinline{sh}~?
+        \bigbreak
+        \centering
+        \includegraphics[width=6cm]{image/question-mark}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Pourquoi a-t-on un Shell ou l'autre~?}
+        Probablement, l'administrateur système a créé votre utilisateur en spécifiant \lstinline{bash} comme Shell.
+        \bigbreak
+        Si on lit l'aide de la commande \lstinline{useradd}~:
+        \begin{lstlisting}[language=bash]
+$ useradd -h | grep shell
+  -s, --shell SHELL               interpréteur de commandes de connexion du nouveau compte
+        \end{lstlisting}
+        \bigbreak
+        Un exemple de commande devient donc~:
+        \begin{lstlisting}[language=bash]
+$ useradd -s /bin/bash -m -d /home/digicomp digicomp
+        \end{lstlisting}
+        \bigbreak
+        \lstinline{/bin/bash} passé à l'option \lstinline{-s} permet de spécifier le Shell.
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Secure SHell (SSH)}
+        La machine Linux à administrer sera le plus souvent dans un cloud, une salle serveur, un data center, elle sera distante.
+        Dans une infrastructure sécurisée.
+        \bigbreak
+        Mais avec un user, un Shell par défaut, et un protocole sécurisé comme le SSH~.
+        Nous allons pouvoir nous connecter et l'administrer.
+        \bigbreak
+        Les bonnes pratiques sont d'utiliser les clés SSH uniquement, pas de connexion SSH avec le user root,
+        Tutoriel utile~:
+        \begin{itemize}
+            \item \href{https://phoenixnap.com/kb/generate-setup-ssh-key-ubuntu}{Configuration du login SSH sur Ubuntu}
+        \end{itemize}
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Shell}
+        \framesubtitle{Sécurisation du SSH avec la cryptographie asymétrique}
+        \transdissolve
+        Pourquoi est-ce plus sécure d'utiliser une clé SSH plutôt qu'un mot de passe~?
+        \bigbreak
+        Quels algorithmes et taille de clés sont recommandés~?
+        \pause
+        \bigbreak
+        Sur le site \url{https://jadaptive.com/ssh-key-management/the-benefits-of-ssh-key-authentication/} on trouve~:
+        \begin{columns}
+            \begin{column}{0.6\textwidth}
+                \begin{itemize}
+                    \item Le mot de passe doit être communiqué à chaque connexion, il est donc plus vulnérable à une interception/sniffing/MITHM~.
+                    La clé privée reste sur le client, elle n'est pas communiquée.
+                    \item La clé SSH est plus complexe à deviner qu'un mot de passe.
+                    \item On peut automatiser des taches depuis la machine cliente avec la clé SSH~.
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \centering
+                \includegraphics[width=5cm]{image/ssh-key-diagram} \\ Foxpass\footnotemark \\
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Shell}
+        \framesubtitle{Sécurisation du SSH avec la cryptographie asymétrique}
+        \transdissolve
+        Exercice \execcounterdispinc{}~:
+        Restreindre l'accès à la VM au SSH avec une clé SSH, aucun mot de passe.
+        \bigbreak
+        Exercice \execcounterdispinc{}~:
+        Créer un user pour un de vos camarades.
+        Lui donner un Shell \lstinline{sh} par défaut.
+        Configurer lui communiquer les clés SSH pour qu'il puisse se connecter.
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Une des solutions (commande à exécuter sur la VM)}
+        Commande pour configurer la VM~:
+        \begin{lstlisting}[language=bash][fragile]
+# Configure SSH
+sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+# Restart SSH with the new configuration
+sudo systemctl restart sshd
+# Create the .ssh directory and the authorized_keys file
+mkdir -p ~/.ssh
+touch ~/.ssh/authorized_keys
+# Add the public key to the authorized_keys file
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.ssh/authorized_keys
+        \end{lstlisting}
+        \begin{center}
+            \includegraphics[width=2cm]{image/digicomp-lightbulb} \\ Expliquer chaque commande \\
+        \end{center}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \frametitle{Shell}
+        \framesubtitle{Exemple de sécurisation des clés et des secrets sous Linux}
+        \transdissolve
+        Par défaut, Ubuntu desktop s’installe sur une partition non
+        chiffrée (encrypter, ce n’est pas français on dit chiffrer~!~).
+        Tout document peut donc être lu avec un disque de
+        démarrage (live CD, USB bootable, etc) ou si le disque dur
+        est extrait et lu (vol, perte du desktop\ldots).
+        \bigbreak
+        Avec le package \lstinline{ecryptfs-utils} on peut chiffrer une partition~:
+        \begin{lstlisting}[language=bash]
+$ sudo apt-get install ecryptfs-utils
+$ ecryptfs-setup-private
+$ cp -r .ssh/ Private/ # Pour proteger les clés SSH on les déplace
+$ ln -s /home/<mon user Ubuntu>/Private/.ssh/ . # Lien symbolique
+        \end{lstlisting}
+        Output~:
+        \begin{lstlisting}
+$ ls ~/.ssh -d -lha
+lrwxrwxrwx 1 chrichri chrichri 28 janv. 14 21:27 /home/chrichri/.ssh -> /home/chrichri/Private/.ssh/
+        \end{lstlisting}
+        Il utilise le mot de passe de la session pour chiffrer/déchiffrer.
+        Si la session n'est pas ouverte, les données sont chiffrées.
+    \end{frame}
+
+    \subsection{Commandes de base}\label{subsec:commandes-de-base}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de base}
+        \framesubtitle{Commandes de base}
+        \begin{itemize}
+            \item \lstinline{ls}~: Liste les fichiers et répertoires.
+            \item \lstinline{cd}~: Change de répertoire.
+            \item \lstinline{pwd}~: Affiche le répertoire courant.
+            \item \lstinline{cp}~: Copie des fichiers et des répertoires.
+            \item \lstinline{mv}~: Déplace des fichiers et des répertoires.
+            \item \lstinline{rm}~: Supprime des fichiers et des répertoires.
+            \item \lstinline{mkdir}~: Crée des répertoires.
+            \item \lstinline{cat}~: Affiche le contenu d'un fichier.
+            \item \lstinline{head}~: Affiche les premières lignes d'un fichier.
+            \item \lstinline{tail}~: Affiche les dernières lignes d'un fichier.
+            \item \lstinline{touch}~: Crée un fichier vide.
+            \item \lstinline{echo}~: Affiche une chaîne de caractères.
+            \item \lstinline{du}~: Affiche l'espace disque utilisé par les fichiers.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de base}
+        \framesubtitle{Les options}
+        Mais souvent, une commande seule ne suffit pas, il faut utiliser des options.
+
+        Il existe deux solutions pour découvrir ces options~:
+        \begin{itemize}
+            \item Utiliser l'aide de la commande.
+            Le plus souvent avec l'option \lstinline{-h}, équivalente à \lstinline{--help}.
+            \begin{lstlisting}[language=bash]
+$ ls --help # -h c'est human readable avec ls...
+            \end{lstlisting}
+            \item Ce qui revient à lire la documentation de la commande avec la commande~:
+            \begin{lstlisting}[language=bash]
+$ man ls # Same as above
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de base}
+        \framesubtitle{Busy box}
+        BusyBox est un logiciel libre qui fournit une implémentation unique d'environ 200 commandes UNIX standard dans un seul fichier pour diminuer la taille de ces derniers.
+        Des distributions comme Alpine Linux l'utilisent pour réduire la taille de l'OS~.
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ busybox
+BusyBox v1.36.1 (Ubuntu 1:1.36.1-6ubuntu3) multi-call binary.
+BusyBox is copyrighted by many authors between 1998-2015.
+Licensed under GPLv2. See source distribution for detailed
+copyright notices.
+
+Usage: busybox [function [arguments]...]
+   or: busybox --list[-full]
+   or: busybox --install [-s] [DIR]
+   or: function [arguments]...
+
+        BusyBox is a multi-call binary that combines many common Unix
+        utilities into a single executable.  The shell in this build
+        is configured to run built-in utilities without $PATH search.
+        You don't need to install a link to busybox for each utility.
+        To run external program, use full path (/sbin/ip instead of ip).
+
+Currently defined functions:
+        [, [[, acpid, adjtimex, ar, arch, arp, arping, ascii, ash, awk, base64, basename, bc, blkdiscard, blockdev, brctl, bunzip2, busybox, bzcat, bzip2, cal, cat, chgrp, chmod, chown, chpasswd, chroot, chvt, clear, cmp, cp,
+        cpio, crc32, crond, crontab, cttyhack, cut, date, dc, dd, deallocvt, depmod, devmem, df, diff, dirname, dmesg, dnsdomainname, dos2unix, dpkg, dpkg-deb, du, dumpkmap, dumpleases, echo, ed,
+        \end{lstlisting}
+    \end{frame}
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de base}
+        \framesubtitle{Busy box}
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+        egrep, env, expand, expr, factor,
+        fallocate, false, fatattr, fdisk, fgrep, find, findfs, fold, free, freeramdisk, fsfreeze, fstrim, ftpget, ftpput, getopt, getty, grep, groups, gunzip, gzip, halt, head, hexdump, hostid, hostname, httpd, hwclock, i2cdetect,
+        i2cdump, i2cget, i2cset, i2ctransfer, id, ifconfig, ifdown, ifup, init, insmod, ionice, ip, ipcalc, kill, killall, klogd, last, less, link, linux32, linux64, linuxrc, ln, loadfont, loadkmap, logger, login, logname,
+        logread, losetup, ls, lsmod, lsscsi, lzcat, lzma, lzop, md5sum, mdev, microcom, mim, mkdir, mkdosfs, mke2fs, mkfifo, mknod, mkpasswd, mkswap, mktemp, modinfo, modprobe, more, mount, mt, mv, nameif, nbd-client, nc, netstat,
+        nl, nologin, nproc, nsenter, nslookup, nuke, od, openvt, partprobe, passwd, paste, patch, pidof, ping, ping6, pivot_root, poweroff, printf, ps, pwd, rdate, readlink, realpath, reboot, renice, reset, resume, rev, rm, rmdir,
+        rmmod, route, rpm, rpm2cpio, run-init, run-parts, sed, seq, setkeycodes, setpriv, setsid, sh, sha1sum, sha256sum, sha3sum, sha512sum, shred, shuf, sleep, sort, ssl_client, start-stop-daemon, stat, static-sh, strings, stty,
+        su, sulogin, svc, svok, swapoff, swapon, switch_root, sync, sysctl, syslogd, tac, tail, tar, taskset, tc, tee, telnet, telnetd, test, tftp, time, timeout, top, touch, tr, traceroute, traceroute6, true, truncate, ts, tty,
+        tunctl, ubirename, udhcpc, udhcpc6, udhcpd, uevent, umount, uname, uncompress, unexpand, uniq, unix2dos, unlink, unlzma, unshare, unxz, unzip, uptime, usleep, uudecode, uuencode, vconfig, vi, w, watch, watchdog, wc, wget,
+        which, who, whoami, xargs, xxd, xz, xzcat, yes, zcat
+$ busybox ls
+LICENSE            checkmytex.sh      compress-image.sh  dept.csv           employee.csv       sqlite-hr.sh       venv
+        \end{lstlisting}
+        Et s'utilise en remplaçant la commande par \lstinline{busybox <commande>}.
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ busybox sha256sum employee.csv
+c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de base}
+        \framesubtitle{Exercice \execcounterdispinc{}~:}
+        Le but est de préparer la configuration d'un nouveau service après avoir sauvegardé l'original.
+        \begin{itemize}
+            \item Créer un répertoire de backup des services dans votre \textquote{home} nommé \lstinline{service-backup}.
+            \item Se déplacer dans le répertoire des services \lstinline{/etc/systemd/system}.
+            \item Copier un service dans \lstinline{service-backup}.
+            \item Afficher le contenu du fichier copié pour vérifier ce dernier.
+            \item Créer un répertoire de développement des services dans votre \textquote{home} nommé \lstinline{service-dev}.
+            \item Copier le contenu de \lstinline{service-backup} dans \lstinline{service-dev}.
+            \item Modifier la description du service de \lstinline{service-dev} avec un éditeur et sauvegarder.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de base}
+        \framesubtitle{Opérateurs de redirection et piping\footnote{Five ways to use redirect operators in Bash, \url{https://www.redhat.com/sysadmin/redirect-operators-bash}}}
+        \begin{itemize}
+            \item \lstinline{>}~: Redirige la sortie standard vers un fichier.
+            \item \lstinline{>>}~: Redirige la sortie standard vers un fichier en ajoutant le contenu à la fin.
+            \item \lstinline{<}~: Redirige un fichier vers l'entrée standard.
+            \item \lstinline{2>}~: Redirige la sortie d'erreur vers un fichier.
+            \item \lstinline{|}~: Piping, redirige la sortie standard d'une commande vers l'entrée standard d'une autre.
+        \end{itemize}
+        À quoi ces opérateurs peuvent-ils servir~?
+        \begin{center}
+            \includegraphics[width=3cm]{image/question-mark}
+        \end{center}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de base}
+        \framesubtitle{Exercice \execcounterdispinc{}~:}
+        Le but est de créer un fichier source d'un script Shell en y ajoutant ligne par ligne les commandes.
+        \begin{itemize}
+            \item Initier la création d'un script Shell nommé \lstinline{discover.sh} dans votre \textquote{home} avec un commentaire descriptif.
+            \item Y ajouter l'output d'un message indiquant que le current working directory va s'afficher.
+            \item Y ajouter la commande pour afficher le répertoire courant.
+            \item Y ajouter l'output d'un message indiquant que les fichiers et répertoires du répertoire courant vont s'afficher.
+            \item Y ajouter une commande pour lister les fichiers et répertoires du répertoire courant.
+        \end{itemize}
+
+        Inutile donc indispensable~:
+        \begin{itemize}
+            \item Changer de répertoire pour aller dans le répertoire courant avec le pipe.
+        \end{itemize}
+    \end{frame}
+
+    \subsection{Commandes de traitement de données}\label{subsec:commandes-données}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{Les grands classiques}
+        \begin{itemize}
+            \item \lstinline{grep}~: Recherche de chaînes de caractères dans un fichier à l'aide d'une RegExp, une \textquote{Regular Expression}.
+            Le nom vient de \textit{Global Regular Expression Print}.
+            \item \lstinline{sed}~: Stream EDitor, éditeur de flux, permet de modifier le contenu d'un fichier.
+            Le plus souvent à l'aide d'une RegExp également.
+            Il peut substituer un pattern, supprimer une ligne, ajouter une ligne, \textit{etc}.
+            \item \lstinline{awk}~: Traitement de texte, permet de lire un fichier ligne par ligne et de le traiter.
+            Il est plus complexe, il a son propre langage de programmation.
+            \item \lstinline{cut}~: Permet de découper un fichier en colonnes et de les sélectionner.
+            \item \lstinline{sort}~: Trie les lignes d'un fichier.
+            \item \lstinline{join}~: Joint les lignes de deux fichiers sur un champ commun.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{grep}}
+        Exemple chercher une adresse mail dans un fichier.
+        \bigbreak
+        On valide d'abord la RegExp en ligne avec un utilitaire comme \url{https://regex101.com/}.
+        \bigbreak
+        Par exemple, pour chercher les connexions depuis une IP dans le fichier de ProFTP (un serveur FTP)~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ grep -P 'from\s([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})' proftpd.log.1
+2023-03-05 11:35:16,736 vps19562 proftpd[663168] vps19562.dreamhostps.com (104.156.155.30[104.156.155.30]): USER anonymous: no such user found from 104.156.155.30 [104.156.155.30] to ::ffff:66.33.201.239:21
+2023-03-05 13:44:22,711 vps19562 proftpd[664214] vps19562.dreamhostps.com (183.127.77.34.bc.googleusercontent.com[34.77.127.183]): USER anonymous: no such user found from 183.127.77.34.bc.googleusercontent.com [34.77.127.183] to ::ffff:66.33.201.239:21
+2023-03-05 21:18:51,926 vps19562 proftpd[669957] vps19562.dreamhostps.com (182.176.228.148[182.176.228.148]): USER local: no such user found from 182.176.228.148 [182.176.228.148] to ::ffff:66.33.201.239:21
+2023-03-05 21:59:46,174 vps19562 proftpd[670340] vps19562.dreamhostps.com (107.150.102.211[107.150.102.211]): USER anonymous: no such user found from 107.150.102.211 [107.150.102.211] to ::ffff:66.33.201.239:21
+2023-03-06 13:36:11,788 vps19562 proftpd[681605] vps19562.dreamhostps.com (116.62.233.35.bc.googleusercontent.com[35.233.62.116]): USER anonymous: no such user found from 116.62.233.35.bc.googleusercontent.com [35.233.62.116] to ::ffff:66.33.201.239:21
+2023-03-07 10:19:49,666 vps19562 proftpd[695638] vps19562.dreamhostps.com (116.62.233.35.bc.googleusercontent.com[35.233.62.116]): USER anonymous: no such user found from 116.62.233.35.bc.googleusercontent.com [35.233.62.116] to ::ffff:66.33.201.239:21
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{grep} pour le \textquote{Pattern Matching}}
+        Sinon en rajouter l'option \lstinline{-o} pour avoir uniquement le pattern qui match~:
+        \begin{lstlisting}[language=bash]
+$ grep -oP 'from\s(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})' proftpd.log.1
+from 104.156.155.30
+from 183.127.77.34
+from 182.176.228.148
+from 107.150.102.211
+from 116.62.233.35
+from 116.62.233.35
+        \end{lstlisting}
+        Uniquement sur les 10 premières lignes grâce à \lstinline{head}~:
+        \begin{lstlisting}[language=bash]
+$ grep -oP 'from\s(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})' <(head -n 10 proftpd.log.1)
+from 104.156.155.30
+from 183.127.77.34
+from 182.176.228.148
+from 107.150.102.211
+        \end{lstlisting}
+        Expliquer cette dernière commande.
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{sed} la substitution}
+        \lstinline{sed} a son propre langage de programmation avec \lstinline{s/}\footnote{\label{sed}Sed - An Introduction and Tutorial by Bruce Barnett, \url{https://www.grymoire.com/Unix/Sed.html}}.
+        \bigbreak
+        On peut anonymiser le fichier en remplaçant une chaine de caractère par une autre.
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ head -n 3 proftpd.log.1
+2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+$ head -n 3 proftpd.log.1 | sed s/vps19562.dreamhostps.com/XXX/
+2023-03-05 00:17:11,880 vps19562 proftpX[653589] XXX: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] XXX (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] XXX (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{sed} la substitution avec \lstinline{s/}\cref{sed}}
+        On peut anonymiser le fichier en remplaçant une chaine de caractère par une autre.
+        On peut utiliser \lstinline{sed} pour substituer un pattern, donc une RegExp, avec l'option \lstinline{-E}, par une chaîne de caractère et donc anonymiser le fichier en remplaçant les IPv4 par \textquote{xxx.xxx.xxx.xxx}~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ head -n 3 proftpd.log.1 | sed -E 's/\[[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\]/[xxx.xxx.xxx.xxx]/g'
+2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[xxx.xxx.xxx.xxx]): USER anonymous: no such user found from aurora.probe.onyphe.net [xxx.xxx.xxx.xxx] to ::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[xxx.xxx.xxx.xxx]): USER anonymous: no such user found from hodson.probe.onyphe.net [xxx.xxx.xxx.xxx] to ::ffff:66.33.201.239:21
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{sed} la supression avec \lstinline{/d}\cref{sed}}
+        De la même manière et avec les mêmes options on peut supprimer une ligne qui match une chaine de caractère ou une RegExp~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ head -n 3 proftpd.log.1
+2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+$ head -n 3 proftpd.log.1 | sed -E '/\[[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\]/d'
+2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
+$ head -n 3 proftpd.log.1 | sed '/vps19562.dreamhostps.com/d'
+        \end{lstlisting}
+        Il peut aussi supprimer une ligne spécifique, par exemple ici la première~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ head -n 3 proftpd.log.1 | sed '1d'
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{sed} plusieurs traitements}
+        Plusieurs traitements peuvent être enchainés en les séparant par \lstinline{;}.
+        Comme ici avec la suppression de la première ligne et l'anonymisation du serveur ensuite~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ head -n 3 proftpd.log.1
+2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+$ head -n 3 proftpd.log.1 | sed -E '1d;s/\] .*.com/] XXX/g'
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] XXX (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] XXX (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{cut} pour gérer les colonnes}
+        Il est très utile pour travailler avec les fichiers de données comme CSV, TSV~.
+
+        Il les découpe en colonne et permet de sélectionner les colonnes voulues sur la base d'un séparateur spécifié avec l'option \lstinline{-d} ou \lstinline{--delimiter}.
+        \bigbreak
+        \lstinline{-f 1,3} pour sélectionner les colonnes 1 et 3~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ head -n 3 employee.csv
+"id";"name";"age";"salary";"dept_id"
+0;"John";30;1000;0
+1;"Jane";25;1500;0
+$ cut employee.csv -f 1,3 --delimiter=';' | head -n 3
+"id";"age"
+0;30
+1;25
+        \end{lstlisting}
+        \lstinline{-f 1,3} pour sélectionner les colonnes de 1 à 3~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ cut employee.csv -f 1-3 --delimiter=';' | head -n 3
+"id";"name";"age"
+0;"John";30
+1;"Jane";25
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{sort} pour trier les lignes}
+        \lstinline{sort} trie les lignes d'un fichier en se basant sur le premier champ par défaut ou en spécifiant un champ avec l'option \lstinline{-k} ou \lstinline{--key}.
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ head employee.csv -n 4
+"id";"name";"age";"salary";"dept_id"
+0;"John";30;1000;0
+1;"Jane";25;1500;0
+2;"Doe";35;2000;1
+        \end{lstlisting}
+        Pour trier sur le salaire, la colonne 4, séparée par \textquote{;}~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ sed 1d employee.csv | sort -k 4 --field-separator=';' | head -n 4
+0;"John";30;1000;0
+1;"Jane";25;1500;0
+3;"Steeve";40;2000;0
+2;"Doe";35;2000;1
+        \end{lstlisting}
+        Pour trier sur le salaire puis sur le nom en colonne 2~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ sed 1d employee.csv | sort -k 4,2 --field-separator=';' | head -n 4
+0;"John";30;1000;0
+1;"Jane";25;1500;0
+2;"Doe";35;2000;1
+3;"Steeve";40;2000;0
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{join} pour joindre 2 fichiers sur une clé}
+        Jointure des fichiers CSV \lstinline{employee.csv} et \lstinline{dept.csv} sur la colonne \lstinline{dept\_id} qui est commune aux 2~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ join -1 1 -2 1 -t ';' -a 2 <(sed 1d employee.csv | sort -k 1 --field-separator=';') <(sed 1d dept.csv | sort -k 1 --field-separator=';')
+0;"John";30;1000;0;"HR"
+1;"Jane";25;1500;0;"Engineering"
+2;"Doe";35;2000;1;"Finance"
+$ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator=';') <(sed 1d dept.csv | sort -k 1 --field-separator=';')
+0;"John";30;1000;0;"HR"
+1;"Jane";25;1500;0;"Engineering"
+2;"Doe";35;2000;1;"Finance"
+3;"Steeve";40;2000;0
+4;"Smith";40;2500;1
+5;"Brown";45;3000;2
+        \end{lstlisting}
+        \begin{dangercolorbox}
+            Les 2 doivent avoir exactement le même nombre de ligne~!
+            Les 3 dernières lignes ont une correspondance dans le fichier \lstinline{dept.csv} mais aucune association n'est faite, car le fichier \lstinline{dept.csv} n'a que 3 lignes.
+        \end{dangercolorbox}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{L'histoire du piping}
+        Les opérateurs de redirection et le piping margent toujours évidement avec ces commandes.
+        \bigbreak
+        \begin{columns}
+            \centering
+            \column{0.2\textwidth}
+            \includegraphics[width=3cm]{image/digicomp-video}
+            \column{0.8\textwidth}
+            \includegraphics[width=9cm]{image/kernighan-piping-video} \\ \url{https://www.youtube.com/watch?v=bKzonnwoR2I} \\
+        \end{columns}
+    \end{frame}
+
+
+    \section{Licence CC}\label{licence}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Licence}
+        \framesubtitle{Licence Creative Commons}
+        Support de cours sous licence Creative Commons BY-NC-ND~.
+        \bigbreak
+        Vous pouvez donc, partager, copier, distribuer le document.
+        \bigbreak
+        Attribution requise à PapIT SASU - Pas d’utilisation commerciale - Pas de modification
+        \bigbreak
+        \centering
+        \includegraphics[width=5cm]{image/by-nc-nd-logo}
+    \end{frame}
+
 
 \end{document}
