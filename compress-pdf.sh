@@ -5,4 +5,4 @@ if ! [ -x "$(command -v gs)" ]; then
   exit 1
 fi
 # Compress PDF with lossless default parameter
-gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dNOPAUSE -dQUIET -dBATCH -sOutputFile=doc/build/pdf/Production-Deployment-readable.pdf doc/build/pdf/Production-Deployment.pdf
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dNOPAUSE -dQUIET -dBATCH -sOutputFile=out/linux-2-readable.pdf out/linux-2.pdf
