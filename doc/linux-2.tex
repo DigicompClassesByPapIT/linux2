@@ -128,7 +128,7 @@
         \transdissolve
         \frametitle{Historique de Linux}
         \framesubtitle{Linux, historique des single/multi users OS}
-        Multi user au sens \textit{Time-Sharing}, i.e., plus d'un utilisateur en même temps.
+        Multi user au sens \textit{Time-Sharing}, \textit{i.e.}, plus d'un utilisateur en même temps.
 
         Les premiers OS Multi user était OS/360 d'IBM dans les années 60.
         Un concurrent est développé par Bell Labs, une filiale d'AT\&T (Avant le démantèlement en 1982), c'est Unix en 1969.
@@ -326,9 +326,9 @@
     \end{frame}
 
 
-    \section{Shell et commandes de base}\label{shell-and-command}
+    \section{Shell et commandes de base}\label{sec:shell-and-command}
 
-    \subsection{Shell}
+    \subsection{Shell}\label{subsec:shell}
 
     \begin{frame}
         \transdissolve
@@ -406,14 +406,14 @@ root@71641013d445:/usr/src/celia# ls
                     Successor of sh                                   & Predecessor of bash                       \\ \hline
                     bash is the default SHELL                         & sh is not the default SHELL               \\ \hline
                     \lstinline{\#\!/bin/bash}                         & \lstinline{\#\!/bin/sh}                   \\ \hline
-                    It has more functionality with up-gradation.      & It has less functionality.                \\ \hline
-                    Supports job controls.                            & Does not support job control.             \\ \hline
-                    bash is not a valid POSIX shell.                  & sh is a valid POSIX shell.                \\ \hline
+                    It has more functionality with up-gradation       & It has less functionality                 \\ \hline
+                    Supports job controls                             & Does not support job control              \\ \hline
+                    bash is not a valid POSIX shell                   & sh is a valid POSIX shell                 \\ \hline
                     Easy to use                                       & Not as easy as bash                       \\ \hline
-                    Less portable than sh.                            & More portable than bash.                  \\ \hline
+                    Less portable than sh                             & More portable than bash                   \\ \hline
                     Extended version of language                      & Original language                         \\ \hline
                     Bash scripting is scripting specifically for Bash & Shell scripting is scripting in any shell \\ \hline
-                    Supports command history.                         & Does not support command history.         \\ \hline
+                    Supports command history                          & Does not support command history          \\ \hline
                 \end{tabular}
             \end{table}
         \end{footnotesize}
@@ -469,10 +469,100 @@ $ useradd -h | grep shell
         \bigbreak
         Un exemple de commande devient donc~:
         \begin{lstlisting}[language=bash]
-$ useradd -s /bin/bash -m -d /home/digicomp digicomp
+$ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
         \end{lstlisting}
         \bigbreak
         \lstinline{/bin/bash} passé à l'option \lstinline{-s} permet de spécifier le Shell.
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Naviguer dans les commandes}
+        \begin{itemize}
+            \item \lstinline{history}~: Affiche l'historique des commandes.
+            \item Ctrl+c~: Arrête l'exécution d'une commande.
+            \item \emoji{up-arrow}~: Rappelle la dernière commande.
+            \item \emoji{down-arrow}~: Rappelle la commande suivante.
+            \item Ctrl+r~: Recherche dans l'historique des commandes.
+            \item \lstinline{\\}~: Permet de continuer une commande sur la ligne d'après.
+            \item \lstinline{\&}~: Lancer une commande en arrière-plan.
+            \item Ctrl+z~: Mettre une commande en pause.
+            \item \lstinline{fg}~: Reprendre une commande en pause.
+            \item \lstinline{bg}~: Reprendre une commande en pause en arrière-plan.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\footnote{\label{tmux}Tmux (terminal multiplexer), \url{https://www.redhat.com/sysadmin/introduction-tmux-linux}}}
+        \lstinline{tmux} est un multiplexeur de terminal, \textit{i.e.}, permet d'ouvrir plusieurs fenêtres dans un terminal.
+        Chacune faisant tourner un processus.
+        \begin{footnotesize}
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|p{3.5cm}|p{8cm}|}
+                    \hline
+                    \textbf{Commande}    & \textbf{Description}                                                            \\
+                    \hline
+                    Ctrl+B D             & Détacher de la session courante                                                 \\
+                    \hline
+                    Ctrl+B \%            & Diviser la fenêtre en deux volets horizontalement                               \\
+                    \hline
+                    Ctrl+B ``            & Diviser la fenêtre en deux volets verticalement                                 \\
+                    \hline
+                    Ctrl+B Flèche        & Se déplacer entre les volets                                                    \\
+                    \hline
+                    Ctrl+B X             & Fermer le volet                                                                 \\
+                    \hline
+                    Ctrl+B C             & Créer une nouvelle fenêtre                                                      \\
+                    \hline
+                    Ctrl+B N ou P        & Passer à la fenêtre suivante ou précédente                                      \\
+                    \hline
+                    Ctrl+B 0 (1,2\ldots) & Aller à une fenêtre spécifique par numéro                                       \\
+                    \hline
+                    Ctrl+B :             & Entrer dans la ligne de commande pour taper des commandes (avec autocomplétion) \\
+                    \hline
+                    Ctrl+B ?             & Voir tous les raccourcis clavier (appuyer sur Q pour quitter)                   \\
+                    \hline
+                    Ctrl+B W             & Ouvrir un panneau pour naviguer entre les fenêtres de plusieurs sessions        \\
+                    \hline
+                \end{tabular}
+            \end{table}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\cref{tmux}}
+        Par exemple pour monitorer les ressource avec \lstinline{top} dans le terminal de droite, pendant qu'on la commande dans celui de gauche.
+        \bigbreak
+        \centering
+        \includegraphics[width=10.3cm]{image/tmux-illustration}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Shell}
+        \framesubtitle{Gérer plusieurs commandes en parallèle avec \lstinline{nohup}}
+        \lstinline{nohup} vient de NO Hang UP, c'est une commande qui permet de lancer une autre commande en arrière-plan sans qu'elle soit interrompue par la fermeture de la session Shell.
+        Idéale donc pour les longs processus.
+        L'output de la commande va par défault dans le fichier \lstinline{nohup.out}.
+        \bigbreak
+        Il suffit de préfixer la commande par \lstinline{nohup} et d'ajouter un \lstinline{&} pour libérer le terminal.
+        \lstinline{nohup} indique le PID pour pouvoir stopper la commande au besoin et quand la commande est terminée, si elle s'est arrêtée (Termine <code retour>) prématurément ou normalement (Fini).
+        \begin{lstlisting}[language=bash]
+$ nohup ls &
+[1] 279343
+nohup: les entrées sont ignorées et la sortie est ajoutée à 'nohup.out'
+[1]+  Fini                    nohup ls
+$ tail -n 3 nohup.out
+technip
+Téléchargements
+ts-test
+        \end{lstlisting}
     \end{frame}
 
     \begin{frame}
@@ -485,7 +575,7 @@ $ useradd -s /bin/bash -m -d /home/digicomp digicomp
         Mais avec un user, un Shell par défaut, et un protocole sécurisé comme le SSH~.
         Nous allons pouvoir nous connecter et l'administrer.
         \bigbreak
-        Les bonnes pratiques sont d'utiliser les clés SSH uniquement, pas de connexion SSH avec le user root,
+        Les bonnes pratiques sont d'utiliser les clés SSH uniquement, pas de connexion SSH avec l'utilisateur root,
         Tutoriel utile~:
         \begin{itemize}
             \item \href{https://phoenixnap.com/kb/generate-setup-ssh-key-ubuntu}{Configuration du login SSH sur Ubuntu}
@@ -730,7 +820,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         \end{itemize}
     \end{frame}
 
-    \subsection{Commandes de traitement de données}\label{subsec:commandes-données}
+    \subsection{Commandes de traitement de données}\label{subsec:commandes-donnees}
 
     \begin{frame}
         \transdissolve
@@ -750,6 +840,23 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         \end{itemize}
     \end{frame}
 
+    \subsubsection{Piping}\label{subsubsec:piping}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{L'histoire du piping}
+        Les opérateurs de redirection et le piping margent toujours évidement avec ces commandes.
+        \bigbreak
+        \begin{columns}
+            \centering
+            \column{0.2\textwidth}
+            \includegraphics[width=3cm]{image/digicomp-video}
+            \column{0.8\textwidth}
+            \includegraphics[width=9cm]{image/kernighan-piping-video} \\ \url{https://www.youtube.com/watch?v=bKzonnwoR2I} \\
+        \end{columns}
+    \end{frame}
+
+    \subsubsection{grep}\label{subsubsec:grep}
     \begin{frame}[fragile]
         \transdissolve
         \frametitle{Commandes de traitement de données}
@@ -795,6 +902,7 @@ from 107.150.102.211
         Expliquer cette dernière commande.
     \end{frame}
 
+    \subsubsection{sed}\label{subsubsec:sed}
     \begin{frame}[fragile]
         \transdissolve
         \frametitle{Commandes de traitement de données}
@@ -867,6 +975,7 @@ $ head -n 3 proftpd.log.1 | sed -E '1d;s/\] .*.com/] XXX/g'
         \end{lstlisting}
     \end{frame}
 
+    \subsubsection{cut}\label{subsubsec:cut}
     \begin{frame}[fragile]
         \transdissolve
         \frametitle{Commandes de traitement de données}
@@ -895,6 +1004,7 @@ $ cut employee.csv -f 1-3 --delimiter=';' | head -n 3
         \end{lstlisting}
     \end{frame}
 
+    \subsubsection{sort}\label{subsubsec:sort}
     \begin{frame}[fragile]
         \transdissolve
         \frametitle{Commandes de traitement de données}
@@ -925,6 +1035,7 @@ $ sed 1d employee.csv | sort -k 4,2 --field-separator=';' | head -n 4
         \end{lstlisting}
     \end{frame}
 
+    \subsubsection{join}\label{subsubsec:join}
     \begin{frame}[fragile]
         \transdissolve
         \frametitle{Commandes de traitement de données}
@@ -946,26 +1057,464 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \begin{dangercolorbox}
             Les 2 doivent avoir exactement le même nombre de ligne~!
             Les 3 dernières lignes ont une correspondance dans le fichier \lstinline{dept.csv} mais aucune association n'est faite, car le fichier \lstinline{dept.csv} n'a que 3 lignes.
+
+            Les clés d'associations doivent être triées, il y a donc toujours une étape avec \lstinline{sort} auparavant.
         \end{dangercolorbox}
     \end{frame}
 
     \begin{frame}
         \transdissolve
         \frametitle{Commandes de traitement de données}
-        \framesubtitle{L'histoire du piping}
-        Les opérateurs de redirection et le piping margent toujours évidement avec ces commandes.
+        \framesubtitle{\lstinline{awk}}
+        L'histoire et le bien fondé de \lstinline{awk}.
         \bigbreak
         \begin{columns}
             \centering
             \column{0.2\textwidth}
             \includegraphics[width=3cm]{image/digicomp-video}
             \column{0.8\textwidth}
-            \includegraphics[width=9cm]{image/kernighan-piping-video} \\ \url{https://www.youtube.com/watch?v=bKzonnwoR2I} \\
+            \includegraphics[width=9cm]{image/coffee-with-bk} \\ \url{https://www.youtube.com/watch?v=GNyQxXw_oMQ} \\
         \end{columns}
     \end{frame}
 
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{awk}}
+        \begin{itemize}
+            \item \textquote{The right tool for a job}.
+            \item N'est même pas packagé, il vient dans toute les distributions.
+            \item Data orientated.
+            \item Search a matching pattern.
+            \item Add numbers.
+            \item One liner.
+            \item Fonctionne avec des \textquote{associative arrays}, donc similaire à des maps, dictionnaires\ldots.
+        \end{itemize}
+    \end{frame}
 
-    \section{Licence CC}\label{licence}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{\lstinline{awk}, exercice \execcounterdispinc{}~:}
+        Mais c'est aussi pour ajouter des nombres sont créateur à dit, on peut donc faire de l'analytique avec~!
+        \bigbreak
+        Quel la somme des salaires par département dans le fichier \lstinline{employee.csv}~?
+        \bigbreak
+        \centering
+        \includegraphics[width=6cm]{image/question-mark}
+    \end{frame}
+
+    \subsubsection{Exercice}\label{subsubsec:data-exercice}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{Exercice \execcounterdispinc{}~:}
+        Cet exercice a pour objectif d'illustrer qu'un prétraitement avec ces commandes est efficace.
+        Plus qu'un équivalent SQL~.
+        \bigbreak
+        Il est courant de limiter les données en base SQL aux besoins des programmes haut-niveau, d'un backend Java, CoBOL, PHP par exemple, pour ne pas surcharger les serveurs SQL~.
+        \bigbreak
+        Ces commandes ne remplacent pas SQL, car elles s'interfacent difficilement avec ces programmes haut-niveau.
+        \bigbreak
+        Par contre, elles peuvent traiter des flux de données avant de les mettre en base.
+        L'exercice consiste à développer avec ces commandes l'équivalent des \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/sqlite-hr.sh}{traitements SQL de ce fichier}.
+        Analyser~:
+        \begin{itemize}
+            \item Ce qui peut être qualifié d'\textquote{efficace}.
+            \item Ce que cette \textquote{efficacité} apporte à l'entreprise.
+            \item Quelle version SQL ou Shell est la plus sensible aux bugs et pourquoi~?
+        \end{itemize}
+    \end{frame}
+
+    \subsubsection{Equivalence SQL - Shell}\label{subsubsec:equi-sql-shell}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{Equivalence SQL - Shell}
+        De nombreux traitements de données ne nécessites même pas SQL, ils ont leur équivalent en Shell~:
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{|c|c|}
+                \hline
+                \textbf{SQL} & \textbf{Shell} \\
+                \hline
+                SELECT       & cut            \\
+                \hline
+                DELETE       & sed            \\
+                \hline
+                UPDATE       & sed, awk       \\
+                \hline
+                INSERT       & <              \\
+                \hline
+                WHERE        & grep           \\
+                \hline
+                JOIN         & awk            \\
+                \hline
+                GROUP BY     & awk            \\
+                \hline
+                SORT BY      & sort           \\
+                \hline
+            \end{tabular}
+%\caption{SQL functions and their Shell commands equivalents}
+        \end{table}
+        Dans une grande banque d'investissement française, chaque soir, le data center d'IBM facture des dizaines de milliers d'EUR pour les batchs qui traitent les données du jour\ldots
+    \end{frame}
+
+    \subsubsection{Les variantes}\label{subsubsec:variantes}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{Variantes de ces outils}
+        Ces outils sont open-source et ont d'innombrables variantes~:
+        \begin{itemize}
+            \item \lstinline{egrep}~: Extended \lstinline{grep}.
+            \item \lstinline{gsed}~: La version sous licence GNU de \lstinline{sed}.
+            \item \lstinline{gawk}~: La version sous licence GNU de \lstinline{awk}.
+            \item \lstinline{bawk}~: \lstinline{bawk}, binary \lstinline{bawk}, pour parser des fichiers binaires.
+            \item \lstinline{busybox}~: Ils ont tous une version dans cette boîte à outils.
+        \end{itemize}
+        \bigbreak
+        Quel est l'intérêt de traiter des fichiers binaires~?
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/question-mark}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Commandes de traitement de données}
+        \framesubtitle{Variantes de ces outils}
+        Dans les exemples précédents, nous n'avons manipulé que des données issues de fichier texte.
+        Les données numériques prennent moins de place en binaire.
+        \begin{lstlisting}[language=python]
+from sys import getsizeof
+from struct import pack
+print("lentgh of the string:", getsizeof("65535"))
+print("lentgh of the struct:", getsizeof(pack(">H", 0xffff)))
+lentgh of the string: 46
+lentgh of the struct: 35
+        \end{lstlisting}
+        La valeur d'un octet est comprise entre 0 et 255, mais pour obtenir du texte, on passe par une table de correspondance, un encodage, qui donnera un seul caractère.
+        La valeur numérique la plus élevée pour ce même octet en text donc 9.
+        \bigbreak
+        Pour des soucis de performance, de coût (du cloud), il n'est pas rare que les formats de données soit binaires.
+    \end{frame}
+
+
+    \section{Utilisateurs, groupes et droits d'accès}\label{sec:utilisateurs-groupes-droits}
+
+    \subsection{Groupes}\label{subsec:groupes}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les groupes}
+        \begin{columns}
+            \column{0.5\textwidth}
+            Les groupes facilitent la gestion des droits d'accès.
+            En effet, il est plus simple de gérer les droits d'accès pour un groupe d'utilisateurs que pour chaque utilisateur.
+            \bigbreak
+            L'administrateur a tout intérêt à créer des groupes pour les utilisateurs qui ont les mêmes besoins et par la même, diminuer le nombre de droits à gérer et les erreurs possibles.
+            \column{0.5\textwidth}
+            \centering
+            \includegraphics[width=6cm]{image/groups-and-users.drawio}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les groupes}
+        L'utilitaire \lstinline{addgroup} permet de créer un groupe.
+%bash listing
+        \begin{lstlisting}[language=bash]
+$ whoami
+chrichri
+$ addgroup digicomp
+fatal: Seul le superutilisateur est autorisé à ajouter un utilisateur ou un groupe au système.
+        \end{lstlisting}
+        Pourquoi cela ne fonctionne pas~?
+        \pause
+        \begin{dangercolorbox}
+            Pour ajouter un groupe, il faut être superutilisateur.
+            C'est à dire, avoir les droits \textquote{root}.
+            Donc être \textquote{root}, ou utiliser \lstinline{sudo} si on est \textquote{sudoer}, \textit{i.e.}, que l'on fait partie du groupe \textquote{sudo}.
+        \end{dangercolorbox}
+        \begin{lstlisting}[language=bash]
+$ sudo addgroup digicomp
+info: Choix d'un GID dans la plage 1000 à 59999 ...
+info: Ajout du groupe « digicomp » (GID 1002)...
+$ groups
+chrichri adm dialout cdrom sudo audio dip video plugdev lpadmin pulse lxd sambashare docker libvirt nordvpn
+$ members sudo
+chrichri
+$ members digicomp
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les groupes}
+        \lstinline{groups} permet de lister les groupes auxquels appartient un utilisateur, mais aussi de lister tous les groupes~:
+        \begin{lstlisting}[language=bash]
+$ groups chrichri
+chrichri : chrichri adm dialout cdrom sudo audio dip video plugdev lpadmin pulse lxd sambashare nordvpn docker libvirt
+        \end{lstlisting}
+        \lstinline{members} permet de lister les membres d'un groupe.
+        Il nous confirme que le groupe \lstinline{digicomp} est bien créé, il n'a pas de membres.
+        \bigbreak
+        Pour qu'une ressource, fichier, dossier, appartienne à un groupe, il faut que le groupe soit propriétaire de la ressource.
+        Pour cela, la commande \lstinline{chown}(CHange OWNer) permet de changer le propriétaire d'une ressource.
+% Shell listing
+        \begin{lstlisting}[language=bash]
+$ mkdir digicomp-little-secret
+$ touch digicomp-little-secret/secret.txt
+$ echo "Le code de l'entrée est 8564" > digicomp-little-secret/secret.txt
+$ cat digicomp-little-secret/secret.txt
+Le code de l'entrée est 8564
+$ sudo chown root:digicomp -R digicomp-little-secret/
+$ ls -lha digicomp-little-secret/
+total 12K
+drwxrwxr-x  2 root     digicomp 4,0K août  15 16:07 .
+drwxrwxr-x 10 chrichri chrichri 4,0K août  15 16:07 ..
+-rw-rw-r--  1 root     digicomp   29 août  15 16:08 secret.txt
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les groupes}
+        \lstinline{sudo chown root:digicomp -R digicomp-little-secret} veut dire que le groupe propriétaire de \lstinline{digicomp-little-secret} est \lstinline{digicomp} et de manière récursive, \textit{i.e.}, pour les sous-dossiers et fichiers.
+        La structure de la commande est \lstinline{chown <user>:<group> -R <path>}.
+        Et il faut la aussi être \textquote{superutilisateur}, ici avec \lstinline{sudo}.
+        \bigbreak
+        Mais\ldots
+        \begin{lstlisting}[language=bash]
+$ cat digicomp-little-secret/secret.txt
+Le code de l'entré est 8564
+$ echo "Le code de l'entré est 2539" > digicomp-little-secret/secret.txt
+bash: digicomp-little-secret/secret.txt: Permission non accordée
+        \end{lstlisting}
+        Qu'est-ce que cela veut dire~?
+        \begin{center}
+            \includegraphics[width=2.5cm]{image/question-mark}
+        \end{center}
+    \end{frame}
+
+    \subsection{Droits}\label{subsec:droits}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les droits\footnote{\label{rights-digitalocean}An Introduction to Linux Permissions, \url{https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-permissions}}}
+        \begin{dangercolorbox}
+            Cela montre que des users qui ne sont pas prioritaires et qui ne font pas partie du groupe propriétaire peuvent avoir des droits.
+            Par défaut ces droits sont en lecture seule, n'ont n'avons pas pu écrire dans le fichier.
+        \end{dangercolorbox}
+        \centering
+        \includegraphics[width=7cm]{image/permission-classes}
+        \flushleft
+        Les droits par défaut du fichier en question étaient \lstinline{-rw-rw-r--}.
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les droits\cref{rights-digitalocean}}
+        \begin{lstlisting}[language=bash]
+$ ls -lha digicomp-little-secret/
+total 12K
+drwxrwxr-x  2 root     digicomp 4,0K août  15 16:07 .
+drwxrwxr-x 10 chrichri chrichri 4,0K août  15 16:07 ..
+-rw-rw-r--  1 root     digicomp   29 août  15 16:08 secret.txt
+        \end{lstlisting}
+        \begin{columns}
+            \column{0.4\textwidth}
+            N'étant ni dans le groupe propriétaire, ni propriétaire, l'utilisateur \lstinline{chrichri} est autre, ses droits sont donc \lstinline{r--}.
+
+            Qui veut dire, \textit{read} uniquement.
+            Ce qui est cohérent avec les commandes précédentes.
+            \column{0.6\textwidth}
+            \begin{center}
+                \includegraphics[width=6.5cm]{image/ls-details}
+            \end{center}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les droits\cref{rights-digitalocean}\footnotestep\footnote{\label{octal}Octal Notation and Linux Permissions, \url{https://cratecode.com/info/octal-notation}}}
+        \begin{columns}
+            \column{0.5\textwidth}
+            La notation octale est une manière de représenter les droits d'accès.
+            \bigbreak
+            \textit{In fine}, c'est un nombre qui est la concaténation de 3 suites de valeurs binaires\ldots.
+            \column{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=6.5cm]{image/binary-explosion}
+            \end{center}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Représentation binaire la notation octale avec Python\cref{octal}}
+        \begin{lstlisting}[language=bash]
+int("000", 2) # Masque binaire de 3 de longs donc 0 est le minimum
+Out[30]: 0
+int("111", 2) # 7 le maximum, de 0 à 7 il y a 8 valeurs d'où octal
+Out[31]: 7
+int("001", 2) # Execute: --x
+Out[32]: 1
+int("010", 2) # Write: -w-
+Out[33]: 2
+int("100", 2) # Read: r--
+Out[34]: 4
+int("110", 2) # Read/write: rw-
+Out[35]: 6
+int("111", 2) # Read/write/execute: rwx
+Out[36]: 7
+int("011", 2) # Write/execute: -wx
+Out[37]: 3
+int("101", 2) # Write/execute: w-x
+Out[38]: 5
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Notation octale\cref{octal}}
+        Cela fait bien des droits qui vont de 0 pour la lecture seule au user, à 777 pour la lecture, l'écriture et l'exécution au user, groupe et autres.
+        \begin{lstlisting}[language=bash]
+"".join(map(str, [int("100", 2), int("000", 2), int("000", 2)])) # r-- pour user
+Out[46]: '400'
+"".join(map(str, [int("111", 2), int("111", 2), int("111", 2)])) # rwx pour tous
+Out[45]: '777'
+        \end{lstlisting}
+        Ces droits s'appliquent avec la commande \lstinline{chmod} pour CHange MODe.
+        Selon le format suivant \lstinline{chmod <mode> <file>}.
+        \lstinline{<mode>} étant le chiffre calculé entre 000 et 777 calculé au dessus.
+        Comme pour \lstinline{chown}, l'option \lstinline{-R} peut être ajoutée pour être récursif dans les sous-dossiers et fichiers.
+        \bigbreak
+        Des utilitaires plus user friendly que Python sont en ligne comme \url{https://chmod-calculator.com/}.
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Notation octale\cref{octal}}
+        En résumé, restreindre les droits à la lecture par l'utilisateur propriétaire m'empêche de lire le fichier~:
+        \begin{lstlisting}[language=bash]
+$ sudo chmod 400 digicomp-little-secret/secret.txt
+$ cat digicomp-little-secret/secret.txt
+cat: digicomp-little-secret/secret.txt: Permission non accordée
+        \end{lstlisting}
+        Graĉe à \lstinline{sudo} je peux me donner les droits en lecture ou écriture par exemple~:
+        \begin{lstlisting}[language=bash]
+$ sudo chmod 007 digicomp-little-secret/secret.txt
+$ cat digicomp-little-secret/secret.txt
+Le code de l'entrée est 8564
+$ sudo chmod 002 digicomp-little-secret/secret.txt
+$ cat digicomp-little-secret/secret.txt
+cat: digicomp-little-secret/secret.txt: Permission non accordée
+$ echo "Le code de l'entrée est 8564" > digicomp-little-secret/secret.txt
+        \end{lstlisting}
+    \end{frame}
+
+    \subsection{Utilisateurs}\label{subsec:utilisateurs}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les utilisateurs}
+        Les utilisateurs sont les personnes qui utilisent le système.
+        Les bonnes pratiques veulent qu'il y en a un par personne physique.
+        L'utilisateur a pour s'identifier un user et un mot de passe et/ou une clé privé.
+        C'est l'administrateur du système qui lui génère son premier mot de passe et sa première clé.
+        Un user peut faire partie de plusieurs groupes, comme ici \lstinline{daniel} qui est \lstinline{dba} et \lstinline{prod}.
+        \begin{columns}
+            \column{0.5\textwidth}
+            Exemple de commandes pour gérer un utilisateur~:
+            \begin{itemize}
+                \item \lstinline{adduser}~: Ajouter un utilisateur.
+                \item \lstinline{passwd}~: Changer le mot de passe.
+                \item \lstinline{usermod}~: Modifier un utilisateur.
+                \item \lstinline{userdel}~: Supprimer un utilisateur.
+            \end{itemize}
+            \column{0.5\textwidth}
+            \centering
+            \includegraphics[width=5cm]{image/groups-and-users.drawio}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Les utilisateurs}
+        Exemple avec la création du user \lstinline{digiformateur}.
+        \begin{lstlisting}[language=bash]
+$ useradd -s /bin/bash -m -d $/home/digiformateur digiformateur
+useradd: Permission denied.
+useradd : impossible de vérouiller /etc/passwd ; réessayer plus tard.
+$ sudo useradd -s /bin/bash -m -d $/home/digiformateur digiformateur # sudo
+$ passwd digiformateur
+passwd : Vous ne devriez pas voir ou modifier l'information du mot de passe pour digiformateur.
+$ sudo passwd digiformateur # superutilisateur
+Nouveau mot de passe : 
+Retapez le nouveau mot de passe : 
+passwd : mot de passe mis à jour avec succès
+$ su digiformateur
+Mot de passe : 
+$ whoami
+digiformateur
+$ exit
+exit
+$ userdel digiformateur # superutilisateur
+userdel: Permission denied.
+userdel : impossible de vérouiller /etc/passwd ; réessayer plus tard.
+$ sudo userdel digiformateur
+        \end{lstlisting}
+    \end{frame}
+
+    \subsection{Exercice}\label{subsec:user-group-rights-exercice}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Exercice \execcounterdispinc}
+        Cet exercice a pour objectif de montrer que les droits d'accès sont une question de sécurité, les configurations et les services sont très sensibles.
+        En effet, les services sont le plus exécutés par l'utilisateur root et ont donc le maximum de droits.
+        \bigbreak
+        Il est courant de donner des droits en lecture seule à un fichier de configuration, mais de ne pas donner de droits en écriture.
+        \begin{itemize}
+            \item Créer un user qui aura des droits en écriture sur la configuration d'un service dans \lstinline{/etc/systemd/system}.
+            \item Créer un groupe qui aura des droits en écriture sur la configuration d'un autre service dans \lstinline{/etc/systemd/system}.
+            \item Ajouter à ce dernier groupe le nouveau user.
+            \item Supprimer groupe et user.
+            \item Remettre les droits comme avant sur les deux services.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Exercice \execcounterdispinc}
+        Cet exercice a pour objectif de créer un simple site web static isolé par le jeu des user/groupes/droits.
+        \begin{itemize}
+            \item Créer un groupe pour ce serveur/site web.
+            \item Créer un user type développeur qui aura des droits adéquats sur un dossier et fichier \lstinline{/var/www/html/digicomp/index.html}.
+            \item Créer un user type production qui aura des droits adéquats sur un dossier et fichier \lstinline{/var/www/html/digicomp/index.html}.
+            \item Un script shell à exécuter grâce au shebang \lstinline{\#!/bin/bash} qui lance la commande Python \lstinline{python3 -m http.server -d /var/www/html/digicomp/}.
+            Ce script shell ne peut être exécuté par l'utilisateur de production uniquement et aucune resource ne doit pouvoir être modifiée.
+        \end{itemize}
+    \end{frame}
+
+
+    \section{Licence CC}\label{sec:licence}
 
     \begin{frame}
         \transdissolve
