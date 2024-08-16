@@ -7,5 +7,5 @@ fi
 # cd in doc or handle error
 cd doc || exit 1
 # Compile LaTeX with lualatex, compile twice to get the table of contents
-lualatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf linux-2.tex
-lualatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf linux-2.tex
+lualatex -file-line-error -interaction=nonstopmode -synctex=1 -output-directory=../out -output-format=pdf linux-2.tex
+lualatex -file-line-error -interaction=nonstopmode -synctex=1 -output-directory=../out -output-format=pdf linux-2.tex
