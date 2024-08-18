@@ -1,0 +1,108 @@
+
+chrichri@ubuntu:~$ sudo apt install mdadm
+...
+chrichri@ubuntu:~$ sudo systemctl status mdmonitor
+● mdmonitor.service - MD array monitor
+   Loaded: loaded (/lib/systemd/system/mdmonitor.service; static; vendor preset: enabled)
+   Active: inactive (dead)
+chrichri@ubuntu:~$ sudo systemctl enable mdmonitor
+The unit files have no installation config (WantedBy, RequiredBy, Also, Alias
+settings in the [Install] section, and DefaultInstance for template units).
+This means they are not meant to be enabled using systemctl.
+Possible reasons for having this kind of units are:
+1) A unit may be statically enabled by being symlinked from another unit's
+   .wants/ or .requires/ directory.
+2) A unit's purpose may be to act as a helper for some other unit which has
+   a requirement dependency on it.
+3) A unit may be started when needed via activation (socket, path, timer,
+   D-Bus, udev, scripted systemctl call, ...).
+4) In case of template units, the unit is meant to be enabled with some
+   instance name specified.
+chrichri@ubuntu:~$ sudo systemctl start mdmonitor
+chrichri@ubuntu:~$ sudo systemctl status mdmonitor
+● mdmonitor.service - MD array monitor
+   Loaded: loaded (/lib/systemd/system/mdmonitor.service; static; vendor preset: enabled)
+   Active: active (running) since Sun 2024-08-18 23:10:19 CEST; 4s ago
+ Main PID: 513 (mdadm)
+    Tasks: 1 (limit: 2333)
+   CGroup: /system.slice/mdmonitor.service
+           └─513 /sbin/mdadm --monitor --scan
+
+août 18 23:10:19 ubuntu systemd[1]: Started MD array monitor.
+chrichri@ubuntu:~$ lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+fd0      2:0    1    4K  0 disk 
+sda      8:0    0   16G  0 disk 
+└─sda1   8:1    0   16G  0 part /
+sdb      8:16   0  500M  0 disk 
+sdc      8:32   0  500M  0 disk 
+chrichri@ubuntu:~$ mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc
+mdadm: must be super-user to perform this action
+chrichri@ubuntu:~$ sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc
+mdadm: Note: this array has metadata at the start and
+    may not be suitable as a boot device.  If you plan to
+    store '/boot' on this device please ensure that
+    your boot-loader understands md/v1.x metadata, or use
+    --metadata=0.90
+Continue creating array? y
+mdadm: Defaulting to version 1.2 metadata
+mdadm: array /dev/md0 started.
+chrichri@ubuntu:~$ sudo mdadm --detail /dev/md0
+/dev/md0:
+           Version : 1.2
+     Creation Time : Sun Aug 18 23:12:16 2024
+        Raid Level : raid1
+        Array Size : 510976 (499.00 MiB 523.24 MB)
+     Used Dev Size : 510976 (499.00 MiB 523.24 MB)
+      Raid Devices : 2
+     Total Devices : 2
+       Persistence : Superblock is persistent
+
+       Update Time : Sun Aug 18 23:12:20 2024
+             State : clean 
+    Active Devices : 2
+   Working Devices : 2
+    Failed Devices : 0
+     Spare Devices : 0
+
+Consistency Policy : resync
+
+              Name : ubuntu:0  (local to host ubuntu)
+              UUID : 96392d50:82158fec:ce097da1:81724f01
+            Events : 17
+
+    Number   Major   Minor   RaidDevice State
+       0       8       16        0      active sync   /dev/sdb
+       1       8       32        1      active sync   /dev/sdc
+chrichri@ubuntu:~$ mkfs.ext4 /dev/md0
+mke2fs 1.44.1 (24-Mar-2018)
+Impossible d'ouvrir /dev/md0 : Permission non accordée
+chrichri@ubuntu:~$ sudo mkfs.ext4 /dev/md0
+mke2fs 1.44.1 (24-Mar-2018)
+Rejet des blocs de périphérique : complété                            
+En train de créer un système de fichiers avec 510976 1k blocs et 128016 i-noeuds.
+UUID de système de fichiers=7f5ee0b6-99d9-497f-a87a-0505e7d42e16
+Superblocs de secours stockés sur les blocs : 
+        8193, 24577, 40961, 57345, 73729, 204801, 221185, 401409
+
+Allocation des tables de groupe : complété                            
+Écriture des tables d'i-noeuds : complété                            
+Création du journal (8192 blocs) : complété
+Écriture des superblocs et de l'information de comptabilité du système de
+fichiers : complété
+
+chrichri@ubuntu:~$ lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
+fd0      2:0    1    4K  0 disk  
+sda      8:0    0   16G  0 disk  
+└─sda1   8:1    0   16G  0 part  /
+sdb      8:16   0  500M  0 disk  
+└─md0    9:0    0  499M  0 raid1 
+sdc      8:32   0  500M  0 disk  
+└─md0    9:0    0  499M  0 raid1 
+chrichri@ubuntu:~$ df /dev/md0
+df: /dev/md0: Aucun fichier ou dossier de ce type
+chrichri@ubuntu:~$ sudo mount /dev/md0 /mnt
+chrichri@ubuntu:~$ df /dev/md0
+Sys. de fichiers blocs de 1K Utilisé Disponible Uti% Monté sur
+/dev/md0              484306      14     454648   1% /mnt

@@ -135,7 +135,7 @@
 
         Linux est ainsi multi user dès le début.
         Par opposition à Windows, qui par défaut (sans RDP ni bricolage), ne l'est pas.
-        C'est Windows Server qui est multi user.
+        C'est Windows® Server qui est multi user.
         \bigbreak
         Cette différence est cruciale, car elle a fait de cet OS un candidat idéal pour les serveurs (Web, BDD, \textit{etc}).
     \end{frame}
@@ -171,7 +171,7 @@
             \item \textbf{Kernel} ou \textbf{Noyau}~: Le composant central d'un système d'exploitation qui contrôle tous les processus de bas niveau d'un ordinateur, tels que la gestion de la mémoire, les threads et les entrées/sorties.
             En un sens, le noyau agit comme le gardien de l'ordinateur vis-à-vis du matériel.
             Les applications font des appels système via le noyau pour demander des ressources et interagir avec le matériel.
-            \item \textbf{Distribution}~: Désigne une version de GNU/Linux ou d'un autre système d'exploitation open source, bien que certaines personnes soutiennent que le terme devrait inclure les différents systèmes d'exploitation Windows et Apple.
+            \item \textbf{Distribution}~: Désigne une version de GNU/Linux ou d'un autre système d'exploitation open source, bien que certaines personnes soutiennent que le terme devrait inclure les différents systèmes d'exploitation Windows® et Apple.
             Ubuntu est la version la plus populaire, mais il en existe de nombreuses autres, telles que RedHat, qui est bien connue pour les serveurs.
             La plupart des autres distros sont conçues pour un type particulier d'architecture, comme les téléphones, les netbooks, les routeurs, les serveurs, \textit{etc}.
         \end{itemize}
@@ -341,11 +341,10 @@
             Ne pas confondre avec des Shell spécifique comme le Python Shell ou le MySQL Shell qui interagissent spécifiquement avec ces applications.
             \item Et donc un interpréteur de scripts Shell.
             \item C'est une interface entre l'OS et l'humain.
-            \item Existe sur la plupart des plateformes Linux, Unix, Windows (\lstinline{Bash}, installé avec Git par exemple), \textit{etc}.
+            \item Existe sur la plupart des plateformes Linux, Unix, Windows® (\lstinline{Bash}, installé avec Git par exemple), \textit{etc}.
             \item Une portabilité poussée par une standardisation, comme la standardisation POSIX~.
             \item Des Shells plus \textit{user friendly} et plus lourds comme \lstinline{zsh}.
             \item Des Shells éxotiques comme \lstinline{tcsh} et \lstinline{csh}.
-            \item
         \end{itemize}
     \end{frame}
 
@@ -439,7 +438,7 @@ root@71641013d445:/usr/src/celia# ls
 
         L'interface graphique n'est donc pas installé dans les distributions dédiées aux serveurs.
         Shell et l'accès Shell distant sécurisé \lstinline{SSH} (Secure SHell), sont utilisés.
-        Un client SSH comme Putty, SSH de GitBASH sous Windows ou un terminal sous Linux permettent d'accéder à un server Linux.
+        Un client SSH comme Putty, SSH de GitBASH sous Windows® ou un terminal sous Linux permettent d'accéder à un server Linux.
         \bigbreak
         GitBash permet d'unifier les deux environnements Linux et Windows, de pratiquer le Bash sur toute plateforme.
     \end{frame}
@@ -504,29 +503,29 @@ $ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
                 \centering
                 \begin{tabular}{|p{3.5cm}|p{8cm}|}
                     \hline
-                    \textbf{Commande}    & \textbf{Description}                                                            \\
+                    \textbf{Commande}         & \textbf{Description}                                                            \\
                     \hline
-                    Ctrl+B D             & Détacher de la session courante                                                 \\
+                    Ctrl+b puis D             & Détacher de la session courante                                                 \\
                     \hline
-                    Ctrl+B \%            & Diviser la fenêtre en deux volets horizontalement                               \\
+                    Ctrl+b puis \%            & Diviser la fenêtre en deux volets horizontalement                               \\
                     \hline
-                    Ctrl+B ``            & Diviser la fenêtre en deux volets verticalement                                 \\
+                    Ctrl+b puis ``            & Diviser la fenêtre en deux volets verticalement                                 \\
                     \hline
-                    Ctrl+B Flèche        & Se déplacer entre les volets                                                    \\
+                    Ctrl+b puis Flèche        & Se déplacer entre les volets                                                    \\
                     \hline
-                    Ctrl+B X             & Fermer le volet                                                                 \\
+                    Ctrl+b puis X             & Fermer le volet                                                                 \\
                     \hline
-                    Ctrl+B C             & Créer une nouvelle fenêtre                                                      \\
+                    Ctrl+b puis C             & Créer une nouvelle fenêtre                                                      \\
                     \hline
-                    Ctrl+B N ou P        & Passer à la fenêtre suivante ou précédente                                      \\
+                    Ctrl+b puis N ou P        & Passer à la fenêtre suivante ou précédente                                      \\
                     \hline
-                    Ctrl+B 0 (1,2\ldots) & Aller à une fenêtre spécifique par numéro                                       \\
+                    Ctrl+b puis 0 (1,2\ldots) & Aller à une fenêtre spécifique par numéro                                       \\
                     \hline
-                    Ctrl+B :             & Entrer dans la ligne de commande pour taper des commandes (avec autocomplétion) \\
+                    Ctrl+b puis :             & Entrer dans la ligne de commande pour taper des commandes (avec autocomplétion) \\
                     \hline
-                    Ctrl+B ?             & Voir tous les raccourcis clavier (appuyer sur Q pour quitter)                   \\
+                    Ctrl+b puis ?             & Voir tous les raccourcis clavier (appuyer sur Q pour quitter)                   \\
                     \hline
-                    Ctrl+B W             & Ouvrir un panneau pour naviguer entre les fenêtres de plusieurs sessions        \\
+                    Ctrl+b puis W             & Ouvrir un panneau pour naviguer entre les fenêtres de plusieurs sessions        \\
                     \hline
                 \end{tabular}
             \end{table}
@@ -808,10 +807,10 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         Le but est de créer un fichier source d'un script Shell en y ajoutant ligne par ligne les commandes.
         \begin{itemize}
             \item Initier la création d'un script Shell nommé \lstinline{discover.sh} dans votre \textquote{home} avec un commentaire descriptif.
-            \item Y ajouter l'output d'un message indiquant que le current working directory va s'afficher.
-            \item Y ajouter la commande pour afficher le répertoire courant.
-            \item Y ajouter l'output d'un message indiquant que les fichiers et répertoires du répertoire courant vont s'afficher.
-            \item Y ajouter une commande pour lister les fichiers et répertoires du répertoire courant.
+            \item Ajouter l'output d'un message indiquant que le current working directory va s'afficher.
+            \item Ajouter la commande pour afficher le répertoire courant.
+            \item Ajouter l'output d'un message indiquant que les fichiers et répertoires du répertoire courant vont s'afficher.
+            \item Ajouter une commande pour lister les fichiers et répertoires du répertoire courant.
         \end{itemize}
 
         Inutile donc indispensable~:
@@ -1481,6 +1480,34 @@ $ sudo userdel digiformateur
         \end{lstlisting}
     \end{frame}
 
+    \subsection{Mot de passe}\label{subsec:password}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Recommandation sur les motrs de passe}
+        \begin{footnotesize}
+            Bonnes pratiques de l'ANSSI\footnote{Bonnes pratiques - Protégez-vous !, \url{https://cyber.gouv.fr/bonnes-pratiques-protegez-vous}} pour les mots de passe~:
+            \begin{columns}
+                \column{0.5\textwidth}
+                \begin{itemize}
+                    \item Créez un mot de passe suffisamment long, complexe et inattendu :
+                    de 8 caractères minimum et contenant des minuscules, des majuscules,
+                    des chiffres et des caractères spéciaux.
+
+                    \item Ne communiquez jamais votre mot de passe à un tiers : aucune
+                    organisation ou personne de confiance ne vous demandera de lui
+                    communiquer votre mot de passe.
+
+                \end{itemize}
+                \column{0.6\textwidth}
+                \centering
+                \includegraphics[width=6.5cm]{image/real-password-cracking} \\ Hashcat benchmark\footnotemark \\
+            \end{columns}
+            Mais le mot de passe seul n'est pas suffisant, le plus sûr reste le SSH avec la pair de clés privé et publique.
+            \footnotetext{Those Tables With Password Cracking Times That Scare You And Peddle Snake Oil — Are Mostly Wrong!, \url{https://billatnapier.medium.com/those-tables-password-cracking-times-that-scare-you-are-mostly-wrong-7d03bf4aec6}}
+        \end{footnotesize}
+    \end{frame}
+
     \subsection{Exercice}\label{subsec:user-group-rights-exercice}
     \begin{frame}
         \transdissolve
@@ -1511,6 +1538,338 @@ $ sudo userdel digiformateur
             \item Un script shell à exécuter grâce au shebang \lstinline{\#!/bin/bash} qui lance la commande Python \lstinline{python3 -m http.server -d /var/www/html/digicomp/}.
             Ce script shell ne peut être exécuté par l'utilisateur de production uniquement et aucune resource ne doit pouvoir être modifiée.
         \end{itemize}
+    \end{frame}
+
+
+    \section{Système de fichiers}\label{sec:fs}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Définition\footnote{\label{fs}Les systèmes de fichiers sous GNU-Linux / macOS / Windows, \url{https://doc.ubuntu-fr.org/systeme_de_fichiers}}}
+        \begin{footnotesize}
+            Soft qui organise les fichiers de votre ordinateur sur votre disque dur de façon
+            à pouvoir les retrouver lorsque vous au besoin.
+            Les systèmes de fichiers les plus répandus à l'heure actuelle sont sûrement le FAT32 et
+            le NTFS, qui sont les deux seuls systèmes de fichiers que Microsoft® Windows® peut nativement lire.
+            Il existe de nombreux autres systèmes de fichiers : ext2, ext3, ext4, ReiserFS, JFS, XFS, Btrfs, ZFS\ldots
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|c|c|c|}
+                    \hline
+                    \textbf{Nom} & \textbf{Fichier max} & \textbf{Partition max} & \textbf{Journalisé} & \textbf{Gestion des droits} \\ \hline
+                    BtrFS        & 16 EiB               & 16 EiB                 & Non (CoW)           & Oui                         \\ \hline
+                    exFAT        & 16 TiB               & 256 TiB                & Oui                 & Oui                         \\ \hline
+                    ext2FS       & 2 TiB                & 4 TiB                  & Non                 & Oui                         \\ \hline
+                    ext3FS       & 2 TiB                & 4 TiB                  & Oui                 & Oui                         \\ \hline
+                    ext4FS       & 16 TiB               & 1 EiB                  & Oui                 & Oui                         \\ \hline
+                    FAT          & 2 GiB                & 2 GiB                  & Non                 & Non                         \\ \hline
+                    FAT32        & 4 GiB                & 8 TiB                  & Non                 & Non                         \\ \hline
+                    NTFS         & 16 TiB               & 256 TiB                & Oui                 & Oui                         \\ \hline
+                    ReiserFS     & 8 TiB                & 16 TiB                 & Oui                 & Oui                         \\ \hline
+                    UDF          & 16 EiB               & 2 To                   & Non                 & Oui                         \\ \hline
+                \end{tabular}
+            \end{table}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Définition\cref{fs}}
+        Sans cette indexation, il serait impossible de retrouver un fichier sur un disque dur.
+        Qui n'est que une immensité de données binaire~:
+        \begin{lstlisting}
+$ sudo dd if=/dev/nvme0n1p3 ibs=512 count=1 skip=239 2> /dev/null | hexdump -C
+00000000  00 d7 01 d7 02 d7 03 d7  04 d7 05 d7 06 d7 07 d7  |................|
+00000010  08 d7 09 d7 0a d7 0b d7  0c d7 0d d7 0e d7 0f d7  |................|
+00000020  10 d7 11 d7 12 d7 13 d7  14 d7 15 d7 16 d7 17 d7  |................|
+00000030  18 d7 19 d7 1a d7 1b d7  1c d7 1d d7 1e d7 1f d7  |................|
+00000040  20 d7 21 d7 22 d7 23 d7  24 d7 25 d7 26 d7 27 d7  | .!.".#.$.%.&.'.|
+00000050  28 d7 29 d7 2a d7 2b d7  2c d7 2d d7 2e d7 2f d7  |(.).*.+.,.-.../.|
+00000060  30 d7 31 d7 32 d7 33 d7  34 d7 35 d7 36 d7 37 d7  |0.1.2.3.4.5.6.7.|
+00000070  38 d7 39 d7 3a d7 3b d7  3c d7 3d d7 3e d7 3f d7  |8.9.:.;.<.=.>.?.|
+        \end{lstlisting}
+        \lstinline{dd} est une commande qui permet de lire et écrire des tout ou partie d'un disque
+        \bigbreak
+        Par défaut sur les machine Ubuntu le système de fichier est \lstinline{ext4}.
+        \bigbreak
+        Mais ZFS est aussi supporté.
+        Il est plus courant sur les serveurs qui stock des données, plus que sur les serveurs applicatif.
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Du hardware au Kernel\footnote{Linux File System\url{https://www.javatpoint.com/linux-file-system}}}
+        \centering
+        \includegraphics[width=11cm]{image/linux-file-system-stack}
+    \end{frame}
+
+    \subsection{Montage du système de fichiers}\label{subsec:mount}
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Comment rajouter un disque~?}
+        \begin{scriptsize}
+            \begin{itemize}
+                \item \lstinline{lsblk}~: Pour lister les disques et les partitions.
+                \item \lstinline{parted}~: Pour lister et modifier les disques et les partitions.
+                \item \lstinline{mount}~: Pour monter le disque.
+                \item \lstinline{df}~: Pour vérifier que le disque est bien monté.
+            \end{itemize}
+            \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ sudo parted -l
+Modèle : KPART512GBC2DVT (nvme)
+Disque /dev/nvme0n1 : 512GB
+Taille des secteurs (logiques/physiques) : 512B/512B
+Table de partitions : gpt
+Drapeaux de disque :
+
+Numéro  Début   Fin    Taille  Système de fichiers  Nom                           Drapeaux
+ 1      1049kB  211MB  210MB   fat32                EFI system partition          démarrage, esp
+ 2      211MB   228MB  16,8MB                       Microsoft reserved partition  msftres
+ 3      228MB   129GB  129GB   ntfs                 Basic data partition          msftdata
+ 4      129GB   233GB  104GB   ntfs                 Basic data partition          msftdata
+ 8      233GB   491GB  258GB   ext4
+
+
+Modèle : Inconnu (unknown)
+Disque /dev/zram0 : 8271MB
+Taille des secteurs (logiques/physiques) : 4096B/4096B
+Table de partitions : loop
+Drapeaux de disque :
+
+Numéro  Début  Fin     Taille  Système de fichiers  Drapeaux
+ 1      0,00B  8271MB  8271MB  linux-swap(v1)
+            \end{lstlisting}
+        \end{scriptsize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Comment rajouter un disque~?}
+        Combien de disque physique~?
+        \begin{center}
+            \includegraphics[width=3cm]{image/question-mark}
+        \end{center}
+        \pause
+        \begin{dangercolorbox}
+            Il y a un seul disque(s) physique(s), \lstinline{/dev/nvme0n1}.
+
+            L'autre est la RAM, une partie du système de fichier, celle dédiée au fichiers temporaires est mappée sur la RAM pour des soucis de performance.
+        \end{dangercolorbox}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Comment rajouter un disque~?}
+        \begin{scriptsize}
+            En connectant un nouveau disque on constate bien avec \lstinline{parted} qu'il y a un nouveau disque~:
+            \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+Modèle : Intuix DiskOnKey (scsi)
+Disque /dev/sda : 252MB
+Taille des secteurs (logiques/physiques) : 512B/512B
+Table de partitions : loop
+Drapeaux de disque :
+
+Numéro  Début  Fin    Taille  Système de fichiers  Drapeaux
+ 1      0,00B  252MB  252MB   ext4
+            \end{lstlisting}
+            4 To environ au format NTFS, il est sous \lstinline{/dev/sda}.
+            A-t-il un point de montage sur le système de fichier~?
+            \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ df
+Sys. de fichiers        blocs de 1K   Utilisé Disponible Uti% Monté sur
+tmpfs                       1615420      6264    1609156   1% /run
+/dev/nvme0n1p8            247090272 199514156   34951836  86% /
+tmpfs                       8077096     11248    8065848   1% /dev/shm
+tmpfs                          5120         8       5112   1% /run/lock
+efivarfs                        184       172          8  96% /sys/firmware/efi/efivars
+tmpfs                       8077096         0    8077096   0% /run/qemu
+tmpfs                       2097152      3400    2093752   1% /tmp
+/dev/nvme0n1p1               200704     51428     149276  26% /boot/efi
+tmpfs                       1615416      2596    1612820   1% /run/user/1000
+/home/chrichri/.Private   247090272 199514156   34951836  86% /home/chrichri/Private
+            \end{lstlisting}
+        \end{scriptsize}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Comment rajouter un disque~?}
+        Créons un \textquote{point de montage} et montons ce disque~:
+        \begin{lstlisting}[language=bash]
+$ sudo mkdir /mnt/sda-usb # /mnt pour les montage par convention mais peut être ailleurs
+$ sudo mkfs.ext4 /dev/sda # formatage du disque en Ext4 car le FS était incompatible
+$ sudo mount /dev/sda /mnt/sda-usb
+$ ls /mnt/sda-usb -lha
+total 24K
+drwxr-xr-x 3 root root 4,0K août  17 15:21 .
+drwxr-xr-x 5 root root 4,0K août  17 15:08 ..
+drwx------ 2 root root  16K août  17 15:21 lost+found
+        \end{lstlisting}
+        \begin{dangercolorbox}
+            \lstinline{mkfs.ext4} est une commande qui permet de formater un disque en Ext4.
+            Elle supprime donc les données du disque.
+            Elle est néanmoins nécessaire pour pouvoir monter le disque, il y avait en effet une incompatibilité de système de fichier.
+            Ces incompatibilités sont fréquentes avec les systèmes de fichiers Windows® comme FAT et NTFS~.
+        \end{dangercolorbox}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Comment rajouter un disque~?}
+        Comme ces commandes ont été exécutées par le supersaturation, il est probable ques les droits bloque l'écriture~:
+        \begin{lstlisting}[language=bash]
+$ cp ocr_speed.txt /mnt/sda-usb
+cp: impossible de créer le fichier standard '/mnt/sda-usb/ocr_speed.txt': Permission non accordée
+$ sudo cp ocr_speed.txt /mnt/sda-usb
+$ sudo chown chrichri: -R /mnt/sda-usb
+$ sudo chmod 700 /mnt/sda-usb
+$ cp ocr_speed.txt /mnt/sda-usb
+$ /mnt/sda-usb/ocr_speed.txt -lha
+-rw-r--r-- 1 chrichri chrichri 212 août  17 15:37 /mnt/sda-usb/ocr_speed.txt
+        \end{lstlisting}
+        Des modifications ont pu être apportées.
+        \bigbreak
+        Avant de retirer le disque peut démonter le disque et éventuellement supprimer le point de montage~:
+        \begin{lstlisting}[language=bash]
+$ sudo umount /dev/sda
+$ ls /mnt/sda-usb
+$ sudo rm -rf /mnt/sda-usb
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \framesubtitle{Exercice \execcounterdispinc}
+        \newcounter{exemountcounter}
+        \setcounter{exemountcounter}{\value{execounter}}
+        % add one as execounter not incremented yet
+        \addtocounter{exemountcounter}{1}
+        Cet exercice a pour objectif d'ajouter un disque en lecture seule sur votre Bureau.
+        \begin{itemize}
+            \item Le disque est une clé USB pluggée à votre PC~.
+            \item Créer le point de montage sur le bureau.
+            \item Montez-y la clé USB~.
+            Après l'avoir démonter si elle a été montée automatiquement par l'OS~.
+            \item Modifier les droits pour qu'elle soit en lecture seule.
+            \item Démonter la clé USB~.
+            \item Supprimer le point de montage.
+        \end{itemize}
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
+    \subsection{La table du système de fichiers (/etc/fstab)}\label{subsec:fstab}
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{La table du système de fichiers (\lstinline{/etc/fstab})}
+        \lstinline{/etc/fstab} est un fichier de configuration associe des points de montage à des disques.
+        Il est lu au démarrage du système pour monter les disques automatiquement et ne pas avoir à passer les commandes vues précédemment.
+        \bigbreak
+        Il permet également de configurer des partitions spécialisées comme \lstinline{/tmp} ou \lstinline{swapfile}.
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ cat /etc/fstab
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/nvme0n1p8 during installation
+UUID=9bcc82ee-9214-4eac-90f6-9695c585874b /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/nvme0n1p1 during installation
+UUID=EE30-267D  /boot/efi       vfat    umask=0077      0       1
+#/swapfile                                 none            swap    sw              0       0
+# Temp file in memory.
+tmpfs /tmp tmpfs defaults,size=2G 0 0
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{La table du système de fichiers (\lstinline{/etc/fstab})}
+        \lstinline{/etc/fstab} est un fichier de configuration associe des points de montage à des disques.
+        On y trouve les UUID des disques, le point de montage, le type de système de fichier, les options de montage du disque principale~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+UUID=9bcc82ee-9214-4eac-90f6-9695c585874b /               ext4    errors=remount-ro 0       1
+        \end{lstlisting}
+        La partition de boot montée sur \lstinline{/boot/efi}~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+UUID=EE30-267D  /boot/efi       vfat    umask=0077      0       1
+        \end{lstlisting}
+        La \lstinline{swapfile} qui est commentée pour car c'est une extension de la RAM sur le disque, c'est configuration invite l'OS à utiliser un maximum la RAM~.
+        La partition \lstinline{/tmp} montée en mémoire pour de meilleurs performances avec certaines commandes comme \lstinline{sort}, la mémoire est plus rapide que le SSD.~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+# Temp file in memory.
+tmpfs /tmp tmpfs defaults,size=2G 0 0
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Exercices de configuration de la table du système de fichiers (\lstinline{/etc/fstab})}
+        Exercice \execcounterdispinc: Reprendre les consignes de l'exercice  \theexemountcounter{} et ajouter le disque à la table du système de fichiers \lstinline{/etc/fstab} pour que la clé soit montée automatiquement au démarrage.
+        \bigbreak
+        Exercice \execcounterdispinc: Créer un disque virtuel de 1 Go et le monter automatiquement au démarrage en configurant \lstinline{/etc/fstab}.
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
+    \subsection{RAID)}\label{subsec:raid}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Les différents RAID\footnote{\label{mdadm}mdadm : RAID Logiciel sous Linux, \url{https://www.linuxtricks.fr/wiki/mdadm-raid-logiciel-sous-linux}}\footnotestep\footnote{Qu'est-ce que le RAID ?, \url{https://www.diskpart.com/fr/windows-server/logiciel-gestion-raid-8899-tc.html}}}
+        Le RAID est un ensemble de standards de virtualisation du stockage permettant de répartir des données sur plusieurs disques durs afin d'améliorer soit les performances, soit la sécurité ou la tolérance aux pannes de l'ensemble du ou des systèmes.
+        \bigbreak
+        \centering
+        \includegraphics[width=10cm]{image/raid-0-1-5} \\ Les principaux RAID, les 0, 1 et 5 \\
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{\lstinline{mdadm}\cref{mdadm}\footnotestep\footnote{RAID logiciel avec mdadm, \url{https://doc.ubuntu-fr.org/raid_logiciel}}}
+        \begin{itemize}
+            \item Logiciel installable sous Ubuntu avec le package manager, pas besoin de compilation.
+            \item Comme pour les autres commandes \textquote{bas-niveau}, elle nécessite d'être superutilisateur.
+            \item Il lance un service qui monitor les processus nécessaires au RAID~.
+            Un service se lance automatiquement au démarrage du système.
+            \item Il faut que les disques soient vierges, sinon les données seront perdues.
+            \item Il est recommandé qu'ils aient la même taille, mais ce n'est pas indispensable.
+            Dans le cas contraire, l'espace dédié au RAID sera de la taille du plus petit disque et le reste sera non-RAID~.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichiers}
+        \framesubtitle{Exercice \execcounterdispinc{}}
+        L'objectif est de maîtriser les commandes de base de l'outil \lstinline{mdadm}\cref{mdadm}.
+        \begin{itemize}
+            \item Créer 2 disques vierges de 1 Go chacun.
+            \item Lancer la VM Ubuntu avec les 2 disques créés.
+            \item Se connecter à la VM~.
+            \item Vérifier l'ajout des 2 disques avec une commande vue précédemment.
+            \item Suivre le tutorial \url{https://www.linuxtricks.fr/wiki/mdadm-raid-logiciel-sous-linux} pour créer un RAID 1.
+        \end{itemize}
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
 
