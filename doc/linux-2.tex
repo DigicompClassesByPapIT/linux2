@@ -1,4 +1,5 @@
 \documentclass{beamer}
+\usepackage{hyperref}
 \include{../style/cours-style.sty}
 
 % Title
@@ -1746,7 +1747,7 @@ $ sudo rm -rf /mnt/sda-usb
 
     \begin{frame}
         \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
+        \frametitle{Système de fichier}
         \framesubtitle{Exercice \execcounterdispinc}
         \newcounter{exemountcounter}
         \setcounter{exemountcounter}{\value{execounter}}
@@ -1814,6 +1815,11 @@ UUID=EE30-267D  /boot/efi       vfat    umask=0077      0       1
 # Temp file in memory.
 tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{lstlisting}
+        On peut aussi utiliser ce fichier pour configurer le montage au moment du démarrage d'un disque supplémentaire, clé USB sur un point de montage~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+# /boot was on /dev/sda5 during installation
+/dev/sda5                                    /boot           ext2    defaults          0       2
+        \end{lstlisting}
     \end{frame}
 
     \begin{frame}
@@ -1832,7 +1838,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
 
     \begin{frame}
         \transdissolve
-        \frametitle{Système de fichiers}
+        \frametitle{RAID}
         \framesubtitle{Les différents RAID\footnote{\label{mdadm}mdadm : RAID Logiciel sous Linux, \url{https://www.linuxtricks.fr/wiki/mdadm-raid-logiciel-sous-linux}}\footnotestep\footnote{Qu'est-ce que le RAID ?, \url{https://www.diskpart.com/fr/windows-server/logiciel-gestion-raid-8899-tc.html}}}
         Le RAID est un ensemble de standards de virtualisation du stockage permettant de répartir des données sur plusieurs disques durs afin d'améliorer soit les performances, soit la sécurité ou la tolérance aux pannes de l'ensemble du ou des systèmes.
         \bigbreak
@@ -1842,7 +1848,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
 
     \begin{frame}
         \transdissolve
-        \frametitle{Système de fichiers}
+        \frametitle{RAID}
         \framesubtitle{\lstinline{mdadm}\cref{mdadm}\footnotestep\footnote{RAID logiciel avec mdadm, \url{https://doc.ubuntu-fr.org/raid_logiciel}}}
         \begin{itemize}
             \item Logiciel installable sous Ubuntu avec le package manager, pas besoin de compilation.
@@ -1852,12 +1858,28 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
             \item Il faut que les disques soient vierges, sinon les données seront perdues.
             \item Il est recommandé qu'ils aient la même taille, mais ce n'est pas indispensable.
             Dans le cas contraire, l'espace dédié au RAID sera de la taille du plus petit disque et le reste sera non-RAID~.
+            \item Ajout de disques dit \textquote{spare} ou en français dormants, qui ne sont pas utilisés par le RAID tant qu'un autre disque n'est pas tombé en panne.
         \end{itemize}
     \end{frame}
 
     \begin{frame}
         \transdissolve
-        \frametitle{Système de fichiers}
+        \frametitle{RAID}
+        \framesubtitle{RAID logiciel ou controller RAID hardware?}
+        \begin{itemize}
+            \item Le RAID logiciel est plus flexible, car il est indépendant du matériel.
+            Surtout si le controller n'est une carte du type PCIe mais qu'il est intégré à la carte mère.
+            \item Le RAID hardware est plus performant, car il est géré par un processeur dédié.
+            Le software prend des ressources qui pourraient être utilisées par d'autres softwares.
+            \item Le RAID hardware est plus cher, car il nécessite un contrôleur RAID~.
+            \item Le RAID hardware est plus difficile à maintenir.
+            \item Un Contrôleurs RAID Intel® coûtent 100 à 700 CHF~.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{RAID}
         \framesubtitle{Exercice \execcounterdispinc{}}
         L'objectif est de maîtriser les commandes de base de l'outil \lstinline{mdadm}\cref{mdadm}.
         \begin{itemize}
@@ -1870,6 +1892,479 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \bigbreak
         \centering
         \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{RAID}
+        \framesubtitle{Exercice \execcounterdispinc{}}
+        Quel est un des dangers de RAID 0?
+        \bigbreak
+        \centering
+        \includegraphics[width=5cm]{image/raid-0}
+    \end{frame}
+
+    \subsection{LVM)}\label{subsec:lvm}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Logical Volume Manager, A.K.A LVM}
+        \framesubtitle{Définition\footnote{\label{lvm}LVM, une autre manière de partitionner, \url{https://doc.ubuntu-fr.org/lvm}}}
+        Il permet la création et la création de volumes logiques.
+        Ces derniers sont des partitions virtuelles qui peuvent être agrandies ou réduites sans perte de données.
+        Et sont décorrélées des disques physiques (les PV ou \textquote{Physical Volume}).
+        \bigbreak
+        Un ou plusieurs PV sont regroupés en un ou plusieurs VG \textquote{Volume group}.
+        \bigbreak
+        C'est dans ces VG que sont créés les LV \textquote{Logical Volume} qui remplacent les partitions.
+        \bigbreak
+        Un des bénéfices est qu'un dossier comme par exemple \lstinline{/var/lib/mysql} qui contient les données de la base MySQL peut être plus grand qu'un disque physique entier~!
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Logical Volume Manager, A.K.A LVM}
+        \framesubtitle{Définition\cref{lvm}}
+        \centering
+        \includegraphics[width=10cm]{image/lvm}
+        \flushleft
+        Le PV peut être un disque RAID, par sécurité, pour prévenir une perte de données c'est même conseillé.
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Logical Volume Manager, A.K.A LVM}
+        \framesubtitle{Définition\cref{lvm}}
+        Si les données sont strippées (avec les options \lstinline{-I} et/ou \lstinline{-i} de \lstinline{lvm2}\footnote{Analysing a Standard Logical Volume, \url{https://www.theurbanpenguin.com/striped-lvm-volumes/}}) le risque de perte de données est plus grand sans RAID mais la performance est meilleure comme avec RAID 0.
+        \bigbreak
+        \begin{columns}
+            \column{0.5\textwidth}
+            L'idéale en terme de sécurité et de performance est d'avoir un RAID 1 pour les PV et les volumes logiques strippées.
+            \bigbreak
+            Par défaut, avec la commande \lstinline{mount}, le montage configuré sera perdu au redémarrage.
+            Une configuration de \lstinline{/etc/fstab} permet de garder le montage du LV après redémarrage.
+            \column{0.5\textwidth}
+            \bigbreak
+            \centering
+            \includegraphics[width=7cm]{image/fs-stack.drawio}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichier}
+        \framesubtitle{Exercice \execcounterdispinc}
+        Avec le disque RAID créé précédemment, il est possible de créer un volume logique avec LVM~.
+        \begin{itemize}
+            \item Créer un volume physique~.
+            \item Créer un groupe logique~.
+            \item Créer un volume logique~.
+            \item Monter le volume logique sur \lstinline{/lib/var/mysql}.
+            \item Ajouter le montage du volume logique dans \lstinline{/etc/fstab} pour que le volume se monte au démarrage de la machine.
+            \item Redémarrer la machine pour tester.
+        \end{itemize}
+    \end{frame}
+
+
+    \section{Processus}\label{sec:processus}
+
+    \subsection{Gestion des processus}\label{subsec:process-management}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Gestion des processus}
+        \framesubtitle{Définition\footnote{\label{process}Les processus sous Linux, \url{https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using-command-line/}}}
+        Un processus est un programme en cours d'exécution.
+        Il est identifié par un PID, le \textquote{Process IDentifier}.
+        \bigbreak
+        Il peut être en cours d'exécution, en attente, en pause, en zombie, dormant ou en terminaison, \textit{etc}.
+        Il est possible de voir les processus avec la commande \lstinline{ps} ou \lstinline{top}.
+        \bigbreak
+        \begin{columns}
+            \column{0.7\textwidth}
+            \lstinline{ps} affiche les informations de manière statique alors que est dynamique, interactif et temps réel.
+            \lstinline{ps} peut donc être utilisé également dans des scripts Shell.
+
+            Les processus peuvent être tués avec la commande \lstinline{kill}.
+
+            Les données les concernant sont stockées dans le dossier \lstinline{/proc}.
+            \column{0.3\textwidth}
+            \centering
+            \includegraphics[width=4cm]{image/proc-hamster}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Gestion des processus}
+        \framesubtitle{Les commandes \lstinline{ps}}
+        L'option \lstinline{-f} affiche plus d'informations sur les processus.
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ ps
+    PID TTY          TIME CMD
+ 276321 pts/5    00:00:00 bash
+ 338450 pts/5    00:00:00 ps
+$ ps -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+chrichri  276321  265707  0 13:17 pts/5    00:00:00 /usr/bin/bash --rcfile /home/chrichri/pycharm-professional-2024.1.4/pycharm-2024.1.4/plugins/terminal/shell-integrations/bash/bash-integration.bash -i
+chrichri  338508  276321 99 14:12 pts/5    00:00:00 ps -f
+        \end{lstlisting}
+        Une commande par nom de processus et avec la ligne de commande complète~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ ps -fC java
+UID          PID    PPID  C STIME TTY          TIME CMD
+chrichri  265707    8404 80 13:08 ?        00:42:46 /home/chrichri/pycharm...
+        \end{lstlisting}
+        \bigbreak
+        Les processus de l'utilisateur courant~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ ps -u chrichri
+    PID TTY          TIME CMD
+   8059 ?        00:00:06 systemd
+   8068 ?        00:00:00 (sd-pam)
+   8090 ?        00:00:02 pipewire
+...
+        \end{lstlisting}
+        \bigbreak
+        Les processus de l'utilisateur courant et de tous les autres utilisateurs, \textit{i.e.}, tous les processus~:
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 09:23 ?        00:00:05 /sbin/init splash
+root           2       0  0 09:23 ?        00:00:00 [kthreadd]
+...
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Gestion des processus}
+        \framesubtitle{Les états d'un processus sous \lstinline{ps}}
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|p{0.1\textwidth}|p{0.8\textwidth}|}
+                \hline
+                \textbf{État} & \textbf{Description}                                                            \\ \hline
+                \textbf{D}    & Sommeil ininterrompu (habituellement en attente d'IO)                           \\ \hline
+                \textbf{R}    & En cours d'exécution ou prêt à être exécuté (dans la file d'attente)            \\ \hline
+                \textbf{S}    & Sommeil interrompible (en attente de la complétion d'un événement)              \\ \hline
+                \textbf{T}    & Arrêté, soit par un signal de contrôle de tâche, soit parce qu'il est tracé     \\ \hline
+                \textbf{W}    & Pagination (non valide depuis le noyau 2.6.xx)                                  \\ \hline
+                \textbf{X}    & Mort (ne devrait jamais être vu)                                                \\ \hline
+                \textbf{Z}    & Processus défunt ("zombie"), terminé mais non récupéré par son processus parent \\ \hline
+            \end{tabular}
+            \caption{États des processus sous Linux sous \lstinline{ps}}
+        \end{table}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Gestion des processus}
+        \framesubtitle{L'interface \lstinline{top}}
+        La commande \lstinline{top} affiche tous les processus.
+        Mais il ne permet pas de trouver les processus par nom contrairement à \lstinline{ps}.
+        \bigbreak
+        Les principales fonctions que l'on peut appeler dans l'interface~:
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|p{0.1\textwidth}|p{0.8\textwidth}|}
+                \hline
+                \textbf{Touche} & \textbf{Fonction}                           \\ \hline
+                \textbf{k}      & Met fin à un processus                      \\ \hline
+                \textbf{m}      & Trie la liste par utilisation de la mémoire \\ \hline
+                \textbf{n}      & Trie la liste par PID                       \\ \hline
+                \textbf{r}      & Modifie la priorité d’un processus          \\ \hline
+                \textbf{h}      & Affiche la fenêtre d’aide                   \\ \hline
+                \textbf{z}      & Affiche les processus en cours en couleurs  \\ \hline
+                \textbf{d}      & Modifie l’intervalle de rafraîchissement    \\ \hline
+                \textbf{c}      & Affiche le chemin absolu d’un processus     \\ \hline
+                \textbf{f}      & Écran de personnalisationff                 \\ \hline
+            \end{tabular}
+            \caption{États des processus sous Linux sous \lstinline{top}}
+        \end{table}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Gestion des processus}
+        \framesubtitle{Les états d'un processus sous \lstinline{top}}
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|p{0.1\textwidth}|p{0.8\textwidth}|}
+                \hline
+                \textbf{État} & \textbf{Description}                      \\ \hline
+                \textbf{D}    & Sommeil ininterrompu                      \\ \hline
+                \textbf{I}    & Inactif                                   \\ \hline
+                \textbf{R}    & En cours d'exécution                      \\ \hline
+                \textbf{S}    & En sommeil                                \\ \hline
+                \textbf{T}    & Arrêté par un signal de contrôle de tâche \\ \hline
+                \textbf{t}    & Arrêté par un débogueur lors d'un traçage \\ \hline
+                \textbf{Z}    & Processus zombie                          \\ \hline
+            \end{tabular}
+            \caption{États des processus sous Linux sous \lstinline{top}}
+        \end{table}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Gestion des processus}
+        \framesubtitle{L'interface \lstinline{top}}
+        Top et \textquote{c} pour afficher la ligne de commande~:
+        \bigbreak
+        \centering
+        \includegraphics[width=10cm]{image/top-interface}
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \transdissolve
+        \frametitle{Gestion des processus}
+        \framesubtitle{La commande \lstinline{kill}}
+        La commande \lstinline{top} permet de terminer un processus dans l'interface avec \textbf{k}.
+        En fonction de son PID, qu'on aurait auparavant dans cette même interface.
+        ou avec la commande \lstinline{ps}, on peut le tuer avec la commande \lstinline{kill}.
+        \bigbreak
+        Mais il existe une commande spécifique, c'est \lstinline{kill}.
+        Elle permet de terminer un processus dont aurait trouvé le PID avec \lstinline{ps} ou \lstinline{top}.
+        \begin{lstlisting}[language=bash]
+$ kill -9 <PID>
+        \end{lstlisting}
+        \bigbreak
+        La commande \lstinline{pkill} permet de tuer un processus par son nom, celui qui s'affiche dans \lstinline{ps} ou \lstinline{top}.
+        \begin{lstlisting}[language=bash]
+$ pkill -9 <nom>
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Gestion des processus}
+        \framesubtitle{Le dossier \lstinline{/proc}\footnote{The /proc Filesystem, \url{https://docs.kernel.org/filesystems/proc.html}}}
+        \begin{footnotesize}
+            Le dossier \lstinline{/proc} contient des informations sur les processus sous l'arborescence de son PID donc \lstinline{/proc/<PID>/} dans les fichiers suivants~:
+            \begin{tiny}
+                \begin{table}[h!]
+                    \centering
+                    \begin{tabular}{|p{1.5cm}|p{9cm}|}
+                        \hline
+                        \textbf{File} & \textbf{Content}                                                                                                            \\
+                        \hline
+                        clear\_refs   & Clears page referenced bits shown in smaps output                                                                           \\
+                        \hline
+                        cmdline       & Command line arguments                                                                                                      \\
+                        \hline
+                        cpu           & Current and last cpu in which it was executed (2.4)(smp)                                                                    \\
+                        \hline
+                        cwd           & Link to the current working directory                                                                                       \\
+                        \hline
+                        environ       & Values of environment variables                                                                                             \\
+                        \hline
+                        exe           & Link to the executable of this process                                                                                      \\
+                        \hline
+                        fd            & Directory, which contains all file descriptors                                                                              \\
+                        \hline
+                        maps          & Memory maps to executables and library files (2.4)                                                                          \\
+                        \hline
+                        mem           & Memory held by this process                                                                                                 \\
+                        \hline
+                        root          & Link to the root directory of this process                                                                                  \\
+                        \hline
+                        stat          & Process status                                                                                                              \\
+                        \hline
+                        statm         & Process memory status information                                                                                           \\
+                        \hline
+                        status        & Process status in human readable form                                                                                       \\
+                        \hline
+                        wchan         & Present with CONFIG\_KALLSYMS=y: it shows the kernel function symbol the task is blocked in - or “0” if not blocked.        \\
+                        \hline
+                        pagemap       & Page table                                                                                                                  \\
+                        \hline
+                        stack         & Report full stack trace, enable via CONFIG\_STACKTRACE                                                                      \\
+                        \hline
+                        smaps         & An extension based on maps, showing the memory consumption of each mapping and flags associated with it                     \\
+                        \hline
+                        smaps\_rollup & Accumulated smaps stats for all mappings of the process. This can be derived from smaps, but is faster and more convenient  \\
+                        \hline
+                        numa\_maps    & An extension based on maps, showing the memory locality and binding policy as well as mem usage (in pages) of each mapping. \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+            \end{tiny}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichier}
+        \framesubtitle{Exercices sur les processus}
+        Exercice \execcounterdispinc{}, quels droits ai-je \lstinline{/proc} sur les processus des autres utilisateurs~?
+        \bigbreak
+        Exercice \execcounterdispinc{}, quels droits ai-je \lstinline{/proc} sur mes processus~?
+        \bigbreak
+        Exercice \execcounterdispinc{}, terminer un processus découvert sous \lstinline{top} avec la commande \lstinline{kill}.
+        \bigbreak
+        Exercice \execcounterdispinc{}, terminer un processus découvert sous \lstinline{top} avec la commande \lstinline{pkill}.
+        \bigbreak
+        Personnaliser \lstinline{top} pour que l'interface affiche les processus non pas en pourcentage totale de CPU consommé (par défaut) mais en pourcentage par coeur.
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichier}
+        \framesubtitle{Exercices \execcounterdispinc{}}
+        \begin{itemize}
+            \item Lancer en arrière plan le script Shell \lstinline{endless-loop.sh}.
+            \item Arrêter le processus correspondant au script dans \lstinline{top}.
+            \item Lancer à nouveau en arrière plan le script Shell \lstinline{endless-loop.sh}.
+            \item Arrêter le processus correspondant au script à l'aide de  \lstinline{ps} et \lstinline{kill}.
+        \end{itemize}
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Système de fichier}
+        \framesubtitle{Exercices sur les processus}
+        Exercices \execcounterdispinc{}, à partir de vos connaissances sur les process et des commandes précédentes comparer l'activité d'une machine Ubuntu, d'un WSL ubuntu et d'un WSL Debian, ou un FreeBSD.
+
+        Que remarquez-vous~?
+        \pause
+        \bigbreak
+        \centering
+        \includegraphics[width=10cm]{image/top-debian} \\ Ubuntu est-il en train de devenir un \textit{bloatware~}, lui aussi\ldots \emoji{window}?
+    \end{frame}
+
+
+    \section{Réseau}\label{sec:network}
+
+    \subsection{Open SSH}\label{subsec:openssh}
+
+    \begin{frame}{OpenSSH}{Définition\footnote{\label{openssh-site}OpenSSH, Keeping your comuniqués secret, \url{https://www.openssh.com/}}}
+        \transdissolve
+        OpenSSH est l'outil de connectivité principal pour les connexions à distance avec le protocole SSH.
+        Il a pour but de remplacer les outils non sécurisés tels que \texttt{rlogin}, \texttt{rsh} et \texttt{telnet}.
+        Il chiffre tout le trafic pour éliminer les écoutes clandestines, le détournement de connexion et d'autres attaques.
+        De plus, OpenSSH offre une large gamme de capacités de tunneling sécurisé, plusieurs méthodes d'authentification et des options de configuration sophistiquées.
+
+        La suite OpenSSH se compose des outils suivants :
+        \begin{itemize}
+            \item Les opérations à distance sont effectuées à l'aide de \texttt{ssh}, \texttt{scp} et \texttt{sftp}.
+            \item Gestion des clés avec \texttt{ssh-add}, \texttt{ssh-keysign}, \texttt{ssh-keyscan} et \texttt{ssh-keygen}.
+            \item Le côté serveur comprend \texttt{sshd}, \texttt{sftp-server} et \texttt{ssh-agent}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{OpenSSH}
+        \framesubtitle{Définition\cref{openssh-site}}
+        OpenSSH est développé par quelques développeurs du projet OpenBSD et est disponible sous une licence de type BSD, donc open source.
+        \bigbreak
+        OpenSSH relies on the \href{https://www.libressl.org}{LibreSSL} library for some of its cryptographic routines, AES-GCM being one example.
+        Plus légère que OpenSSL, LibreSSL n'a pas été affectée par des failles ayant affecté OpenSSL.
+        \bigbreak
+        \centering
+        \includegraphics[width=7cm]{image/ssh-key-diagram}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{OpenSSH}
+        \framesubtitle{Les formats de clé\footnote{AUTHORIZED\_KEYS FILE FORMAT, \url{https://man.openbsd.org/sshd\#AUTHORIZED_KEYS_FILE_FORMAT}}}
+        \begin{footnotesize}
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|p{3cm}|p{8cm}|}
+                    \hline
+                    \textbf{Algorithm}                 & \textbf{Description}                                                                                                                                  \\
+                    \hline
+                    sk-ecdsa-sha2-nistp256@openssh.com & ECDSA (Elliptic Curve Digital Signature Algorithm) with NIST P-256 curve, supporting hardware-backed security keys.                                   \\
+                    \hline
+                    ecdsa-sha2-nistp256                & ECDSA with NIST P-256 curve, widely used in modern cryptography for secure communication.                                                             \\
+                    \hline
+                    ecdsa-sha2-nistp384                & ECDSA with NIST P-384 curve, offering a higher level of security compared to P-256.                                                                   \\
+                    \hline
+                    ecdsa-sha2-nistp521                & ECDSA with NIST P-521 curve, providing the highest level of security in the ECDSA family.                                                             \\
+                    \hline
+                    sk-ssh-ed25519@openssh.com         & Ed25519 with support for hardware-backed security keys, offering high security and performance.                                                       \\
+                    \hline
+                    ssh-ed25519                        & Ed25519 algorithm, providing strong security with smaller keys and faster performance compared to older algorithms.                                   \\
+                    \hline
+                    ssh-rsa                            & RSA algorithm, one of the oldest and most widely used public-key cryptography algorithms, though now considered less secure than modern alternatives. \\
+                    \hline
+                \end{tabular}
+            \end{table}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Open SSH}
+        \framesubtitle{Les commandes\footnote{OpenSSH-9.8p1, \url{https://www.linuxfromscratch.org/blfs/view/git/postlfs/openssh.html}}}
+        \begin{footnotesize}
+            \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|p{8cm}|}
+                    \hline
+                    \textbf{Command}       & \textbf{Description}                                                           \\
+                    \hline
+                    lstinline{scp}         & Is a file copy program that acts like rcp except it uses an encrypted protocol \\
+                    \hline
+                    lstinline{sftp}        & Is an FTP-like program that works over the SSH1 and SSH2 protocols             \\
+                    \hline
+                    lstinline{ssh}         & Is an rlogin/rsh-like client program except it uses an encrypted protocol      \\
+                    \hline
+                    lstinline{sshd}        & Is a daemon that listens for ssh login requests                                \\
+                    \hline
+                    lstinline{ssh-add}     & Is a tool which adds keys to the ssh-agent                                     \\
+                    \hline
+                    lstinline{ssh-agent}   & Is an authentication agent that can store private keys                         \\
+                    \hline
+                    lstinline{ssh-copy-id} & Is a script that enables logins on remote machines using local keys            \\
+                    \hline
+                    lstinline{ssh-keygen}  & Is a key generation tool                                                       \\
+                    \hline
+                    lstinline{ssh-keyscan} & Is a utility for gathering public host keys from a number of hosts             \\
+                    \hline
+                \end{tabular}
+            \end{table}
+        \end{footnotesize}
+    \end{frame}
+
+
+    \section{Builder sa distribution}\label{sec:build-distribution}
+    \begin{frame}
+        \transdissolve
+        \frametitle{Builder sa distribution}
+        \framesubtitle{Pourquoi~?}
+        \begin{columns}
+            \column{0.7\textwidth}
+            \begin{itemize}
+                \item Maîtriser tous les composants de la stack (package manager, compilateur, \textit{etc}).
+                \item Éviter les \textquote{bloatwares} et les \textquote{backdoors} des distributions grand public.
+                Optimisation orientée sécurité ou performance de la distribution pour un usage spécifique.
+                \item N'embarquer que le strict nécessaire pour limiter l'impact sur l'infra.
+                \item Rationalisation des ressources de l'entreprise, toute la société apprend et utilise la même distribution.
+            \end{itemize}
+            \column{0.3\textwidth}
+            \centering
+            \includegraphics[width=4cm]{image/building-linux}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}
+        \transdissolve
+        \frametitle{Buildroot}
+        \framesubtitle{Définition}
+        Buildroot permet de configurer un build de Linux pour des \textquote{target} variés des systèmes embarqués, principalement, mais aussi des architectures PC x86 et Qemu plus classiques.
+        \bigbreak
+        Il est possible de configurer le noyau, les outils de base, les bibliothèques, les applications, les systèmes de fichiers racine, le package manager, \textit{etc}.
+        Dans le but d'avoir une distribution spécifique aux besoin de son application.
+        Sans embarqués des dépendances et librairies inutiles.
     \end{frame}
 
 
