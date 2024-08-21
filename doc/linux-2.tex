@@ -433,7 +433,7 @@ $ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
                     \hline
                     Ctrl+b puis 0 (1,2\ldots) & Aller à une fenêtre spécifique par numéro                                       \\
                     \hline
-                    Ctrl+b puis :             & Entrer dans la ligne de commande pour taper des commandes (avec autocomplétion) \\
+                    Ctrl+b puis~:             & Entrer dans la ligne de commande pour taper des commandes (avec autocomplétion) \\
                     \hline
                     Ctrl+b puis ?             & Voir tous les raccourcis clavier (appuyer sur Q pour quitter)                   \\
                     \hline
@@ -543,7 +543,7 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.s
         Par défaut, Ubuntu desktop s’installe sur une partition non
         chiffrée (encrypter, ce n’est pas français on dit chiffrer~!~).
         Tout document peut donc être lu avec un disque de
-        démarrage (live CD, USB bootable, etc) ou si le disque dur
+        démarrage (live CD, USB bootable, \textit{etc}) ou si le disque dur
         est extrait et lu (vol, perte du desktop\ldots).
         \bigbreak
         Avec le package \lstinline{ecryptfs-utils} on peut chiffrer une partition~:
@@ -728,12 +728,12 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         Par exemple, pour chercher les connexions depuis une IP dans le fichier de ProFTP (un serveur FTP)~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ grep -P 'from\s([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})' proftpd.log.1
-2023-03-05 11:35:16,736 vps19562 proftpd[663168] vps19562.dreamhostps.com (104.156.155.30[104.156.155.30]): USER anonymous: no such user found from 104.156.155.30 [104.156.155.30] to ::ffff:66.33.201.239:21
-2023-03-05 13:44:22,711 vps19562 proftpd[664214] vps19562.dreamhostps.com (183.127.77.34.bc.googleusercontent.com[34.77.127.183]): USER anonymous: no such user found from 183.127.77.34.bc.googleusercontent.com [34.77.127.183] to ::ffff:66.33.201.239:21
-2023-03-05 21:18:51,926 vps19562 proftpd[669957] vps19562.dreamhostps.com (182.176.228.148[182.176.228.148]): USER local: no such user found from 182.176.228.148 [182.176.228.148] to ::ffff:66.33.201.239:21
-2023-03-05 21:59:46,174 vps19562 proftpd[670340] vps19562.dreamhostps.com (107.150.102.211[107.150.102.211]): USER anonymous: no such user found from 107.150.102.211 [107.150.102.211] to ::ffff:66.33.201.239:21
-2023-03-06 13:36:11,788 vps19562 proftpd[681605] vps19562.dreamhostps.com (116.62.233.35.bc.googleusercontent.com[35.233.62.116]): USER anonymous: no such user found from 116.62.233.35.bc.googleusercontent.com [35.233.62.116] to ::ffff:66.33.201.239:21
-2023-03-07 10:19:49,666 vps19562 proftpd[695638] vps19562.dreamhostps.com (116.62.233.35.bc.googleusercontent.com[35.233.62.116]): USER anonymous: no such user found from 116.62.233.35.bc.googleusercontent.com [35.233.62.116] to ::ffff:66.33.201.239:21
+2023-03-05 11:35:16,736 vps19562 proftpd[663168] vps19562.dreamhostps.com (104.156.155.30[104.156.155.30]): USER anonymous: no such user found from 104.156.155.30 [104.156.155.30] to~::ffff:66.33.201.239:21
+2023-03-05 13:44:22,711 vps19562 proftpd[664214] vps19562.dreamhostps.com (183.127.77.34.bc.googleusercontent.com[34.77.127.183]): USER anonymous: no such user found from 183.127.77.34.bc.googleusercontent.com [34.77.127.183] to~::ffff:66.33.201.239:21
+2023-03-05 21:18:51,926 vps19562 proftpd[669957] vps19562.dreamhostps.com (182.176.228.148[182.176.228.148]): USER local: no such user found from 182.176.228.148 [182.176.228.148] to~::ffff:66.33.201.239:21
+2023-03-05 21:59:46,174 vps19562 proftpd[670340] vps19562.dreamhostps.com (107.150.102.211[107.150.102.211]): USER anonymous: no such user found from 107.150.102.211 [107.150.102.211] to~::ffff:66.33.201.239:21
+2023-03-06 13:36:11,788 vps19562 proftpd[681605] vps19562.dreamhostps.com (116.62.233.35.bc.googleusercontent.com[35.233.62.116]): USER anonymous: no such user found from 116.62.233.35.bc.googleusercontent.com [35.233.62.116] to~::ffff:66.33.201.239:21
+2023-03-07 10:19:49,666 vps19562 proftpd[695638] vps19562.dreamhostps.com (116.62.233.35.bc.googleusercontent.com[35.233.62.116]): USER anonymous: no such user found from 116.62.233.35.bc.googleusercontent.com [35.233.62.116] to~::ffff:66.33.201.239:21
         \end{lstlisting}
     \end{frame}
 
@@ -767,12 +767,12 @@ from 107.150.102.211
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ head -n 3 proftpd.log.1
 2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
-2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
-2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to~::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to~::ffff:66.33.201.239:21
 $ head -n 3 proftpd.log.1 | sed s/vps19562.dreamhostps.com/XXX/
 2023-03-05 00:17:11,880 vps19562 proftpX[653589] XXX: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
-2023-03-05 00:47:51,132 vps19562 proftpX[653845] XXX (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
-2023-03-05 00:55:14,666 vps19562 proftpX[655268] XXX (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] XXX (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to~::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] XXX (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to~::ffff:66.33.201.239:21
         \end{lstlisting}
     \end{frame}
 
@@ -782,8 +782,8 @@ $ head -n 3 proftpd.log.1 | sed s/vps19562.dreamhostps.com/XXX/
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ head -n 3 proftpd.log.1 | sed -E 's/\[[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\]/[xxx.xxx.xxx.xxx]/g'
 2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
-2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[xxx.xxx.xxx.xxx]): USER anonymous: no such user found from aurora.probe.onyphe.net [xxx.xxx.xxx.xxx] to ::ffff:66.33.201.239:21
-2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[xxx.xxx.xxx.xxx]): USER anonymous: no such user found from hodson.probe.onyphe.net [xxx.xxx.xxx.xxx] to ::ffff:66.33.201.239:21
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[xxx.xxx.xxx.xxx]): USER anonymous: no such user found from aurora.probe.onyphe.net [xxx.xxx.xxx.xxx] to~::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[xxx.xxx.xxx.xxx]): USER anonymous: no such user found from hodson.probe.onyphe.net [xxx.xxx.xxx.xxx] to~::ffff:66.33.201.239:21
         \end{lstlisting}
     \end{frame}
 
@@ -792,8 +792,8 @@ $ head -n 3 proftpd.log.1 | sed -E 's/\[[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ head -n 3 proftpd.log.1
 2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
-2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
-2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to~::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to~::ffff:66.33.201.239:21
 $ head -n 3 proftpd.log.1 | sed -E '/\[[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}\]/d'
 2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
 $ head -n 3 proftpd.log.1 | sed '/vps19562.dreamhostps.com/d'
@@ -801,8 +801,8 @@ $ head -n 3 proftpd.log.1 | sed '/vps19562.dreamhostps.com/d'
         Il peut aussi supprimer une ligne spécifique, par exemple ici la première~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ head -n 3 proftpd.log.1 | sed '1d'
-2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
-2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to~::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to~::ffff:66.33.201.239:21
         \end{lstlisting}
     \end{frame}
 
@@ -812,11 +812,11 @@ $ head -n 3 proftpd.log.1 | sed '1d'
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ head -n 3 proftpd.log.1
 2023-03-05 00:17:11,880 vps19562 proftpX[653589] vps19562.dreamhostps.com: ProFTPD 1.3.6c (maint) (built Thu Feb 27 2020 19:34:56 UTC) standalone mode STARTUP
-2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
-2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] vps19562.dreamhostps.com (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to~::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] vps19562.dreamhostps.com (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to~::ffff:66.33.201.239:21
 $ head -n 3 proftpd.log.1 | sed -E '1d;s/\] .*.com/] XXX/g'
-2023-03-05 00:47:51,132 vps19562 proftpX[653845] XXX (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to ::ffff:66.33.201.239:21
-2023-03-05 00:55:14,666 vps19562 proftpX[655268] XXX (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to ::ffff:66.33.201.239:21
+2023-03-05 00:47:51,132 vps19562 proftpX[653845] XXX (aurora.probe.onyphe.net[142.4.218.114]): USER anonymous: no such user found from aurora.probe.onyphe.net [142.4.218.114] to~::ffff:66.33.201.239:21
+2023-03-05 00:55:14,666 vps19562 proftpX[655268] XXX (hodson.probe.onyphe.net[178.32.197.87]): USER anonymous: no such user found from hodson.probe.onyphe.net [178.32.197.87] to~::ffff:66.33.201.239:21
         \end{lstlisting}
     \end{frame}
 
@@ -1066,7 +1066,7 @@ $ members digicomp
         \lstinline{groups} permet de lister les groupes auxquels appartient un utilisateur, mais aussi de lister tous les groupes~:
         \begin{lstlisting}[language=bash]
 $ groups chrichri
-chrichri : chrichri adm dialout cdrom sudo audio dip video plugdev lpadmin pulse lxd sambashare nordvpn docker libvirt
+chrichri~: chrichri adm dialout cdrom sudo audio dip video plugdev lpadmin pulse lxd sambashare nordvpn docker libvirt
         \end{lstlisting}
         \lstinline{members} permet de lister les membres d'un groupe.
         Il nous confirme que le groupe \lstinline{digicomp} est bien créé, il n'a pas de membres.
@@ -1239,23 +1239,23 @@ $ echo "Le code de l'entrée est 8564" > digicomp-little-secret/secret.txt
         \begin{lstlisting}[language=bash]
 $ useradd -s /bin/bash -m -d $/home/digiformateur digiformateur
 useradd: Permission denied.
-useradd : impossible de vérouiller /etc/passwd ; réessayer plus tard.
+useradd~: impossible de vérouiller /etc/passwd ; réessayer plus tard.
 $ sudo useradd -s /bin/bash -m -d $/home/digiformateur digiformateur # sudo
 $ passwd digiformateur
-passwd : Vous ne devriez pas voir ou modifier l'information du mot de passe pour digiformateur.
+passwd~: Vous ne devriez pas voir ou modifier l'information du mot de passe pour digiformateur.
 $ sudo passwd digiformateur # superutilisateur
-Nouveau mot de passe : 
-Retapez le nouveau mot de passe : 
-passwd : mot de passe mis à jour avec succès
+Nouveau mot de passe~: 
+Retapez le nouveau mot de passe~: 
+passwd~: mot de passe mis à jour avec succès
 $ su digiformateur
-Mot de passe : 
+Mot de passe~: 
 $ whoami
 digiformateur
 $ exit
 exit
 $ userdel digiformateur # superutilisateur
 userdel: Permission denied.
-userdel : impossible de vérouiller /etc/passwd ; réessayer plus tard.
+userdel~: impossible de vérouiller /etc/passwd ; réessayer plus tard.
 $ sudo userdel digiformateur
         \end{lstlisting}
     \end{frame}
@@ -1263,15 +1263,15 @@ $ sudo userdel digiformateur
     \subsection{Mot de passe}\label{subsec:password}
     \begin{frame}{Utilisateurs, groupes et droits d'accès}{Recommandation sur les motrs de passe}
         \begin{footnotesize}
-            Bonnes pratiques de l'ANSSI\footnote{Bonnes pratiques - Protégez-vous !, \url{https://cyber.gouv.fr/bonnes-pratiques-protegez-vous}} pour les mots de passe~:
+            Bonnes pratiques de l'ANSSI\footnote{Bonnes pratiques - Protégez-vous~!, \url{https://cyber.gouv.fr/bonnes-pratiques-protegez-vous}} pour les mots de passe~:
             \begin{columns}
                 \column{0.5\textwidth}
                 \begin{itemize}
-                    \item Créez un mot de passe suffisamment long, complexe et inattendu :
+                    \item Créez un mot de passe suffisamment long, complexe et inattendu~:
                     de 8 caractères minimum et contenant des minuscules, des majuscules,
                     des chiffres et des caractères spéciaux.
 
-                    \item Ne communiquez jamais votre mot de passe à un tiers : aucune
+                    \item Ne communiquez jamais votre mot de passe à un tiers~: aucune
                     organisation ou personne de confiance ne vous demandera de lui
                     communiquer votre mot de passe.
 
@@ -1319,7 +1319,7 @@ $ sudo userdel digiformateur
             à pouvoir les retrouver lorsque vous au besoin.
             Les systèmes de fichiers les plus répandus à l'heure actuelle sont sûrement le FAT32 et
             le NTFS, qui sont les deux seuls systèmes de fichiers que Microsoft® Windows® peut nativement lire.
-            Il existe de nombreux autres systèmes de fichiers : ext2, ext3, ext4, ReiserFS, JFS, XFS, Btrfs, ZFS\ldots
+            Il existe de nombreux autres systèmes de fichiers~: ext2, ext3, ext4, ReiserFS, JFS, XFS, Btrfs, ZFS\ldots
             \begin{table}[h!]
                 \centering
                 \begin{tabular}{|c|c|c|c|c|}
@@ -1378,11 +1378,11 @@ $ sudo dd if=/dev/nvme0n1p3 ibs=512 count=1 skip=239 2> /dev/null | hexdump -C
             \end{itemize}
             \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ sudo parted -l
-Modèle : KPART512GBC2DVT (nvme)
-Disque /dev/nvme0n1 : 512GB
-Taille des secteurs (logiques/physiques) : 512B/512B
-Table de partitions : gpt
-Drapeaux de disque :
+Modèle~: KPART512GBC2DVT (nvme)
+Disque /dev/nvme0n1~: 512GB
+Taille des secteurs (logiques/physiques)~: 512B/512B
+Table de partitions~: gpt
+Drapeaux de disque~:
 
 Numéro  Début   Fin    Taille  Système de fichiers  Nom                           Drapeaux
  1      1049kB  211MB  210MB   fat32                EFI system partition          démarrage, esp
@@ -1392,11 +1392,11 @@ Numéro  Début   Fin    Taille  Système de fichiers  Nom                      
  8      233GB   491GB  258GB   ext4
 
 
-Modèle : Inconnu (unknown)
-Disque /dev/zram0 : 8271MB
-Taille des secteurs (logiques/physiques) : 4096B/4096B
-Table de partitions : loop
-Drapeaux de disque :
+Modèle~: Inconnu (unknown)
+Disque /dev/zram0~: 8271MB
+Taille des secteurs (logiques/physiques)~: 4096B/4096B
+Table de partitions~: loop
+Drapeaux de disque~:
 
 Numéro  Début  Fin     Taille  Système de fichiers  Drapeaux
  1      0,00B  8271MB  8271MB  linux-swap(v1)
@@ -1421,11 +1421,11 @@ Numéro  Début  Fin     Taille  Système de fichiers  Drapeaux
         \begin{scriptsize}
             En connectant un nouveau disque on constate bien avec \lstinline{parted} qu'il y a un nouveau disque~:
             \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
-Modèle : Intuix DiskOnKey (scsi)
-Disque /dev/sda : 252MB
-Taille des secteurs (logiques/physiques) : 512B/512B
-Table de partitions : loop
-Drapeaux de disque :
+Modèle~: Intuix DiskOnKey (scsi)
+Disque /dev/sda~: 252MB
+Taille des secteurs (logiques/physiques)~: 512B/512B
+Table de partitions~: loop
+Drapeaux de disque~:
 
 Numéro  Début  Fin    Taille  Système de fichiers  Drapeaux
  1      0,00B  252MB  252MB   ext4
@@ -1570,7 +1570,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
 
     \subsection{RAID)}\label{subsec:raid}
 
-    \begin{frame}{RAID}{Les différents RAID\footnote{\label{mdadm}mdadm : RAID Logiciel sous Linux, \url{https://www.linuxtricks.fr/wiki/mdadm-raid-logiciel-sous-linux}}\footnotestep\footnote{Qu'est-ce que le RAID ?, \url{https://www.diskpart.com/fr/windows-server/logiciel-gestion-raid-8899-tc.html}}}
+    \begin{frame}{RAID}{Les différents RAID\footnote{\label{mdadm}mdadm~: RAID Logiciel sous Linux, \url{https://www.linuxtricks.fr/wiki/mdadm-raid-logiciel-sous-linux}}\footnotestep\footnote{Qu'est-ce que le RAID ?, \url{https://www.diskpart.com/fr/windows-server/logiciel-gestion-raid-8899-tc.html}}}
         Le RAID est un ensemble de standards de virtualisation du stockage permettant de répartir des données sur plusieurs disques durs afin d'améliorer soit les performances, soit la sécurité ou la tolérance aux pannes de l'ensemble du ou des systèmes.
         \bigbreak
         \centering
@@ -1912,6 +1912,331 @@ $ pkill -9 <nom>
         \includegraphics[width=10cm]{image/top-debian} \\ Ubuntu est-il en train de devenir un \textit{bloatware~}, lui aussi\ldots \emoji{window}?
     \end{frame}
 
+    \subsection{Gestion des priorités des processus}\label{subsec:process-priority}
+
+    \begin{frame}{Gestion des Priorités des Processus}{Définition\footnote{\label{process-priority}Linux commands: How to manipulate process priority, \url{https://www.redhat.com/sysadmin/manipulate-process-priority}}}
+        \begin{itemize}
+            \item Dans un système multi-tâches, plusieurs processus s'exécutent en parallèle.
+            \item Le système d'exploitation doit allouer équitablement les ressources (CPU, RAM, \textit{etc}) entre ces processus.
+            \item Les priorités permettent de contrôler l'ordonnancement des processus.
+            \item Chaque processus a une priorité.
+            \item Une priorité plus élevée signifie que le processus recevra plus de temps CPU~.
+            \item Sur les systèmes Unix/Linux, la priorité est représentée par une valeur appelée \lstinline{nice}.
+            \item Une bonne gestion des priorités est cruciale lors montées en charge du système (scaling).
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Gestion des Priorités des Processus}{Commande \lstinline{nice}\cref{process-priority}}
+        \begin{itemize}
+            \item \lstinline{nice} permet de démarrer un processus avec une priorité spécifique.
+            \item Syntaxe~: \lstinline{nice -n [valeur] [commande]}.
+            \item La valeur de nice varie de -20 (priorité élevée) à 19 (priorité faible).
+            \item Exemple~: \lstinline{nice -n 10 myprocess}
+            \item On retrouve ce niveau de priorité dans \lstinline{top} avec la colonne \textquote{NI}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Gestion des Priorités des Processus}{Commande \lstinline{renice}\cref{process-priority}}
+        \begin{itemize}
+            \item \lstinline{renice} modifie la priorité d'un processus en cours d'exécution.
+            \item Elle nécessite les droits superutilisateur.
+            \item Syntaxe~: \lstinline{renice [valeur] -p [PID]}.
+            \item PID (Process ID) est l'identifiant unique du processus.
+            \item Utiliser \lstinline{ps} pour trouver le PID du processus.
+            \item Exemple~: \lstinline{renice -5 -p 1234}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Commandes \lstinline{nice} et \lstinline{renice}}{Exemple de commandes}
+        Une priorité peut être attribuée au début de l'exécution et modifiée par la suite~:
+        \begin{lstlisting}[language=bash]
+$ nohup nice -n 15 ./endless-loop.sh & 
+[1] 906674
+$ nohup: les entrées sont ignorées et la sortie est ajoutée à 'nohup.out'
+$ renice -19 -p 906674
+renice: échec de configuration de priorité pour 906674 (process ID): Permission non accordée
+$ sudo renice -19 -p 906674
+906674 process ID) priorité précédente 15, nouvelle priorité -19
+        \end{lstlisting}
+        \bigbreak
+        \begin{center}
+            \includegraphics[width=5cm]{image/pinguins-racing}
+        \end{center}
+    \end{frame}
+
+
+    \section{Les services Linux}\label{sec:les-services}
+
+    \begin{frame}{Les services}{Définition}
+        \begin{footnotesize}
+            Dans les systèmes Windows et Linux, le terme service désigne un programme qui s'exécute en arrière-plan, sans intervention de l'utilisateur.
+
+            Il faut le configurer pour qu'il démarre automatiquement, dans un certain ordre et avec les bonnes permissions.
+            \bigbreak
+            La configuration principale consiste à définit une ligne de commande qui sera exécutée au démarrage du service.
+            \bigbreak
+            Avec \lstinline{systemd}\footnote{System and Service Manager, \url{https://systemd.io/}} sous Linux, on peut définir des dépendances entre les services.
+            Limiter les ressources CPU, mémoire, IO, \textit{etc}.
+            Définir ce qu'il faut faire en cas de crash.
+            Exécuter des scripts avant et après le démarrage du service.
+            \bigbreak
+            Leur chemin par défaut est \lstinline{/etc/systemd/system/}.
+            \begin{dangercolorbox}
+                Ne pas confondre \lstinline{systemd} qui exécute des tâches en arrière plan et l'ordonnanceur \lstinline{cron}.
+            \end{dangercolorbox}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Les services}{Exemples}
+        \lstinline{systemd} est donc l'outil de choix pour lancer en production des applications, des progiciels, \textit{etc}.
+
+        Encore mieux, on peut configurer des services pour qu'ils lancent des VM avec Qemu et les applications tourneraient dans les VM~.
+        On profite des avantages de la virtualisation pour isoler les applications et les sécuriser.
+        \bigbreak
+        Que fait cette configuration~?
+        \begin{lstlisting}
+[Unit]
+Description=IN DATA development application
+[Service]
+RuntimeMaxSec=3600s
+Restart=always
+WorkingDirectory=/home/debian/dev/IN FRANCE
+ExecStart="/home/debian/dev/IN FRANCE/python3-dev/bin/python3" -m gunicorn -w 1 -b unix:/tmp/in-france-dev-indata-gunicorn.sock application_indata
+[Install]
+WantedBy=multi-user.target
+        \end{lstlisting}
+        \begin{dangercolorbox}
+            Le chemin de l'exécutable dans \lstinline{ExecStart} doit être absolu!
+        \end{dangercolorbox}
+    \end{frame}
+
+    \begin{frame}{Les services}{Les commandes de base}
+        \begin{itemize}
+            \item \lstinline{systemctl start <service>} pour démarrer un service.
+            \item \lstinline{systemctl stop <service>} pour arrêter un service.
+            \item \lstinline{systemctl restart <service>} pour redémarrer un service.
+            \item \lstinline{systemctl status <service>} pour afficher le statut d'un service.
+            \item \lstinline{systemctl enable <service>} pour activer un service au démarrage.
+            \item \lstinline{systemctl disable <service>} pour désactiver un service au démarrage.
+            \item \lstinline{systemctl list-units --type=service} pour lister les services.
+            \item \lstinline{systemctl daemon-reload} pour recharger la configuration de tous les services.
+            \item \lstinline{systemctl reload <service>} pour recharger la configuration d'un service.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Les services}{Les commandes pour monitorer l'exécution}
+        Pour monitor les logs d'un service, la commande \lstinline{journalctl} est très utile.
+        \bigbreak
+        Quelques exemples de commandes utiles~:
+        \begin{itemize}
+            \item \lstinline{journalctl --unit<service>} pour afficher les logs d'un service.
+            \item \lstinline{journalctl --unit<service> -f} pour afficher les logs en temps réel.
+            \item \lstinline{journalctl --unit<service> --since "2024-04-17 00:00:00"} pour afficher les logs depuis une date.
+            \item \lstinline{journalctl --unit<service> --since "2024-04-17 00:00:00" --until "2024-04-17 23:59:59"} pour afficher les logs entre deux dates.
+            \item \lstinline{journalctl --unit=<service> -n 100 --no-pager} pour afficher les 100 dernière lignes.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Exercice pratique \execcounterdispinc{}}{Créer une VM avec Qemu et lancer une application avec systemd}
+        Les exigences~:
+        \begin{itemize}
+            \item Créer une VM Linux avec Qemu à l'image d'un VPS OH d'entrée de gamme (1~vCPU, 2~Go de RAM et 10~Go de disque).
+            \item Configurer la machine hôte pour démarrer la VM automatiquement.
+            \item Configurer la VM et Qemu avec une sécurité en accord les bonnes pratiques de sécurité (Clé SSH uniquement, pas de connexion SSH avec le user root, gestion des ports forwardés).
+            \item Démarrer l'application Gunicorn \textquote{Hello World} \url{https://gunicorn.org/\#quickstart} avec \lstinline{systemd}.
+            \item Accès à la VM et à l'application depuis la machine hôte.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions (commandes à exécuter sur la machine hôte)}
+        \begin{lstlisting}[language=bash]
+qemu-img create -f qcow2 linux.qcow2 10G # Create a disk image
+# Download a minial Ubuntu ISO
+wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
+# Install the OS using a virtual CDROM
+qemu-system-x86_64 -m 2G -smp 1 -nic user -boot d -cdrom mini.iso -hda linux.qcow2 -k fr -enable-kvm
+# Run the VM to configure and test SSH
+qemu-system-x86_64 -m 2G -smp 1 -nic user,hostfwd=tcp::5022-:22,hostfwd=tcp::5080-:80 -display none -hda linux.qcow2 -k fr -enable-kvm
+        \end{lstlisting}
+        Expliquez chacune des lignes de commande ci-dessus.
+        \bigbreak
+        Ressources utiles~:
+        \begin{itemize}
+            \item \href{https://wiki.alpinelinux.org/wiki/Install_Alpine_in_QEMU}{Similaire mais avec Alpine Linux}
+            \item \href{https://help.ubuntu.com/community/Installation/MinimalCD\#A64-bit_PC_.28amd64.2C_x86_64.29_.28Recommended.29}{Page d'installation Ubuntu du \textquote{MinimalCD} }
+            \item \href{https://phoenixnap.com/kb/generate-setup-ssh-key-ubuntu}{Configuration des login SSH sur Ubuntu}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions}
+        Le service de la machine hôte~:
+        \begin{lstlisting}[language=bash]
+[Unit]
+Description=Qemu Ubuntu VM for Digicomp classes
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Restart=always
+WorkingDirectory=/home/chrichri/vms
+ExecStart=/usr/bin/qemu-system-x86_64 -m 2G -smp 1,maxcpus=1 -nic user,hostfwd=tcp::5022-:22,hostfwd=tcp::5080-:8080 -display none -hda linux.qcow2 -k fr -enable-kvm
+
+[Install]
+WantedBy=multi-user.target
+        \end{lstlisting}
+        Expliquez chaque option de la configuration du service.
+        \pause
+        \begin{dangercolorbox}
+            \lstinline{-enable-kvm} si l'hôte est un Linux également.
+
+            \lstinline{-display none} pour ne pas afficher la console graphique.
+        \end{dangercolorbox}
+    \end{frame}
+
+    \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions}
+        Le service dans la VM~:
+        \begin{lstlisting}[language=bash]
+[Unit]
+Description=Digicomp Hello World
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Restart=always
+WorkingDirectory=/home/chrichri
+ExecStart=/usr/bin/gunicorn -w 1 hello:app -b 0.0.0.0:8080
+
+[Install]
+WantedBy=multi-user.target
+        \end{lstlisting}
+        Expliquez chaque option de la configuration du service.
+    \end{frame}
+
+    \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions (commande à exécuter sur la VM)}
+        Commande pour configurer la VM~:
+        \begin{lstlisting}[language=bash]
+# Install gunicorn, pip install gunicorn is no longer recommanded
+sudo apt-get install python3-gunicorn
+# Configure SSH
+sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+# Restart SSH with the new configuration
+sudo systemctl restart sshd
+# Create the .ssh directory and the authorized_keys file
+mkdir -p ~/.ssh
+touch ~/.ssh/authorized_keys
+# Add the public key to the authorized_keys file
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.ssh/authorized_keys
+        \end{lstlisting}
+        Expliquez chaque commande.
+    \end{frame}
+
+
+    \section{Ordonnancement et automatisation des tâches}\label{sec:scheduling}
+
+    \subsection{Crontab}\label{subsec:crontab}
+
+    \begin{frame}{Crontab}{Présentation\footnote{\label{linuxtricks-cron}Cron et crontab~: le planificateur de tâches~!, \url{https://www.linuxtricks.fr/wiki/cron-et-crontab-le-planificateur-de-taches}}}
+        \begin{columns}
+            \column{0.7\textwidth}
+            \begin{itemize}
+                \item \lstinline{crontab} est le permet de planifier des tâches automatisées à intervalles réguliers.
+                \item Très utile pour les serveurs pour automatiser les sauvegardes, mises à jour, \textit{etc}.
+                \item \lstinline{cron} est le service d'arrière-plan qui exécute les tâches planifiées.
+            \end{itemize}
+            \column{0.3\textwidth}
+            \includegraphics[width=4cm]{image/pinguin-clockwork}
+        \end{columns}
+        \bigbreak
+        \begin{columns}
+            \column{\dimexpr\paperwidth-100pt}
+            Installation sous Debian/Ubuntu~:
+            \begin{itemize}
+                \item Installer le paquet~: \lstinline{apt-get install cron}
+                \item Démarrer le service~: \lstinline{systemctl start cron}
+                \item Activer au démarrage~: \lstinline{systemctl enable cron}
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}{Crontab}{Configuration des accès à crontab\cref{linuxtricks-cron}}
+        \begin{itemize}
+            \item Les fichiers \lstinline{/etc/cron.allow} et \lstinline{/etc/cron.deny} contrôlent l'accès à crontab.
+            \item Seuls les utilisateurs listés dans \lstinline{cron.allow} peuvent utiliser crontab si ce fichier existe.
+            \item Si \lstinline{cron.allow} n'existe pas, les utilisateurs ne figurant pas dans \lstinline{cron.deny} peuvent utiliser crontab.
+            \item il faut être superutilisateur.
+            \item \lstinline{crontab -l}~: Liste les tâches planifiées de l'utilisateur.
+            \item \lstinline{crontab -e}~: Édite les tâches planifiées de l'utilisateur.
+            \item \lstinline{crontab -r}~: Supprime toutes les tâches planifiées de l'utilisateur.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Crontab}{Syntaxe crontab\cref{linuxtricks-cron}}
+        Syntaxe d'une ligne de crontab~:
+        \begin{lstlisting}[language=bash]
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  *  user command to be executed
+<mm> <hh> <jj> <MMM> <JJJ> <user> <commande>
+        \end{lstlisting}
+        \begin{itemize}
+            \item \lstinline{mm}~: Minute (0-59).
+            \item \lstinline{hh}~: Heure (0-23).
+            \item \lstinline{jj}~: Jour du mois (1-31).
+            \item \lstinline{MMM}~: Mois (1-12 ou jan, feb, \ldots).
+            \item \lstinline{JJJ}~: Jour de la semaine (0-6 ou sun, mon, \ldots).
+            \item \lstinline{user} (optionnel)~: Utilisateur sous lequel exécuter la commande.
+            \item \lstinline{commande}~: Commande à exécuter.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Crontab}{Exemples de crontab\cref{linuxtricks-cron}}
+        Un outil pratique en ligne est \href{https://crontab.guru/}{crontab guru} il permet de vérifier que la syntaxe fait bien ce que l'on croit.
+        \bigbreak
+        Par souci de testabilité, portabilité et lisibilité une bonne pratique consiste à mettre les commandes dans des scripts Shell.
+        \bigbreak
+        Exécution quotidienne à 22h~:
+        \begin{lstlisting}[language=bash]
+00 22 * * * /root/scripts/sauvegarde.sh >> sauvegarde.log
+        \end{lstlisting}
+
+        Exécution toutes les 6 heures~:
+        \begin{lstlisting}[language=bash]
+00 */6 * * * /root/scripts/synchronisation.sh
+        \end{lstlisting}
+        \bigbreak
+        L'alias \lstinline{@reboot} remplace la syntaxe indiquant la périodicité et permet d'exécuter une commande au démarrage du système~:
+        \begin{lstlisting}[language=bash]
+@reboot /root/scripts/init.sh >> init.log
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}{Crontab}{Exercice \execcounterdispinc{}}
+        Planifier le backup d'un des disques de la VM tous les jours à 22h30.
+        L'image est à compresser au format Bzip2, un des meilleurs en terme de compression et horodater.
+        \bigbreak
+        Crontab doit lancer un script Shell, pas de \textquote{one-liner} trop compliqué.
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
+    \subsection{Service VS Cron}\label{subsec:service-vs-cron}
+
+    \begin{frame}{Service VS Cron}{2 outils différents}
+        \begin{itemize}
+            \item Cron est un \textit{scheduler}, un ordonnanceur de tâches ponctuelles, de batchs.
+            \item Les services configurent des tâches de fond.
+            Qui peuvent être relancées en cas de plantage.
+            \item Il ne sont donc pas concurrents mais complémentaires.
+        \end{itemize}
+    \end{frame}
+
 
     \section{Réseau}\label{sec:network}
 
@@ -1919,23 +2244,23 @@ $ pkill -9 <nom>
 
     \begin{frame}{OpenSSH}{Définition\footnote{\label{openssh-site}OpenSSH, Keeping your comuniqués secret, \url{https://www.openssh.com/}}}
         OpenSSH est l'outil de connectivité principal pour les connexions à distance avec le protocole SSH.
-        Il a pour but de remplacer les outils non sécurisés tels que \texttt{rlogin}, \texttt{rsh} et \texttt{telnet}.
+        Il a pour but de remplacer les outils non sécurisés tels que \lstinline{rlogin}, \lstinline{rsh} et \lstinline{telnet}.
         Il chiffre tout le trafic pour éliminer les écoutes clandestines, le détournement de connexion et d'autres attaques.
         De plus, OpenSSH offre une large gamme de capacités de tunneling sécurisé, plusieurs méthodes d'authentification et des options de configuration sophistiquées.
 
-        La suite OpenSSH se compose des outils suivants :
+        La suite OpenSSH se compose des outils suivants~:
         \begin{itemize}
-            \item Les opérations à distance sont effectuées à l'aide de \texttt{ssh}, \texttt{scp} et \texttt{sftp}.
-            \item Gestion des clés avec \texttt{ssh-add}, \texttt{ssh-keysign}, \texttt{ssh-keyscan} et \texttt{ssh-keygen}.
-            \item Le côté serveur comprend \texttt{sshd}, \texttt{sftp-server} et \texttt{ssh-agent}.
+            \item Les opérations à distance sont effectuées à l'aide de \lstinline{ssh}, \lstinline{scp} et \lstinline{sftp}.
+            \item Gestion des clés avec \lstinline{ssh-add}, \lstinline{ssh-keysign}, \lstinline{ssh-keyscan} et \lstinline{ssh-keygen}.
+            \item Le côté serveur comprend \lstinline{sshd}, \lstinline{sftp-server} et \lstinline{ssh-agent}.
         \end{itemize}
     \end{frame}
 
     \begin{frame}{OpenSSH}{Définition\cref{openssh-site}}
         OpenSSH est développé par quelques développeurs du projet OpenBSD et est disponible sous une licence de type BSD, donc open source.
         \bigbreak
-        OpenSSH relies on the \href{https://www.libressl.org}{LibreSSL} library for some of its cryptographic routines, AES-GCM being one example.
-        Plus légère que OpenSSL, LibreSSL n'a pas été affectée par des failles ayant affecté OpenSSL.
+        OpenSSH se base sur la librairie \href{https://www.libressl.org}{LibreSSL} pour des algorithme cryptographic, AES-GCM par exemple.
+        Plus légère que OpenSSL, LibreSSL n'a pas été affectée par des failles ayant affecté OpenSSL~.
         \bigbreak
         \centering
         \includegraphics[width=7cm]{image/ssh-key-diagram}
@@ -2023,6 +2348,17 @@ $ pkill -9 <nom>
         Il est possible de configurer le noyau, les outils de base, les bibliothèques, les applications, les systèmes de fichiers racine, le package manager, \textit{etc}.
         Dans le but d'avoir une distribution spécifique aux besoin de son application.
         Sans embarqués des dépendances et librairies inutiles.
+    \end{frame}
+
+    \begin{frame}[fragile]{Buildroot}{Script}
+        Les package nécessaire selon la documentation officielle peuvent s'installer comme suit~:
+        \begin{lstlisting}[language=bash]
+sudo apt-get update && sudo apt-get install -y which sed make binutils build-essential diffutils gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc findutils wget python3 libncurses5-dev qt5-qmake libglib2.0-dev libgtk2.0-dev libglade2-dev bzr cvs git mercurial openssh-client subversion openjdk-11-jdk asciidoc w3m dblatex graphviz python3-matplotlib python3-aiohttp
+        \end{lstlisting}
+        Buildroot compilé peut se télécharger sur leur site avec la commande~:
+        \begin{lstlisting}[language=bash]
+wget http://www.buildroot.org/downloads/buildroot-2024.05.tar.gz
+        \end{lstlisting}
     \end{frame}
 
 
