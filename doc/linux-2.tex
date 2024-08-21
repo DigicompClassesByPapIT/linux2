@@ -1,5 +1,4 @@
 \documentclass{beamer}
-\usepackage{hyperref}
 \include{../style/cours-style.sty}
 
 % Title
@@ -20,7 +19,6 @@
 \begin{document}
 
     \begin{frame}
-        \transdissolve
         \titlepage
     \end{frame}
 
@@ -34,10 +32,7 @@
 
     \section{Programme du module}\label{sec:programme-du-module}
 
-    \begin{frame}
-        \frametitle{Linux - Avancé pour Administrateur/PowerUser}
-        \framesubtitle{Objectifs des 4 jours}
-        \transdissolve
+    \begin{frame}{Linux - Avancé pour Administrateur/PowerUser}{Objectifs des 4 jours}
         \begin{columns}
             \column{0.7\textwidth}
             \begin{scriptsize}
@@ -66,10 +61,7 @@
 
     \section{Introduction}\label{sec:introduction}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Formateur sur Linux}
-        \framesubtitle{Christophe Brun, conseil en développement informatique}
+    \begin{frame}{Formateur sur Linux}{Christophe Brun, conseil en développement informatique}
 
         \begin{columns}
             \column{0.7\textwidth}
@@ -99,10 +91,7 @@
 
     \subsection{Historique}\label{subsec:historique}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Historique de Linux}
-        \framesubtitle{Linux, quelques caractéristiques de la première version\footnote{The early days of Linux, Lars Wirzenius, \url{https://lwn.net/Articles/928581/}}}
+    \begin{frame}{Historique de Linux}{Linux, quelques caractéristiques de la première version\footnote{The early days of Linux, Lars Wirzenius, \url{https://lwn.net/Articles/928581/}}}
         \begin{footnotesize}
             \begin{itemize}
                 \item La première libérée par Linus Torvald, date de 1991 et sa licence ne permet pas l'usage commercial.
@@ -117,18 +106,12 @@
         \end{footnotesize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Historique de Linux}
-        \framesubtitle{Historique de tous les OS\footnote{chococigar, \url{https://github.com/chococigar/cup-of-cs/blob/main/img/history\_of\_os.png}}}
+    \begin{frame}{Historique de Linux}{Historique de tous les OS\footnote{chococigar, \url{https://github.com/chococigar/cup-of-cs/blob/main/img/history\_of\_os.png}}}
         \centering
         \includegraphics[width=9cm]{image/history_of_os}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Historique de Linux}
-        \framesubtitle{Linux, historique des single/multi users OS}
+    \begin{frame}{Historique de Linux}{Linux, historique des single/multi users OS}
         Multi user au sens \textit{Time-Sharing}, \textit{i.e.}, plus d'un utilisateur en même temps.
 
         Les premiers OS Multi user était OS/360 d'IBM dans les années 60.
@@ -141,13 +124,10 @@
         Cette différence est cruciale, car elle a fait de cet OS un candidat idéal pour les serveurs (Web, BDD, \textit{etc}).
     \end{frame}
 
-    \begin{frame}
+    \begin{frame}{Historique de Linux}{Adoption}
         \footnotetext{Why Linux runs 90 percent of the public cloud workload, \url{https://www.cbtnuggets.com/blog/certifications/open-source/why-linux-runs-90-percent-of-the-public-cloud-workload}}
         \footnotetext{\label{cbt}When everything is in the cloud, does the OS matter?, \url{https://www.redhat.com/en/blog/when-everything-cloud-does-os-matter}}
         \footnotetext{20 great years of Linux and supercomputer, \url{https://www.zdnet.com/article/20-great-years-of-linux-and-supercomputers/?ref=itsfoss.com}}
-        \transdissolve
-        \frametitle{Historique de Linux}
-        \framesubtitle{Adoption}
         \begin{columns}
             \column{0.5\textwidth}
             \begin{itemize}
@@ -164,10 +144,7 @@
 
     \subsection{Kernel et distribution}\label{subsec:kernel-et-distribution}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Définitions\footnote{Glossary, \url{https://help.ubuntu.com/community/Glossary}}}
+    \begin{frame}{Les distributions}{Définitions\footnote{Glossary, \url{https://help.ubuntu.com/community/Glossary}}}
         \begin{itemize}
             \item \textbf{Kernel} ou \textbf{Noyau}~: Le composant central d'un système d'exploitation qui contrôle tous les processus de bas niveau d'un ordinateur, tels que la gestion de la mémoire, les threads et les entrées/sorties.
             En un sens, le noyau agit comme le gardien de l'ordinateur vis-à-vis du matériel.
@@ -178,10 +155,7 @@
         \end{itemize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{La timeline de toutes les distributions\footnote{FabioLolix, \url{https://github.com/FabioLolix/linuxtimeline}}\footnotestep\footnote{Put the fun back into computing. Use Linux, BSD., \url{https://distrowatch.com/}}}
+    \begin{frame}{Les distributions}{La timeline de toutes les distributions\footnote{FabioLolix, \url{https://github.com/FabioLolix/linuxtimeline}}\footnotestep\footnote{Put the fun back into computing. Use Linux, BSD., \url{https://distrowatch.com/}}}
         \begin{columns}
             \column{0.8\textwidth}
             Insights~:
@@ -198,10 +172,7 @@
         \end{columns}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{La timeline de toutes les distributions}
+    \begin{frame}{Les distributions}{La timeline de toutes les distributions}
         Red-Hat, filiale d'IBM, fait l'opposition entre les distributions \textit{entreprise} et les \textit{community}.
         En mettant en avant leur support de 10 ans contre 2 ans pour Fedora, une distribution communautaire de la même branche\footnote{What's the best Linux distro for you?, \url{https://www.redhat.com/en/topics/linux/whats-the-best-linux-distro-for-you}}.
         \bigbreak
@@ -210,44 +181,29 @@
         Mais peut-être que l'exemple de Red-Hat n'est pas le bon, Debian, une distro communautaire également, communique un support des versions LTS de 5 ans minimum\footnote{Debian Long Term Support, \url{https://wiki.debian.org/LTS}}\ldots
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{La timeline des principales distributions\footnote{\label{main-distro}Philipp Leclercq, \url{https://github.com/PhilLecl/SanitizedLinuxTimeline}}}
+    \begin{frame}{Les distributions}{La timeline des principales distributions\footnote{\label{main-distro}Philipp Leclercq, \url{https://github.com/PhilLecl/SanitizedLinuxTimeline}}}
         \centering
         \includegraphics[width=12cm]{image/linux-main-distro-timeline}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Les licences des principales distributions\cref{main-distro}}
+    \begin{frame}{Les distributions}{Les licences des principales distributions\cref{main-distro}}
         \centering
         \includegraphics[width=12cm]{image/main-distro-license.drawio}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Les packages managers des principales distributions\cref{main-distro}}
+    \begin{frame}{Les distributions}{Les packages managers des principales distributions\cref{main-distro}}
         \centering
         \includegraphics[width=12cm]{image/main-distro-package-manager.drawio}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Une aide pour choisir sa distribution}
+    \begin{frame}{Les distributions}{Une aide pour choisir sa distribution}
         Le site Distrowatch propose un utilitaire pour trouver des distributions candidates en fonction d'un large nombre de critères, \url{https://distrowatch.com/search.php}.
         \bigbreak
         \centering
         \includegraphics[width=12cm]{image/distrowatch-search}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Une aide pour choisir sa distribution}
+    \begin{frame}{Les distributions}{Une aide pour choisir sa distribution}
         Admettons que tous les 2/3 packages managers mainstreams se valent.
         \bigbreak
         Un des critères différenciant, en plus du support que nous avons vu, est l'architecture.
@@ -263,20 +219,14 @@
         Sans rewrite, voire, sans recompilation.
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Des critères manquants~?}
+    \begin{frame}{Les distributions}{Des critères manquants~?}
         Y-a-t-il des critères pertinents qui pourraient manquer~?
         \bigbreak
         \centering
         \includegraphics[width=6cm]{image/question-mark}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Des critères manquants~?}
+    \begin{frame}{Les distributions}{Des critères manquants~?}
         L'énorme succès d'une distribution à part, Alpine Linux, pousser par les technologies de virtualisation et de conteneurisation.
         \bigbreak
         Une des premières phrases de présentation est \textit{Alpine Linux is built around musl libc and busybox. A container requires no more than 8 MB and a minimal installation to disk requires around 130 MB of storage.}\footnote{About, \url{https://alpinelinux.org/about/}}.
@@ -284,27 +234,18 @@
         De leur analyse, qui est sûrement la bonne, leur succès vient du compilateur musl et de la librairie C libc musl.
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Des critères manquants~?}
+    \begin{frame}{Les distributions}{Des critères manquants~?}
         Red-Hat recrute beaucoup d'experts de LLVM ces dernières années\footnote{Red Hat Is Hiring More LLVM Compiler Engineers, \url{https://www.phoronix.com/news/Red-Hat-More-LLVM-Engineers}}.
 
         Certaines distributions peuvent ou sont compilé avec LLVM comme FreeBSD\footnote{Building FreeBSD with clang/llvm, \url{https://wiki.freebsd.org/BuildingFreeBSDWithClang}}, Chimera\footnote{About Chimera Linux, \url{https://chimera-linux.org/about/}}, OpenMandriva\footnote{La communauté OpenMandriva annonce la disponibilité d'OpenMandriva Lx 4.0, \url{https://linux.developpez.com/actu/266344/La-communaute-OpenMandriva-annonce-la-disponibilite-d-OpenMandriva-Lx-4-0-qui-apporte-de-nombreuses-nouveautes-liees-a-LLVM-Clang/}}\ldots
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Plusieurs combinaisons de compilateurs et libraries C}
+    \begin{frame}{Les distributions}{Plusieurs combinaisons de compilateurs et libraries C}
         \centering
         \includegraphics[width=8cm]{image/interchange-lib-compiler.drawio}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Les distributions}
-        \framesubtitle{Conclusion}
+    \begin{frame}{Les distributions}{Conclusion}
         \begin{columns}
             \column{0.6\textwidth}
             Une distribution Linux est construite de manière modulaire~:
@@ -331,10 +272,7 @@
 
     \subsection{Shell}\label{subsec:shell}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Qu'est-ce~?}
+    \begin{frame}{Shell}{Qu'est-ce~?}
         Shell c'est~:
         \begin{itemize}
             \item C'est un exécutable.
@@ -349,10 +287,7 @@
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Qu'est-ce~?}
+    \begin{frame}[fragile]{Shell}{Qu'est-ce~?}
         2 Shells sous une même distribution \textquote{légère} comme Alpine Linux~:
         \begin{lstlisting}[language=bash]
 root@71641013d445:/usr/src/celia# sh
@@ -374,10 +309,7 @@ root@71641013d445:/usr/src/celia# ls
         Comment interpréter ce code~?
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Qu'est-ce~?}
+    \begin{frame}{Shell}{Qu'est-ce~?}
         \begin{itemize}
             \item \lstinline{sh} et \lstinline{bash} appellent les mêmes exécutables.
             \item Shell n'est qu'une interface.
@@ -391,10 +323,7 @@ root@71641013d445:/usr/src/celia# ls
         \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Bourne Shell VS Bourne Again Shell\footnote{Difference between sh and bash, \url{https://www.geeksforgeeks.org/difference-between-sh-and-bash/}}}
+    \begin{frame}{Shell}{Bourne Shell VS Bourne Again Shell\footnote{Difference between sh and bash, \url{https://www.geeksforgeeks.org/difference-between-sh-and-bash/}}}
         \begin{footnotesize}
             \begin{table}[h!]
                 \centering
@@ -419,20 +348,14 @@ root@71641013d445:/usr/src/celia# ls
         \end{footnotesize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Bourne Shell VS Bourne Again Shell}
+    \begin{frame}{Shell}{Bourne Shell VS Bourne Again Shell}
         Peut-on lister les avantages/inconvénients de l'un et l'autre~?
         \bigbreak
         \centering
         \includegraphics[width=6cm]{image/question-mark}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Le poid de cette interface\footnote{Exigences matérielles pour utiliser Ubuntu, \url{https://doc.ubuntu-fr.org/exigences_minimales}}}
+    \begin{frame}{Shell}{Le poid de cette interface\footnote{Exigences matérielles pour utiliser Ubuntu, \url{https://doc.ubuntu-fr.org/exigences_minimales}}}
         Minimum 30 Go d'espace disque disponible pour une installation avec GNOME contre 5 Go ou 6 Go pour une installation Server ou Cloud.
         \bigbreak
         L'absence de bureau, avoir uniquement cette interface, est une des raisons de cette différence de taille.
@@ -444,10 +367,7 @@ root@71641013d445:/usr/src/celia# ls
         GitBash permet d'unifier les deux environnements Linux et Windows, de pratiquer le Bash sur toute plateforme.
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Pourquoi a-t-on un Shell ou l'autre~?}
+    \begin{frame}{Shell}{Pourquoi a-t-on un Shell ou l'autre~?}
         Quand je me connecte avec mon utilisateur, j'ai souvent \lstinline{bash} comme Shell.
         Pourquoi pas \lstinline{sh}~?
         \bigbreak
@@ -455,10 +375,7 @@ root@71641013d445:/usr/src/celia# ls
         \includegraphics[width=6cm]{image/question-mark}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Pourquoi a-t-on un Shell ou l'autre~?}
+    \begin{frame}[fragile]{Shell}{Pourquoi a-t-on un Shell ou l'autre~?}
         Probablement, l'administrateur système a créé votre utilisateur en spécifiant \lstinline{bash} comme Shell.
         \bigbreak
         Si on lit l'aide de la commande \lstinline{useradd}~:
@@ -475,10 +392,7 @@ $ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
         \lstinline{/bin/bash} passé à l'option \lstinline{-s} permet de spécifier le Shell.
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Naviguer dans les commandes}
+    \begin{frame}{Shell}{Naviguer dans les commandes}
         \begin{itemize}
             \item \lstinline{history}~: Affiche l'historique des commandes.
             \item Ctrl+c~: Arrête l'exécution d'une commande.
@@ -493,10 +407,7 @@ $ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
         \end{itemize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\footnote{\label{tmux}Tmux (terminal multiplexer), \url{https://www.redhat.com/sysadmin/introduction-tmux-linux}}}
+    \begin{frame}{Shell}{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\footnote{\label{tmux}Tmux (terminal multiplexer), \url{https://www.redhat.com/sysadmin/introduction-tmux-linux}}}
         \lstinline{tmux} est un multiplexeur de terminal, \textit{i.e.}, permet d'ouvrir plusieurs fenêtres dans un terminal.
         Chacune faisant tourner un processus.
         \begin{footnotesize}
@@ -533,20 +444,14 @@ $ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
         \end{footnotesize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\cref{tmux}}
+    \begin{frame}{Shell}{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\cref{tmux}}
         Par exemple pour monitorer les ressource avec \lstinline{top} dans le terminal de droite, pendant qu'on la commande dans celui de gauche.
         \bigbreak
         \centering
         \includegraphics[width=10.3cm]{image/tmux-illustration}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Gérer plusieurs commandes en parallèle avec \lstinline{nohup}}
+    \begin{frame}[fragile]{Shell}{Gérer plusieurs commandes en parallèle avec \lstinline{nohup}}
         \lstinline{nohup} vient de NO Hang UP, c'est une commande qui permet de lancer une autre commande en arrière-plan sans qu'elle soit interrompue par la fermeture de la session Shell.
         Idéale donc pour les longs processus.
         L'output de la commande va par défault dans le fichier \lstinline{nohup.out}.
@@ -565,10 +470,7 @@ ts-test
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Secure SHell (SSH)}
+    \begin{frame}{Shell}{Secure SHell (SSH)}
         La machine Linux à administrer sera le plus souvent dans un cloud, une salle serveur, un data center, elle sera distante.
         Dans une infrastructure sécurisée.
         \bigbreak
@@ -585,10 +487,7 @@ ts-test
         \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
-    \begin{frame}
-        \frametitle{Shell}
-        \framesubtitle{Sécurisation du SSH avec la cryptographie asymétrique}
-        \transdissolve
+    \begin{frame}{Shell}{Sécurisation du SSH avec la cryptographie asymétrique}
         Pourquoi est-ce plus sécure d'utiliser une clé SSH plutôt qu'un mot de passe~?
         \bigbreak
         Quels algorithmes et taille de clés sont recommandés~?
@@ -611,10 +510,7 @@ ts-test
         \end{columns}
     \end{frame}
 
-    \begin{frame}
-        \frametitle{Shell}
-        \framesubtitle{Sécurisation du SSH avec la cryptographie asymétrique}
-        \transdissolve
+    \begin{frame}{Shell}{Sécurisation du SSH avec la cryptographie asymétrique}
         Exercice \execcounterdispinc{}~:
         Restreindre l'accès à la VM au SSH avec une clé SSH, aucun mot de passe.
         \bigbreak
@@ -624,10 +520,7 @@ ts-test
         Configurer lui communiquer les clés SSH pour qu'il puisse se connecter.
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Shell}
-        \framesubtitle{Une des solutions (commande à exécuter sur la VM)}
+    \begin{frame}[fragile]{Shell}{Une des solutions (commande à exécuter sur la VM)}
         Commande pour configurer la VM~:
         \begin{lstlisting}[language=bash][fragile]
 # Configure SSH
@@ -646,10 +539,7 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.s
         \end{center}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \frametitle{Shell}
-        \framesubtitle{Exemple de sécurisation des clés et des secrets sous Linux}
-        \transdissolve
+    \begin{frame}[fragile]{Shell}{Exemple de sécurisation des clés et des secrets sous Linux}
         Par défaut, Ubuntu desktop s’installe sur une partition non
         chiffrée (encrypter, ce n’est pas français on dit chiffrer~!~).
         Tout document peut donc être lu avec un disque de
@@ -674,10 +564,7 @@ lrwxrwxrwx 1 chrichri chrichri 28 janv. 14 21:27 /home/chrichri/.ssh -> /home/ch
 
     \subsection{Commandes de base}\label{subsec:commandes-de-base}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de base}
-        \framesubtitle{Commandes de base}
+    \begin{frame}{Commandes de base}{Commandes de base}
         \begin{itemize}
             \item \lstinline{ls}~: Liste les fichiers et répertoires.
             \item \lstinline{cd}~: Change de répertoire.
@@ -695,10 +582,7 @@ lrwxrwxrwx 1 chrichri chrichri 28 janv. 14 21:27 /home/chrichri/.ssh -> /home/ch
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de base}
-        \framesubtitle{Les options}
+    \begin{frame}[fragile]{Commandes de base}{Les options}
         Mais souvent, une commande seule ne suffit pas, il faut utiliser des options.
 
         Il existe deux solutions pour découvrir ces options~:
@@ -715,10 +599,7 @@ $ man ls # Same as above
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de base}
-        \framesubtitle{Busy box}
+    \begin{frame}[fragile]{Commandes de base}{Busy box}
         BusyBox est un logiciel libre qui fournit une implémentation unique d'environ 200 commandes UNIX standard dans un seul fichier pour diminuer la taille de ces derniers.
         Des distributions comme Alpine Linux l'utilisent pour réduire la taille de l'OS~.
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
@@ -744,10 +625,7 @@ Currently defined functions:
         cpio, crc32, crond, crontab, cttyhack, cut, date, dc, dd, deallocvt, depmod, devmem, df, diff, dirname, dmesg, dnsdomainname, dos2unix, dpkg, dpkg-deb, du, dumpkmap, dumpleases, echo, ed,
         \end{lstlisting}
     \end{frame}
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de base}
-        \framesubtitle{Busy box}
+    \begin{frame}[fragile]{Commandes de base}{Busy box}
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
         egrep, env, expand, expr, factor,
         fallocate, false, fatattr, fdisk, fgrep, find, findfs, fold, free, freeramdisk, fsfreeze, fstrim, ftpget, ftpput, getopt, getty, grep, groups, gunzip, gzip, halt, head, hexdump, hostid, hostname, httpd, hwclock, i2cdetect,
@@ -768,10 +646,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de base}
-        \framesubtitle{Exercice \execcounterdispinc{}~:}
+    \begin{frame}{Commandes de base}{Exercice \execcounterdispinc{}~:}
         Le but est de préparer la configuration d'un nouveau service après avoir sauvegardé l'original.
         \begin{itemize}
             \item Créer un répertoire de backup des services dans votre \textquote{home} nommé \lstinline{service-backup}.
@@ -784,10 +659,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         \end{itemize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de base}
-        \framesubtitle{Opérateurs de redirection et piping\footnote{Five ways to use redirect operators in Bash, \url{https://www.redhat.com/sysadmin/redirect-operators-bash}}}
+    \begin{frame}{Commandes de base}{Opérateurs de redirection et piping\footnote{Five ways to use redirect operators in Bash, \url{https://www.redhat.com/sysadmin/redirect-operators-bash}}}
         \begin{itemize}
             \item \lstinline{>}~: Redirige la sortie standard vers un fichier.
             \item \lstinline{>>}~: Redirige la sortie standard vers un fichier en ajoutant le contenu à la fin.
@@ -801,10 +673,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         \end{center}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de base}
-        \framesubtitle{Exercice \execcounterdispinc{}~:}
+    \begin{frame}{Commandes de base}{Exercice \execcounterdispinc{}~:}
         Le but est de créer un fichier source d'un script Shell en y ajoutant ligne par ligne les commandes.
         \begin{itemize}
             \item Initier la création d'un script Shell nommé \lstinline{discover.sh} dans votre \textquote{home} avec un commentaire descriptif.
@@ -822,10 +691,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
 
     \subsection{Commandes de traitement de données}\label{subsec:commandes-donnees}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{Les grands classiques}
+    \begin{frame}{Commandes de traitement de données}{Les grands classiques}
         \begin{itemize}
             \item \lstinline{grep}~: Recherche de chaînes de caractères dans un fichier à l'aide d'une RegExp, une \textquote{Regular Expression}.
             Le nom vient de \textit{Global Regular Expression Print}.
@@ -841,10 +707,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
     \end{frame}
 
     \subsubsection{Piping}\label{subsubsec:piping}
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{L'histoire du piping}
+    \begin{frame}{Commandes de traitement de données}{L'histoire du piping}
         Les opérateurs de redirection et le piping margent toujours évidement avec ces commandes.
         \bigbreak
         \begin{columns}
@@ -857,10 +720,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
     \end{frame}
 
     \subsubsection{grep}\label{subsubsec:grep}
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{grep}}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{grep}}
         Exemple chercher une adresse mail dans un fichier.
         \bigbreak
         On valide d'abord la RegExp en ligne avec un utilitaire comme \url{https://regex101.com/}.
@@ -877,10 +737,7 @@ $ grep -P 'from\s([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})' proftpd.log.1
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{grep} pour le \textquote{Pattern Matching}}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{grep} pour le \textquote{Pattern Matching}}
         Sinon en rajouter l'option \lstinline{-o} pour avoir uniquement le pattern qui match~:
         \begin{lstlisting}[language=bash]
 $ grep -oP 'from\s(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})' proftpd.log.1
@@ -903,10 +760,7 @@ from 107.150.102.211
     \end{frame}
 
     \subsubsection{sed}\label{subsubsec:sed}
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{sed} la substitution}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{sed} la substitution}
         \lstinline{sed} a son propre langage de programmation avec \lstinline{s/}\footnote{\label{sed}Sed - An Introduction and Tutorial by Bruce Barnett, \url{https://www.grymoire.com/Unix/Sed.html}}.
         \bigbreak
         On peut anonymiser le fichier en remplaçant une chaine de caractère par une autre.
@@ -922,10 +776,7 @@ $ head -n 3 proftpd.log.1 | sed s/vps19562.dreamhostps.com/XXX/
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{sed} la substitution avec \lstinline{s/}\cref{sed}}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{sed} la substitution avec \lstinline{s/}\cref{sed}}
         On peut anonymiser le fichier en remplaçant une chaine de caractère par une autre.
         On peut utiliser \lstinline{sed} pour substituer un pattern, donc une RegExp, avec l'option \lstinline{-E}, par une chaîne de caractère et donc anonymiser le fichier en remplaçant les IPv4 par \textquote{xxx.xxx.xxx.xxx}~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
@@ -936,10 +787,7 @@ $ head -n 3 proftpd.log.1 | sed -E 's/\[[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{sed} la supression avec \lstinline{/d}\cref{sed}}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{sed} la supression avec \lstinline{/d}\cref{sed}}
         De la même manière et avec les mêmes options on peut supprimer une ligne qui match une chaine de caractère ou une RegExp~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ head -n 3 proftpd.log.1
@@ -958,10 +806,7 @@ $ head -n 3 proftpd.log.1 | sed '1d'
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{sed} plusieurs traitements}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{sed} plusieurs traitements}
         Plusieurs traitements peuvent être enchainés en les séparant par \lstinline{;}.
         Comme ici avec la suppression de la première ligne et l'anonymisation du serveur ensuite~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
@@ -976,10 +821,7 @@ $ head -n 3 proftpd.log.1 | sed -E '1d;s/\] .*.com/] XXX/g'
     \end{frame}
 
     \subsubsection{cut}\label{subsubsec:cut}
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{cut} pour gérer les colonnes}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{cut} pour gérer les colonnes}
         Il est très utile pour travailler avec les fichiers de données comme CSV, TSV~.
 
         Il les découpe en colonne et permet de sélectionner les colonnes voulues sur la base d'un séparateur spécifié avec l'option \lstinline{-d} ou \lstinline{--delimiter}.
@@ -1005,10 +847,7 @@ $ cut employee.csv -f 1-3 --delimiter=';' | head -n 3
     \end{frame}
 
     \subsubsection{sort}\label{subsubsec:sort}
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{sort} pour trier les lignes}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{sort} pour trier les lignes}
         \lstinline{sort} trie les lignes d'un fichier en se basant sur le premier champ par défaut ou en spécifiant un champ avec l'option \lstinline{-k} ou \lstinline{--key}.
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ head employee.csv -n 4
@@ -1036,10 +875,7 @@ $ sed 1d employee.csv | sort -k 4,2 --field-separator=';' | head -n 4
     \end{frame}
 
     \subsubsection{join}\label{subsubsec:join}
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{join} pour joindre 2 fichiers sur une clé}
+    \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{join} pour joindre 2 fichiers sur une clé}
         Jointure des fichiers CSV \lstinline{employee.csv} et \lstinline{dept.csv} sur la colonne \lstinline{dept\_id} qui est commune aux 2~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ join -1 1 -2 1 -t ';' -a 2 <(sed 1d employee.csv | sort -k 1 --field-separator=';') <(sed 1d dept.csv | sort -k 1 --field-separator=';')
@@ -1062,10 +898,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \end{dangercolorbox}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{awk}}
+    \begin{frame}{Commandes de traitement de données}{\lstinline{awk}}
         L'histoire et le bien fondé de \lstinline{awk}.
         \bigbreak
         \begin{columns}
@@ -1077,10 +910,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \end{columns}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{awk}}
+    \begin{frame}{Commandes de traitement de données}{\lstinline{awk}}
         \begin{itemize}
             \item \textquote{The right tool for a job}.
             \item N'est même pas packagé, il vient dans toute les distributions.
@@ -1092,10 +922,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \end{itemize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{\lstinline{awk}, exercice \execcounterdispinc{}~:}
+    \begin{frame}{Commandes de traitement de données}{\lstinline{awk}, exercice \execcounterdispinc{}~:}
         Mais c'est aussi pour ajouter des nombres sont créateur à dit, on peut donc faire de l'analytique avec~!
         \bigbreak
         Quel la somme des salaires par département dans le fichier \lstinline{employee.csv}~?
@@ -1105,10 +932,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
     \end{frame}
 
     \subsubsection{Exercice}\label{subsubsec:data-exercice}
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{Exercice \execcounterdispinc{}~:}
+    \begin{frame}{Commandes de traitement de données}{Exercice \execcounterdispinc{}~:}
         Cet exercice a pour objectif d'illustrer qu'un prétraitement avec ces commandes est efficace.
         Plus qu'un équivalent SQL~.
         \bigbreak
@@ -1127,10 +951,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
     \end{frame}
 
     \subsubsection{Equivalence SQL - Shell}\label{subsubsec:equi-sql-shell}
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{Equivalence SQL - Shell}
+    \begin{frame}{Commandes de traitement de données}{Equivalence SQL - Shell}
         De nombreux traitements de données ne nécessites même pas SQL, ils ont leur équivalent en Shell~:
         \begin{table}[ht]
             \centering
@@ -1162,10 +983,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
 
     \subsubsection{Les variantes}\label{subsubsec:variantes}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{Variantes de ces outils}
+    \begin{frame}{Commandes de traitement de données}{Variantes de ces outils}
         Ces outils sont open-source et ont d'innombrables variantes~:
         \begin{itemize}
             \item \lstinline{egrep}~: Extended \lstinline{grep}.
@@ -1181,10 +999,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \includegraphics[width=3cm]{image/question-mark}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Commandes de traitement de données}
-        \framesubtitle{Variantes de ces outils}
+    \begin{frame}[fragile]{Commandes de traitement de données}{Variantes de ces outils}
         Dans les exemples précédents, nous n'avons manipulé que des données issues de fichier texte.
         Les données numériques prennent moins de place en binaire.
         \begin{lstlisting}[language=python]
@@ -1206,10 +1021,7 @@ lentgh of the struct: 35
 
     \subsection{Groupes}\label{subsec:groupes}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les groupes}
+    \begin{frame}{Utilisateurs, groupes et droits d'accès}{Les groupes}
         \begin{columns}
             \column{0.5\textwidth}
             Les groupes facilitent la gestion des droits d'accès.
@@ -1222,10 +1034,7 @@ lentgh of the struct: 35
         \end{columns}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les groupes}
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les groupes}
         L'utilitaire \lstinline{addgroup} permet de créer un groupe.
 %bash listing
         \begin{lstlisting}[language=bash]
@@ -1253,10 +1062,7 @@ $ members digicomp
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les groupes}
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les groupes}
         \lstinline{groups} permet de lister les groupes auxquels appartient un utilisateur, mais aussi de lister tous les groupes~:
         \begin{lstlisting}[language=bash]
 $ groups chrichri
@@ -1283,10 +1089,7 @@ drwxrwxr-x 10 chrichri chrichri 4,0K août  15 16:07 ..
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les groupes}
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les groupes}
         \lstinline{sudo chown root:digicomp -R digicomp-little-secret} veut dire que le groupe propriétaire de \lstinline{digicomp-little-secret} est \lstinline{digicomp} et de manière récursive, \textit{i.e.}, pour les sous-dossiers et fichiers.
         La structure de la commande est \lstinline{chown <user>:<group> -R <path>}.
         Et il faut la aussi être \textquote{superutilisateur}, ici avec \lstinline{sudo}.
@@ -1306,10 +1109,7 @@ bash: digicomp-little-secret/secret.txt: Permission non accordée
 
     \subsection{Droits}\label{subsec:droits}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les droits\footnote{\label{rights-digitalocean}An Introduction to Linux Permissions, \url{https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-permissions}}}
+    \begin{frame}{Utilisateurs, groupes et droits d'accès}{Les droits\footnote{\label{rights-digitalocean}An Introduction to Linux Permissions, \url{https://www.digitalocean.com/community/tutorials/an-introduction-to-linux-permissions}}}
         \begin{dangercolorbox}
             Cela montre que des users qui ne sont pas prioritaires et qui ne font pas partie du groupe propriétaire peuvent avoir des droits.
             Par défaut ces droits sont en lecture seule, n'ont n'avons pas pu écrire dans le fichier.
@@ -1320,10 +1120,7 @@ bash: digicomp-little-secret/secret.txt: Permission non accordée
         Les droits par défaut du fichier en question étaient \lstinline{-rw-rw-r--}.
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les droits\cref{rights-digitalocean}}
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les droits\cref{rights-digitalocean}}
         \begin{lstlisting}[language=bash]
 $ ls -lha digicomp-little-secret/
 total 12K
@@ -1344,10 +1141,7 @@ drwxrwxr-x 10 chrichri chrichri 4,0K août  15 16:07 ..
         \end{columns}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les droits\cref{rights-digitalocean}\footnotestep\footnote{\label{octal}Octal Notation and Linux Permissions, \url{https://cratecode.com/info/octal-notation}}}
+    \begin{frame}{Utilisateurs, groupes et droits d'accès}{Les droits\cref{rights-digitalocean}\footnotestep\footnote{\label{octal}Octal Notation and Linux Permissions, \url{https://cratecode.com/info/octal-notation}}}
         \begin{columns}
             \column{0.5\textwidth}
             La notation octale est une manière de représenter les droits d'accès.
@@ -1360,10 +1154,7 @@ drwxrwxr-x 10 chrichri chrichri 4,0K août  15 16:07 ..
         \end{columns}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Représentation binaire la notation octale avec Python\cref{octal}}
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Représentation binaire la notation octale avec Python\cref{octal}}
         \begin{lstlisting}[language=bash]
 int("000", 2) # Masque binaire de 3 de longs donc 0 est le minimum
 Out[30]: 0
@@ -1386,10 +1177,7 @@ Out[38]: 5
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Notation octale\cref{octal}}
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Notation octale\cref{octal}}
         Cela fait bien des droits qui vont de 0 pour la lecture seule au user, à 777 pour la lecture, l'écriture et l'exécution au user, groupe et autres.
         \begin{lstlisting}[language=bash]
 "".join(map(str, [int("100", 2), int("000", 2), int("000", 2)])) # r-- pour user
@@ -1405,10 +1193,7 @@ Out[45]: '777'
         Des utilitaires plus user friendly que Python sont en ligne comme \url{https://chmod-calculator.com/}.
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Notation octale\cref{octal}}
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Notation octale\cref{octal}}
         En résumé, restreindre les droits à la lecture par l'utilisateur propriétaire m'empêche de lire le fichier~:
         \begin{lstlisting}[language=bash]
 $ sudo chmod 400 digicomp-little-secret/secret.txt
@@ -1428,10 +1213,7 @@ $ echo "Le code de l'entrée est 8564" > digicomp-little-secret/secret.txt
     \end{frame}
 
     \subsection{Utilisateurs}\label{subsec:utilisateurs}
-    \begin{frame}
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les utilisateurs}
+    \begin{frame}{Utilisateurs, groupes et droits d'accès}{Les utilisateurs}
         Les utilisateurs sont les personnes qui utilisent le système.
         Les bonnes pratiques veulent qu'il y en a un par personne physique.
         L'utilisateur a pour s'identifier un user et un mot de passe et/ou une clé privé.
@@ -1452,10 +1234,7 @@ $ echo "Le code de l'entrée est 8564" > digicomp-little-secret/secret.txt
         \end{columns}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Les utilisateurs}
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les utilisateurs}
         Exemple avec la création du user \lstinline{digiformateur}.
         \begin{lstlisting}[language=bash]
 $ useradd -s /bin/bash -m -d $/home/digiformateur digiformateur
@@ -1482,10 +1261,7 @@ $ sudo userdel digiformateur
     \end{frame}
 
     \subsection{Mot de passe}\label{subsec:password}
-    \begin{frame}
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Recommandation sur les motrs de passe}
+    \begin{frame}{Utilisateurs, groupes et droits d'accès}{Recommandation sur les motrs de passe}
         \begin{footnotesize}
             Bonnes pratiques de l'ANSSI\footnote{Bonnes pratiques - Protégez-vous !, \url{https://cyber.gouv.fr/bonnes-pratiques-protegez-vous}} pour les mots de passe~:
             \begin{columns}
@@ -1510,10 +1286,7 @@ $ sudo userdel digiformateur
     \end{frame}
 
     \subsection{Exercice}\label{subsec:user-group-rights-exercice}
-    \begin{frame}
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Exercice \execcounterdispinc}
+    \begin{frame}{Utilisateurs, groupes et droits d'accès}{Exercice \execcounterdispinc}
         Cet exercice a pour objectif de montrer que les droits d'accès sont une question de sécurité, les configurations et les services sont très sensibles.
         En effet, les services sont le plus exécutés par l'utilisateur root et ont donc le maximum de droits.
         \bigbreak
@@ -1527,10 +1300,7 @@ $ sudo userdel digiformateur
         \end{itemize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Utilisateurs, groupes et droits d'accès}
-        \framesubtitle{Exercice \execcounterdispinc}
+    \begin{frame}{Utilisateurs, groupes et droits d'accès}{Exercice \execcounterdispinc}
         Cet exercice a pour objectif de créer un simple site web static isolé par le jeu des user/groupes/droits.
         \begin{itemize}
             \item Créer un groupe pour ce serveur/site web.
@@ -1543,10 +1313,7 @@ $ sudo userdel digiformateur
 
 
     \section{Système de fichiers}\label{sec:fs}
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Définition\footnote{\label{fs}Les systèmes de fichiers sous GNU-Linux / macOS / Windows, \url{https://doc.ubuntu-fr.org/systeme_de_fichiers}}}
+    \begin{frame}{Système de fichiers}{Définition\footnote{\label{fs}Les systèmes de fichiers sous GNU-Linux / macOS / Windows, \url{https://doc.ubuntu-fr.org/systeme_de_fichiers}}}
         \begin{footnotesize}
             Soft qui organise les fichiers de votre ordinateur sur votre disque dur de façon
             à pouvoir les retrouver lorsque vous au besoin.
@@ -1573,10 +1340,7 @@ $ sudo userdel digiformateur
         \end{footnotesize}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Définition\cref{fs}}
+    \begin{frame}[fragile]{Système de fichiers}{Définition\cref{fs}}
         Sans cette indexation, il serait impossible de retrouver un fichier sur un disque dur.
         Qui n'est que une immensité de données binaire~:
         \begin{lstlisting}
@@ -1598,19 +1362,13 @@ $ sudo dd if=/dev/nvme0n1p3 ibs=512 count=1 skip=239 2> /dev/null | hexdump -C
         Il est plus courant sur les serveurs qui stock des données, plus que sur les serveurs applicatif.
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Du hardware au Kernel\footnote{Linux File System\url{https://www.javatpoint.com/linux-file-system}}}
+    \begin{frame}{Système de fichiers}{Du hardware au Kernel\footnote{Linux File System\url{https://www.javatpoint.com/linux-file-system}}}
         \centering
         \includegraphics[width=11cm]{image/linux-file-system-stack}
     \end{frame}
 
     \subsection{Montage du système de fichiers}\label{subsec:mount}
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Comment rajouter un disque~?}
+    \begin{frame}[fragile]{Système de fichiers}{Comment rajouter un disque~?}
         \begin{scriptsize}
             \begin{itemize}
                 \item \lstinline{lsblk}~: Pour lister les disques et les partitions.
@@ -1646,10 +1404,7 @@ Numéro  Début  Fin     Taille  Système de fichiers  Drapeaux
         \end{scriptsize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Comment rajouter un disque~?}
+    \begin{frame}{Système de fichiers}{Comment rajouter un disque~?}
         Combien de disque physique~?
         \begin{center}
             \includegraphics[width=3cm]{image/question-mark}
@@ -1662,10 +1417,7 @@ Numéro  Début  Fin     Taille  Système de fichiers  Drapeaux
         \end{dangercolorbox}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Comment rajouter un disque~?}
+    \begin{frame}[fragile]{Système de fichiers}{Comment rajouter un disque~?}
         \begin{scriptsize}
             En connectant un nouveau disque on constate bien avec \lstinline{parted} qu'il y a un nouveau disque~:
             \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
@@ -1697,10 +1449,7 @@ tmpfs                       1615416      2596    1612820   1% /run/user/1000
         \end{scriptsize}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Comment rajouter un disque~?}
+    \begin{frame}[fragile]{Système de fichiers}{Comment rajouter un disque~?}
         Créons un \textquote{point de montage} et montons ce disque~:
         \begin{lstlisting}[language=bash]
 $ sudo mkdir /mnt/sda-usb # /mnt pour les montage par convention mais peut être ailleurs
@@ -1720,10 +1469,7 @@ drwx------ 2 root root  16K août  17 15:21 lost+found
         \end{dangercolorbox}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Comment rajouter un disque~?}
+    \begin{frame}[fragile]{Système de fichiers}{Comment rajouter un disque~?}
         Comme ces commandes ont été exécutées par le supersaturation, il est probable ques les droits bloque l'écriture~:
         \begin{lstlisting}[language=bash]
 $ cp ocr_speed.txt /mnt/sda-usb
@@ -1745,10 +1491,7 @@ $ sudo rm -rf /mnt/sda-usb
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichier}
-        \framesubtitle{Exercice \execcounterdispinc}
+    \begin{frame}{Système de fichier}{Exercice \execcounterdispinc}
         \newcounter{exemountcounter}
         \setcounter{exemountcounter}{\value{execounter}}
         % add one as execounter not incremented yet
@@ -1769,10 +1512,7 @@ $ sudo rm -rf /mnt/sda-usb
     \end{frame}
 
     \subsection{La table du système de fichiers (/etc/fstab)}\label{subsec:fstab}
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{La table du système de fichiers (\lstinline{/etc/fstab})}
+    \begin{frame}[fragile]{Système de fichiers}{La table du système de fichiers (\lstinline{/etc/fstab})}
         \lstinline{/etc/fstab} est un fichier de configuration associe des points de montage à des disques.
         Il est lu au démarrage du système pour monter les disques automatiquement et ne pas avoir à passer les commandes vues précédemment.
         \bigbreak
@@ -1796,10 +1536,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{La table du système de fichiers (\lstinline{/etc/fstab})}
+    \begin{frame}[fragile]{Système de fichiers}{La table du système de fichiers (\lstinline{/etc/fstab})}
         \lstinline{/etc/fstab} est un fichier de configuration associe des points de montage à des disques.
         On y trouve les UUID des disques, le point de montage, le type de système de fichier, les options de montage du disque principale~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
@@ -1822,10 +1559,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichiers}
-        \framesubtitle{Exercices de configuration de la table du système de fichiers (\lstinline{/etc/fstab})}
+    \begin{frame}{Système de fichiers}{Exercices de configuration de la table du système de fichiers (\lstinline{/etc/fstab})}
         Exercice \execcounterdispinc: Reprendre les consignes de l'exercice  \theexemountcounter{} et ajouter le disque à la table du système de fichiers \lstinline{/etc/fstab} pour que la clé soit montée automatiquement au démarrage.
         \bigbreak
         Exercice \execcounterdispinc: Créer un disque virtuel de 1 Go et le monter automatiquement au démarrage en configurant \lstinline{/etc/fstab}.
@@ -1836,20 +1570,14 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
 
     \subsection{RAID)}\label{subsec:raid}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{RAID}
-        \framesubtitle{Les différents RAID\footnote{\label{mdadm}mdadm : RAID Logiciel sous Linux, \url{https://www.linuxtricks.fr/wiki/mdadm-raid-logiciel-sous-linux}}\footnotestep\footnote{Qu'est-ce que le RAID ?, \url{https://www.diskpart.com/fr/windows-server/logiciel-gestion-raid-8899-tc.html}}}
+    \begin{frame}{RAID}{Les différents RAID\footnote{\label{mdadm}mdadm : RAID Logiciel sous Linux, \url{https://www.linuxtricks.fr/wiki/mdadm-raid-logiciel-sous-linux}}\footnotestep\footnote{Qu'est-ce que le RAID ?, \url{https://www.diskpart.com/fr/windows-server/logiciel-gestion-raid-8899-tc.html}}}
         Le RAID est un ensemble de standards de virtualisation du stockage permettant de répartir des données sur plusieurs disques durs afin d'améliorer soit les performances, soit la sécurité ou la tolérance aux pannes de l'ensemble du ou des systèmes.
         \bigbreak
         \centering
         \includegraphics[width=10cm]{image/raid-0-1-5} \\ Les principaux RAID, les 0, 1 et 5 \\
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{RAID}
-        \framesubtitle{\lstinline{mdadm}\cref{mdadm}\footnotestep\footnote{RAID logiciel avec mdadm, \url{https://doc.ubuntu-fr.org/raid_logiciel}}}
+    \begin{frame}{RAID}{\lstinline{mdadm}\cref{mdadm}\footnotestep\footnote{RAID logiciel avec mdadm, \url{https://doc.ubuntu-fr.org/raid_logiciel}}}
         \begin{itemize}
             \item Logiciel installable sous Ubuntu avec le package manager, pas besoin de compilation.
             \item Comme pour les autres commandes \textquote{bas-niveau}, elle nécessite d'être superutilisateur.
@@ -1862,10 +1590,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{itemize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{RAID}
-        \framesubtitle{RAID logiciel ou controller RAID hardware?}
+    \begin{frame}{RAID}{RAID logiciel ou controller RAID hardware?}
         \begin{itemize}
             \item Le RAID logiciel est plus flexible, car il est indépendant du matériel.
             Surtout si le controller n'est une carte du type PCIe mais qu'il est intégré à la carte mère.
@@ -1877,10 +1602,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{itemize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{RAID}
-        \framesubtitle{Exercice \execcounterdispinc{}}
+    \begin{frame}{RAID}{Exercice \execcounterdispinc{}}
         L'objectif est de maîtriser les commandes de base de l'outil \lstinline{mdadm}\cref{mdadm}.
         \begin{itemize}
             \item Créer 2 disques vierges de 1 Go chacun.
@@ -1894,10 +1616,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{RAID}
-        \framesubtitle{Exercice \execcounterdispinc{}}
+    \begin{frame}{RAID}{Exercice \execcounterdispinc{}}
         Quel est un des dangers de RAID 0?
         \bigbreak
         \centering
@@ -1906,10 +1625,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
 
     \subsection{LVM)}\label{subsec:lvm}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Logical Volume Manager, A.K.A LVM}
-        \framesubtitle{Définition\footnote{\label{lvm}LVM, une autre manière de partitionner, \url{https://doc.ubuntu-fr.org/lvm}}}
+    \begin{frame}{Logical Volume Manager, A.K.A LVM}{Définition\footnote{\label{lvm}LVM, une autre manière de partitionner, \url{https://doc.ubuntu-fr.org/lvm}}}
         Il permet la création et la création de volumes logiques.
         Ces derniers sont des partitions virtuelles qui peuvent être agrandies ou réduites sans perte de données.
         Et sont décorrélées des disques physiques (les PV ou \textquote{Physical Volume}).
@@ -1921,20 +1637,14 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         Un des bénéfices est qu'un dossier comme par exemple \lstinline{/var/lib/mysql} qui contient les données de la base MySQL peut être plus grand qu'un disque physique entier~!
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Logical Volume Manager, A.K.A LVM}
-        \framesubtitle{Définition\cref{lvm}}
+    \begin{frame}{Logical Volume Manager, A.K.A LVM}{Définition\cref{lvm}}
         \centering
         \includegraphics[width=10cm]{image/lvm}
         \flushleft
         Le PV peut être un disque RAID, par sécurité, pour prévenir une perte de données c'est même conseillé.
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Logical Volume Manager, A.K.A LVM}
-        \framesubtitle{Définition\cref{lvm}}
+    \begin{frame}{Logical Volume Manager, A.K.A LVM}{Définition\cref{lvm}}
         Si les données sont strippées (avec les options \lstinline{-I} et/ou \lstinline{-i} de \lstinline{lvm2}\footnote{Analysing a Standard Logical Volume, \url{https://www.theurbanpenguin.com/striped-lvm-volumes/}}) le risque de perte de données est plus grand sans RAID mais la performance est meilleure comme avec RAID 0.
         \bigbreak
         \begin{columns}
@@ -1950,10 +1660,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{columns}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichier}
-        \framesubtitle{Exercice \execcounterdispinc}
+    \begin{frame}{Système de fichier}{Exercice \execcounterdispinc}
         Avec le disque RAID créé précédemment, il est possible de créer un volume logique avec LVM~.
         \begin{itemize}
             \item Créer un volume physique~.
@@ -1970,10 +1677,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
 
     \subsection{Gestion des processus}\label{subsec:process-management}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Gestion des processus}
-        \framesubtitle{Définition\footnote{\label{process}Les processus sous Linux, \url{https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using-command-line/}}}
+    \begin{frame}{Gestion des processus}{Définition\footnote{\label{process}Les processus sous Linux, \url{https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using-command-line/}}}
         Un processus est un programme en cours d'exécution.
         Il est identifié par un PID, le \textquote{Process IDentifier}.
         \bigbreak
@@ -1994,10 +1698,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{columns}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Gestion des processus}
-        \framesubtitle{Les commandes \lstinline{ps}}
+    \begin{frame}[fragile]{Gestion des processus}{Les commandes \lstinline{ps}}
         L'option \lstinline{-f} affiche plus d'informations sur les processus.
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ ps
@@ -2036,10 +1737,7 @@ root           2       0  0 09:23 ?        00:00:00 [kthreadd]
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Gestion des processus}
-        \framesubtitle{Les états d'un processus sous \lstinline{ps}}
+    \begin{frame}{Gestion des processus}{Les états d'un processus sous \lstinline{ps}}
         \begin{table}[h!]
             \centering
             \begin{tabular}{|p{0.1\textwidth}|p{0.8\textwidth}|}
@@ -2057,10 +1755,7 @@ root           2       0  0 09:23 ?        00:00:00 [kthreadd]
         \end{table}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Gestion des processus}
-        \framesubtitle{L'interface \lstinline{top}}
+    \begin{frame}{Gestion des processus}{L'interface \lstinline{top}}
         La commande \lstinline{top} affiche tous les processus.
         Mais il ne permet pas de trouver les processus par nom contrairement à \lstinline{ps}.
         \bigbreak
@@ -2084,10 +1779,7 @@ root           2       0  0 09:23 ?        00:00:00 [kthreadd]
         \end{table}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Gestion des processus}
-        \framesubtitle{Les états d'un processus sous \lstinline{top}}
+    \begin{frame}{Gestion des processus}{Les états d'un processus sous \lstinline{top}}
         \begin{table}[h!]
             \centering
             \begin{tabular}{|p{0.1\textwidth}|p{0.8\textwidth}|}
@@ -2105,20 +1797,14 @@ root           2       0  0 09:23 ?        00:00:00 [kthreadd]
         \end{table}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Gestion des processus}
-        \framesubtitle{L'interface \lstinline{top}}
+    \begin{frame}{Gestion des processus}{L'interface \lstinline{top}}
         Top et \textquote{c} pour afficher la ligne de commande~:
         \bigbreak
         \centering
         \includegraphics[width=10cm]{image/top-interface}
     \end{frame}
 
-    \begin{frame}[fragile]
-        \transdissolve
-        \frametitle{Gestion des processus}
-        \framesubtitle{La commande \lstinline{kill}}
+    \begin{frame}[fragile]{Gestion des processus}{La commande \lstinline{kill}}
         La commande \lstinline{top} permet de terminer un processus dans l'interface avec \textbf{k}.
         En fonction de son PID, qu'on aurait auparavant dans cette même interface.
         ou avec la commande \lstinline{ps}, on peut le tuer avec la commande \lstinline{kill}.
@@ -2135,10 +1821,7 @@ $ pkill -9 <nom>
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Gestion des processus}
-        \framesubtitle{Le dossier \lstinline{/proc}\footnote{The /proc Filesystem, \url{https://docs.kernel.org/filesystems/proc.html}}}
+    \begin{frame}{Gestion des processus}{Le dossier \lstinline{/proc}\footnote{The /proc Filesystem, \url{https://docs.kernel.org/filesystems/proc.html}}}
         \begin{footnotesize}
             Le dossier \lstinline{/proc} contient des informations sur les processus sous l'arborescence de son PID donc \lstinline{/proc/<PID>/} dans les fichiers suivants~:
             \begin{tiny}
@@ -2192,10 +1875,7 @@ $ pkill -9 <nom>
         \end{footnotesize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichier}
-        \framesubtitle{Exercices sur les processus}
+    \begin{frame}{Système de fichier}{Exercices sur les processus}
         Exercice \execcounterdispinc{}, quels droits ai-je \lstinline{/proc} sur les processus des autres utilisateurs~?
         \bigbreak
         Exercice \execcounterdispinc{}, quels droits ai-je \lstinline{/proc} sur mes processus~?
@@ -2210,10 +1890,7 @@ $ pkill -9 <nom>
         \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichier}
-        \framesubtitle{Exercices \execcounterdispinc{}}
+    \begin{frame}{Système de fichier}{Exercices \execcounterdispinc{}}
         \begin{itemize}
             \item Lancer en arrière plan le script Shell \lstinline{endless-loop.sh}.
             \item Arrêter le processus correspondant au script dans \lstinline{top}.
@@ -2225,10 +1902,7 @@ $ pkill -9 <nom>
         \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Système de fichier}
-        \framesubtitle{Exercices sur les processus}
+    \begin{frame}{Système de fichier}{Exercices sur les processus}
         Exercices \execcounterdispinc{}, à partir de vos connaissances sur les process et des commandes précédentes comparer l'activité d'une machine Ubuntu, d'un WSL ubuntu et d'un WSL Debian, ou un FreeBSD.
 
         Que remarquez-vous~?
@@ -2244,7 +1918,6 @@ $ pkill -9 <nom>
     \subsection{Open SSH}\label{subsec:openssh}
 
     \begin{frame}{OpenSSH}{Définition\footnote{\label{openssh-site}OpenSSH, Keeping your comuniqués secret, \url{https://www.openssh.com/}}}
-        \transdissolve
         OpenSSH est l'outil de connectivité principal pour les connexions à distance avec le protocole SSH.
         Il a pour but de remplacer les outils non sécurisés tels que \texttt{rlogin}, \texttt{rsh} et \texttt{telnet}.
         Il chiffre tout le trafic pour éliminer les écoutes clandestines, le détournement de connexion et d'autres attaques.
@@ -2258,10 +1931,7 @@ $ pkill -9 <nom>
         \end{itemize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{OpenSSH}
-        \framesubtitle{Définition\cref{openssh-site}}
+    \begin{frame}{OpenSSH}{Définition\cref{openssh-site}}
         OpenSSH est développé par quelques développeurs du projet OpenBSD et est disponible sous une licence de type BSD, donc open source.
         \bigbreak
         OpenSSH relies on the \href{https://www.libressl.org}{LibreSSL} library for some of its cryptographic routines, AES-GCM being one example.
@@ -2271,10 +1941,7 @@ $ pkill -9 <nom>
         \includegraphics[width=7cm]{image/ssh-key-diagram}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{OpenSSH}
-        \framesubtitle{Les formats de clé\footnote{AUTHORIZED\_KEYS FILE FORMAT, \url{https://man.openbsd.org/sshd\#AUTHORIZED_KEYS_FILE_FORMAT}}}
+    \begin{frame}{OpenSSH}{Les formats de clé\footnote{AUTHORIZED\_KEYS FILE FORMAT, \url{https://man.openbsd.org/sshd\#AUTHORIZED_KEYS_FILE_FORMAT}}}
         \begin{footnotesize}
             \begin{table}[h!]
                 \centering
@@ -2301,10 +1968,7 @@ $ pkill -9 <nom>
         \end{footnotesize}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Open SSH}
-        \framesubtitle{Les commandes\footnote{OpenSSH-9.8p1, \url{https://www.linuxfromscratch.org/blfs/view/git/postlfs/openssh.html}}}
+    \begin{frame}{Open SSH}{Les commandes\footnote{OpenSSH-9.8p1, \url{https://www.linuxfromscratch.org/blfs/view/git/postlfs/openssh.html}}}
         \begin{footnotesize}
             \begin{table}[h!]
                 \centering
@@ -2337,10 +2001,7 @@ $ pkill -9 <nom>
 
 
     \section{Builder sa distribution}\label{sec:build-distribution}
-    \begin{frame}
-        \transdissolve
-        \frametitle{Builder sa distribution}
-        \framesubtitle{Pourquoi~?}
+    \begin{frame}{Builder sa distribution}{Pourquoi~?}
         \begin{columns}
             \column{0.7\textwidth}
             \begin{itemize}
@@ -2356,10 +2017,7 @@ $ pkill -9 <nom>
         \end{columns}
     \end{frame}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Buildroot}
-        \framesubtitle{Définition}
+    \begin{frame}{Buildroot}{Définition}
         Buildroot permet de configurer un build de Linux pour des \textquote{target} variés des systèmes embarqués, principalement, mais aussi des architectures PC x86 et Qemu plus classiques.
         \bigbreak
         Il est possible de configurer le noyau, les outils de base, les bibliothèques, les applications, les systèmes de fichiers racine, le package manager, \textit{etc}.
@@ -2370,10 +2028,7 @@ $ pkill -9 <nom>
 
     \section{Licence CC}\label{sec:licence}
 
-    \begin{frame}
-        \transdissolve
-        \frametitle{Licence}
-        \framesubtitle{Licence Creative Commons}
+    \begin{frame}{Licence}{Licence Creative Commons}
         Support de cours sous licence Creative Commons BY-NC-ND~.
         \bigbreak
         Vous pouvez donc, partager, copier, distribuer le document.
