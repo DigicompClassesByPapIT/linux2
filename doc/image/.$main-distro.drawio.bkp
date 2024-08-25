@@ -10,7 +10,7 @@
         <mxCell id="mJvpZVX_bZ9XRWThdtlq-2" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Community and Pro&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontColor=#000000;strokeColor=#FF8000;strokeWidth=3;align=left;" parent="1" vertex="1">
           <mxGeometry x="250" y="80" width="530" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="mJvpZVX_bZ9XRWThdtlq-3" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Entreprise&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontColor=#ffffff;strokeColor=#FF0000;strokeWidth=3;align=left;verticalAlign=bottom;" parent="1" vertex="1">
+        <mxCell id="mJvpZVX_bZ9XRWThdtlq-3" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;RPM (Red hat Package Manager) et YUM&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontColor=#ffffff;strokeColor=#FF0000;strokeWidth=3;align=left;verticalAlign=bottom;" parent="1" vertex="1">
           <mxGeometry x="70" y="230" width="710" height="40" as="geometry" />
         </mxCell>
         <mxCell id="mJvpZVX_bZ9XRWThdtlq-4" value="&lt;font color=&quot;#000000&quot;&gt;Community&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;fontColor=#ffffff;strokeColor=#FF3399;strokeWidth=3;align=left;verticalAlign=top;" parent="1" vertex="1">
