@@ -10,7 +10,7 @@
 
 \titlegraphic{
     \bigbreak
-    \includegraphics{image/digicomp-logo}
+    \includegraphics[width=5cm]{image/digicomp-logo}
     \bigbreak
     Digital competence. Made of People.
     \bigbreak
@@ -26,7 +26,11 @@
     \section{Table des matières}\label{sec:toc}
 
     \begin{frame}{Table des matières}
-        \tableofcontents
+        \begin{tiny}
+            \begin{multicols}{2}
+                \tableofcontents
+            \end{multicols}
+        \end{tiny}
     \end{frame}
 
 
@@ -151,7 +155,7 @@
             Les applications font des appels système via le noyau pour demander des ressources et interagir avec le matériel.
             \item \textbf{Distribution}~: Désigne une version de GNU/Linux ou d'un autre système d'exploitation open source, bien que certaines personnes soutiennent que le terme devrait inclure les différents systèmes d'exploitation Windows® et Apple.
             Ubuntu est la version la plus populaire, mais il en existe de nombreuses autres, telles que RedHat, qui est bien connue pour les serveurs.
-            La plupart des autres distros sont conçues pour un type particulier d'architecture, comme les téléphones, les netbooks, les routeurs, les serveurs, \textit{etc}.
+            La plupart des autres distributions sont conçues pour un type particulier d'architecture, comme les téléphones, les netbooks, les routeurs, les serveurs, \textit{etc}.
         \end{itemize}
     \end{frame}
 
@@ -166,7 +170,7 @@
         \end{itemize}
     \end{frame}
 
-    \begin{frame}{Les distributions}{La timeline de toutes les distributions\footnote{FabioLolix, \url{https://github.com/FabioLolix/linuxtimeline}}\footnotestep\footnote{Put the fun back into computing. Use Linux, BSD., \url{https://distrowatch.com/}}}
+    \begin{frame}{Les distributions}{La timeline de toutes les distributions\footnote{FabioLolix, \url{https://github.com/FabioLolix/linuxtimeline}}\footnotestep\footnote{Put the fun back into computing. Use Linux, BSD., \url{https://distributionwatch.com/}}}
         \begin{columns}
             \column{0.8\textwidth}
             Insights~:
@@ -185,24 +189,24 @@
 
     \begin{frame}{Les distributions}{La timeline de toutes les distributions}
         Red-Hat, filiale d'IBM, fait l'opposition entre les distributions \textit{entreprise} et les \textit{community}.
-        En mettant en avant leur support de 10 ans contre 2 ans pour Fedora, une distribution communautaire de la même branche\footnote{What's the best Linux distro for you?, \url{https://www.redhat.com/en/topics/linux/whats-the-best-linux-distro-for-you}}.
+        En mettant en avant leur support de 10 ans contre 2 ans pour Fedora, une distribution communautaire de la même branche\footnote{What's the best Linux distribution for you?, \url{https://www.redhat.com/en/topics/linux/whats-the-best-linux-distribution-for-you}}.
         \bigbreak
         Ubuntu a un business model légèrement différent, ils proposent 5 ans de support pour les versions LTS et une extension de 10 ans dans la version payant appelée \textquote{Ubuntu Pro}\footnote{The Ubuntu lifecycle and release cadence, \url{https://ubuntu.com/about/release-cycle}}.
         \bigbreak
-        Mais peut-être que l'exemple de Red-Hat n'est pas le bon, Debian, une distro communautaire également, communique un support des versions LTS de 5 ans minimum\footnote{Debian Long Term Support, \url{https://wiki.debian.org/LTS}}\ldots
+        Mais peut-être que l'exemple de Red-Hat n'est pas le bon, Debian, une distribution communautaire également, communique un support des versions LTS de 5 ans minimum\footnote{Debian Long Term Support, \url{https://wiki.debian.org/LTS}}\ldots
     \end{frame}
 
-    \begin{frame}{Les distributions}{La timeline des principales distributions\footnote{\label{main-distro}Philipp Leclercq, \url{https://github.com/PhilLecl/SanitizedLinuxTimeline}}}
+    \begin{frame}{Les distributions}{La timeline des principales distributions\footnote{\label{main-distribution}Philipp Leclercq, \url{https://github.com/PhilLecl/SanitizedLinuxTimeline}}}
         \centering
         \includegraphics[width=12cm]{image/linux-main-distro-timeline}
     \end{frame}
 
-    \begin{frame}{Les distributions}{Les licences des principales distributions\cref{main-distro}}
+    \begin{frame}{Les distributions}{Les licences des principales distributions\cref{main-distribution}}
         \centering
         \includegraphics[width=12cm]{image/main-distro-license.drawio}
     \end{frame}
 
-    \begin{frame}{Les distributions}{Les packages managers des principales distributions\cref{main-distro}}
+    \begin{frame}{Les distributions}{Les packages managers des principales distributions\cref{main-distribution}}
         \centering
         \includegraphics[width=12cm]{image/main-distro-package-manager.drawio}
     \end{frame}
@@ -234,7 +238,7 @@
         Y-a-t-il des critères pertinents qui pourraient manquer~?
         \bigbreak
         \centering
-        \includegraphics[width=6cm]{image/question-mark}
+        \includegraphics[width=3cm]{image/question-mark}
     \end{frame}
 
     \begin{frame}{Les distributions}{Des critères manquants~?}
@@ -347,23 +351,29 @@ root@71641013d445:/usr/src/celia# ls
 
     \begin{frame}{Shell}{Qu'est-ce~?}
         \begin{itemize}
-            \item \lstinline{sh} et \lstinline{bash} appellent les mêmes exécutables.
+            \item Un interpréteur de lignes de commandes.
+            \item \lstinline{sh} et \lstinline{bash} peuvent appeler les mêmes exécutables.
+            \item \lstinline{sh} et \lstinline{bash} n'ont pas des scripts compatibles.
+            \item \lstinline{sh}, le Shell POSIX ou Bourne Shell est plus léger et plus rapide que \lstinline{bash}.
+            \item \lstinline{bash}, le Bourne Again Shell est plus complet et plus facile à utiliser.
             \item Shell n'est qu'une interface.
             \item Même dans une distribution \textquote{lightweight}, il y a 2 interpréteurs Shell~!
         \end{itemize}
-        \bigbreak
-        \lstinline{bash}, n'est pas installé par défault sur la dernière version de FreeBSD 14, uniquement \lstinline{sh}.
-        Qu'en penser~?
-        \bigbreak
-        \centering
-        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+        \begin{columns}
+            \column{0.7\textwidth}
+            \lstinline{bash}, n'est pas installé par défault sur la dernière version de FreeBSD 14, uniquement \lstinline{sh}.
+            Qu'en penser~?
+            \column{0.3\textwidth}
+            \centering
+            \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+        \end{columns}
     \end{frame}
 
     \begin{frame}{Shell}{Bourne Shell VS Bourne Again Shell}
         Peut-on lister les avantages/inconvénients de l'un et l'autre~?
         \bigbreak
         \centering
-        \includegraphics[width=6cm]{image/question-mark}
+        \includegraphics[width=3cm]{image/question-mark}
     \end{frame}
 
     \begin{frame}{Shell}{Le poid de cette interface\footnote{Exigences matérielles pour utiliser Ubuntu, \url{https://doc.ubuntu-fr.org/exigences_minimales}}}
@@ -383,7 +393,7 @@ root@71641013d445:/usr/src/celia# ls
         Pourquoi pas \lstinline{sh}~?
         \bigbreak
         \centering
-        \includegraphics[width=6cm]{image/question-mark}
+        \includegraphics[width=3cm]{image/question-mark}
     \end{frame}
 
     \begin{frame}[fragile]{Shell}{Pourquoi a-t-on un Shell ou l'autre~?}
@@ -479,6 +489,27 @@ technip
 Téléchargements
 ts-test
         \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]{Shell}{Les alias}
+        Les alias sont des raccourcis pour des commandes.
+        ils sont donc intéressant à paramétrer pour les commandes longues et récurrente.
+        \bigbreak
+        Par exemple, pour la commande \lstinline{ls -l}~:
+        \begin{lstlisting}[language=bash]
+$ alias ll='ls -l'
+$ ll
+total 3484
+-rw-rw-r-- 1 chrichri chrichri     249 août  15 12:35 analytic-using-awk.sh
+-rw-rw-r-- 1 chrichri chrichri      82 août  10 23:04 checkmytex.sh
+...
+        \end{lstlisting}
+        \bigbreak
+        Pour rendre l'alias permanent, il faut l'ajouter dans le fichier \lstinline{.bashrc} ou \lstinline{.bash\_profile}~:
+        \begin{lstlisting}[language=bash]
+$ echo "alias ll='ls -l'" >> ~/.bashrc
+        \end{lstlisting}
+        De cette manière à chaque fois qu'un Shell est ouvert, la commande est exécutée.
     \end{frame}
 
     \begin{frame}{Shell}{Secure SHell (SSH)}
@@ -673,6 +704,48 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         \end{itemize}
     \end{frame}
 
+    \begin{frame}{Commandes de base}{Les flux standards dans le Shell Linux\footnote{\label{standard-stream}The Standard Streams, \url{https://zedas.fr/posts/linux-explained-6-standard-streams/}}}
+        \begin{itemize}
+            \item \textbf{Les flux standards}~: Canaux de communication d'entrée et de sortie dans le shell.
+            \item \textbf{entrée standard (Entrée standard)}~:
+            \begin{itemize}
+                \item Flux pour les données d'entrée d'un programme.
+                \item Exemple~: Taper la commande \lstinline{ls} utilise entrée standard pour entrer la commande.
+            \end{itemize}
+            \item \textbf{sortie standard (Sortie standard)~:}
+            \begin{itemize}
+                \item Flux pour les données de sortie d'un programme.
+                \item Exemple~: La sortie de \lstinline{ls} est affichée via sortie standard.
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Commandes de base}{Les flux standards dans le Shell Linux\cref{standard-stream}}
+        \begin{itemize}
+            \item \textbf{sortie d'erreur (Erreur standard)}~:
+            \begin{itemize}
+                \item Flux pour les messages d'erreur ou diagnostics.
+                \item Exemple~: L'erreur \lstinline{No such file or directory} de \lstinline{ls} est affichée via sortie d'erreur.
+            \end{itemize}
+            \item \textbf{Identifiants des flux~:}
+            \begin{itemize}
+                \item \textbf{0~:} entrée standard (stdin)
+                \item \textbf{1~:} sortie standard (stdout)
+                \item \textbf{2~:} sortie d'erreur (stderr)
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Commandes de base}{Les flux standards dans le Shell Linux\cref{standard-stream}}
+        \centering
+        \includegraphics[width=10cm]{image/standard-stream-computer}
+    \end{frame}
+
+    \begin{frame}{Commandes de base}{Les flux standards dans le Shell Linux\cref{standard-stream}}
+        \centering
+        \includegraphics[width=10cm]{image/shell-stream-no-redirect}
+    \end{frame}
+
     \begin{frame}{Commandes de base}{Opérateurs de redirection et piping\footnote{Five ways to use redirect operators in Bash, \url{https://www.redhat.com/sysadmin/redirect-operators-bash}}}
         \begin{itemize}
             \item \lstinline{>}~: Redirige la sortie standard vers un fichier.
@@ -683,7 +756,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         \end{itemize}
         À quoi ces opérateurs peuvent-ils servir~?
         \begin{center}
-            \includegraphics[width=2.5cm]{image/question-mark}
+            \includegraphics[width=3cm]{image/question-mark}
         \end{center}
     \end{frame}
 
@@ -700,6 +773,15 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         Inutile donc indispensable~:
         \begin{itemize}
             \item Changer de répertoire pour aller dans le répertoire courant avec le pipe.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Commandes de base}{Exercice \execcounterdispinc{}~:}
+        \begin{itemize}
+            \item Rediriger la sortie standard standard de la commande \lstinline{ls} dans un fichier \lstinline{ls-output.txt}.
+            \item Rediriger la sortie d'erreur error de la commande \lstinline{ls} dans un fichier \lstinline{ls-error.txt}.
+            \item Rediriger les deux flux dans un fichier \lstinline{ls-output-error.txt}.
+            \item Rediriger le contenu du fichier \lstinline{ls-output.txt} dans la entrée standard de la commande \lstinline{grep} pour filter sur un type d'extension de fichier.
         \end{itemize}
     \end{frame}
 
@@ -942,7 +1024,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         Quel la somme des salaires par département dans le fichier \lstinline{employee.csv}~?
         \bigbreak
         \centering
-        \includegraphics[width=6cm]{image/question-mark}
+        \includegraphics[width=3cm]{image/question-mark}
     \end{frame}
 
     \subsubsection{Exercice}\label{subsubsec:data-exercice}
@@ -1119,7 +1201,7 @@ bash: digicomp-little-secret/secret.txt: Permission non accordée
         \end{lstlisting}
         Qu'est-ce que cela veut dire~?
         \begin{center}
-            \includegraphics[width=2.5cm]{image/question-mark}
+            \includegraphics[width=3cm]{image/question-mark}
         \end{center}
     \end{frame}
 
@@ -1584,7 +1666,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
-    \subsection{RAID)}\label{subsec:raid}
+    \subsection{RAID}\label{subsec:raid}
 
     \begin{frame}{RAID}{Les différents RAID\footnote{\label{mdadm}mdadm~: RAID Logiciel sous Linux, \url{https://www.linuxtricks.fr/wiki/mdadm-raid-logiciel-sous-linux}}\footnotestep\footnote{Qu'est-ce que le RAID ?, \url{https://www.diskpart.com/fr/windows-server/logiciel-gestion-raid-8899-tc.html}}}
         Le RAID est un ensemble de standards de virtualisation du stockage permettant de répartir des données sur plusieurs disques durs afin d'améliorer soit les performances, soit la sécurité ou la tolérance aux pannes de l'ensemble du ou des systèmes.
@@ -1639,7 +1721,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \includegraphics[width=5cm]{image/raid-0}
     \end{frame}
 
-    \subsection{LVM)}\label{subsec:lvm}
+    \subsection{LVM}\label{subsec:lvm}
 
     \begin{frame}{Logical Volume Manager, A.K.A LVM}{Définition\footnote{\label{lvm}LVM, une autre manière de partitionner, \url{https://doc.ubuntu-fr.org/lvm}}}
         Il permet la création et la création de volumes logiques.
@@ -1825,7 +1907,7 @@ root           2       0  0 09:23 ?        00:00:00 [kthreadd]
         En fonction de son PID, qu'on aurait auparavant dans cette même interface.
         ou avec la commande \lstinline{ps}, on peut le tuer avec la commande \lstinline{kill}.
         \bigbreak
-        Mais il existe une commande spécifique, c'est \lstinline{kill}.
+        Mais il existe une commande spécifique, c'est \lstinline{kill}, elle envoie un signal au processus ici SIGKILL avec l'option \lstinline{-9}.
         Elle permet de terminer un processus dont aurait trouvé le PID avec \lstinline{ps} ou \lstinline{top}.
         \begin{lstlisting}[language=bash]
 $ kill -9 <PID>
@@ -1843,47 +1925,47 @@ $ pkill -9 <nom>
             \begin{tiny}
                 \begin{table}[h!]
                     \centering
-                    \begin{tabular}{|p{1.5cm}|p{9cm}|}
+                    \begin{tabular}{|p{2cm}|p{8cm}|}
                         \hline
-                        \textbf{File} & \textbf{Content}                                                                                                            \\
+                        \textbf{File}             & \textbf{Content}                                                                                                                \\
                         \hline
-                        clear\_refs   & Clears page referenced bits shown in smaps output                                                                           \\
+                        \lstinline{clear\_refs}   & Clears page referenced bits shown in smaps output                                                                               \\
                         \hline
-                        cmdline       & Command line arguments                                                                                                      \\
+                        \lstinline{cmdline}       & Command line arguments                                                                                                          \\
                         \hline
-                        cpu           & Current and last cpu in which it was executed (2.4)(smp)                                                                    \\
+                        \lstinline{cpu}           & Current and last cpu in which it was executed (2.4)(smp)                                                                        \\
                         \hline
-                        cwd           & Link to the current working directory                                                                                       \\
+                        \lstinline{cwd}           & Link to the current working directory                                                                                           \\
                         \hline
-                        environ       & Values of environment variables                                                                                             \\
+                        \lstinline{environ}       & Values of environment variables                                                                                                 \\
                         \hline
-                        exe           & Link to the executable of this process                                                                                      \\
+                        \lstinline{exe}           & Link to the executable of this process                                                                                          \\
                         \hline
-                        fd            & Directory, which contains all file descriptors                                                                              \\
+                        \lstinline{fd}            & Directory, which contains all file descriptors                                                                                  \\
                         \hline
-                        maps          & Memory maps to executables and library files (2.4)                                                                          \\
+                        \lstinline{maps}          & Memory maps to executables and library files (2.4)                                                                              \\
                         \hline
-                        mem           & Memory held by this process                                                                                                 \\
+                        \lstinline{mem}           & Memory held by this process                                                                                                     \\
                         \hline
-                        root          & Link to the root directory of this process                                                                                  \\
+                        \lstinline{root}          & Link to the root directory of this process                                                                                      \\
                         \hline
-                        stat          & Process status                                                                                                              \\
+                        \lstinline{stat}          & Process status                                                                                                                  \\
                         \hline
-                        statm         & Process memory status information                                                                                           \\
+                        \lstinline{statm}         & Process memory status information                                                                                               \\
                         \hline
-                        status        & Process status in human readable form                                                                                       \\
+                        \lstinline{status}        & Process status in human readable form                                                                                           \\
                         \hline
-                        wchan         & Present with CONFIG\_KALLSYMS=y: it shows the kernel function symbol the task is blocked in - or “0” if not blocked.        \\
+                        \lstinline{wchan}         & Present with \lstinline{CONFIG\_KALLSYMS=y:} it shows the kernel function symbol the task is blocked in - or “0” if not blocked \\
                         \hline
-                        pagemap       & Page table                                                                                                                  \\
+                        \lstinline{pagemap}       & Page table                                                                                                                      \\
                         \hline
-                        stack         & Report full stack trace, enable via CONFIG\_STACKTRACE                                                                      \\
+                        \lstinline{stack}         & Report full stack trace, enable via \lstinline{CONFIG\_STACKTRACE}                                                              \\
                         \hline
-                        smaps         & An extension based on maps, showing the memory consumption of each mapping and flags associated with it                     \\
+                        \lstinline{smaps}         & An extension based on maps, showing the memory consumption of each mapping and flags associated with it                         \\
                         \hline
-                        smaps\_rollup & Accumulated smaps stats for all mappings of the process. This can be derived from smaps, but is faster and more convenient  \\
+                        \lstinline{smaps\_rollup} & Accumulated smaps stats for all mappings of the process. This can be derived from smaps, but is faster and more convenient      \\
                         \hline
-                        numa\_maps    & An extension based on maps, showing the memory locality and binding policy as well as mem usage (in pages) of each mapping. \\
+                        \lstinline{numa\_maps}    & An extension based on maps, showing the memory locality and binding policy as well as mem usage (in pages) of each mapping      \\
                         \hline
                     \end{tabular}
                 \end{table}
@@ -2331,6 +2413,33 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.s
             \item Pas de conflit de version quand 2 package dépendent de librairies ayant une version différente.
             Chacun vient avec sa version.
             \item Ca fait de beaucoup de dépendances, ça prend de la place.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Installation de logiciels}{Les commandes Snap}
+        \begin{itemize}
+            \item \lstinline{snap find <package>} pour trouver un package.
+            \item \lstinline{snap install <package>} pour installer un package.
+            \item \lstinline{snap remove <package>} pour désinstaller un package.
+            \item \lstinline{snap list} pour lister les packages installés.
+            \item \lstinline{snap refresh <package>} pour mettre à jour un package.
+            \item \lstinline{snap info <package>} pour afficher des informations sur un package.
+            \item \lstinline{snap changes} pour afficher les changements en cours.
+            \item \lstinline{snap revert <package>} pour revenir à une version précédente.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Installation de logiciels}{Les commandes APT}
+        \begin{itemize}
+            \item \lstinline{apt search <package>} pour trouver un package.
+            \item \lstinline{apt install <package>} pour installer un package.
+            \item \lstinline{apt remove <package>} pour désinstaller un package.
+            \item \lstinline{apt list} pour lister les packages installés.
+            \item \lstinline{apt update} pour mettre à jour la liste des packages.
+            \item \lstinline{apt upgrade} pour mettre à jour les packages.
+            \item \lstinline{apt show <package>} pour afficher des informations sur un package.
+            \item \lstinline{apt autoremove} pour supprimer les packages inutiles.
+            \item \lstinline{apt full-upgrade} pour mettre à jour les packages et résoudre les dépendances.
         \end{itemize}
     \end{frame}
 
@@ -3365,7 +3474,7 @@ sys     0m0,006s
                 \item \lstinline{$\#} - Nombre d'arguments
                 \item \lstinline{$@} - Tous les arguments positionnels comme chaînes séparées
                 \item \lstinline{$*} - Tous les arguments positionnels comme une seule chaîne
-                \item \lstinline{$1}, \lstinline{$2}, \textit{etc}. - Arguments positionnels
+                \item \lstinline{$1}, \lstinline{$2}, \textit{etc} - Arguments positionnels
                 \item \lstinline{$_} - Dernier argument du dernier processus
             \end{itemize}
         \end{itemize}
@@ -3410,6 +3519,12 @@ done < fichier.txt
             \begin{itemize}
                 \item \lstinline{[[ -e FICHIER ]]} - Le fichier existe
                 \item \lstinline{[[ -x FICHIER ]]} - Le fichier est exécutable
+            \end{itemize}
+            Opérateurs logiques~:
+            \begin{itemize}
+                \item \lstinline{[[ ! EXPR ]]} - Non
+                \item \lstinline{[[ EXPR1 && EXPR2 ]]} - Et
+                \item \lstinline{[[ EXPR1 || EXPR2 ]]} - Ou
             \end{itemize}
         \end{itemize}
     \end{frame}
