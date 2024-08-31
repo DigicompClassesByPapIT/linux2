@@ -1,5 +1,5 @@
 \documentclass{beamer}
-\include{../style/cours-style.sty}
+\input{../style/cours-style.sty}
 
 % Title
 \title[LINUX2]{Linux - Avancé pour Administrateur/PowerUser - LINUX2}
@@ -428,7 +428,7 @@ $ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
         \end{itemize}
     \end{frame}
 
-    \begin{frame}{Shell}{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\footnote{\label{itm:tmux}Tmux (terminal multiplexer), \url{https://www.redhat.com/sysadmin/introduction-tmux-linux}}}
+    \begin{frame}{Shell}{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\footnote{\label{tmux}Tmux (terminal multiplexer), \url{https://www.redhat.com/sysadmin/introduction-tmux-linux}}}
         \lstinline{tmux} est un multiplexeur de terminal, \textit{i.e.}, permet d'ouvrir plusieurs fenêtres dans un terminal.
         Chacune faisant tourner un processus.
         \begin{footnotesize}
@@ -465,7 +465,7 @@ $ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
         \end{footnotesize}
     \end{frame}
 
-    \begin{frame}{Shell}{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\cref{itm:tmux}}
+    \begin{frame}{Shell}{Gérer plusieurs commandes en parallèle avec \lstinline{tmux}\cref{tmux}}
         Par exemple pour monitorer les ressources avec \lstinline{top} dans le terminal de droite, pendant qu'on lance la commande dans celui de gauche.
         \bigbreak
         \centering
@@ -568,15 +568,15 @@ $ echo "alias ll='ls -l'" >> ~/.bashrc
         Commande pour configurer la VM~:
         \begin{lstlisting}[language=bash][fragile]
 # Configure SSH
-sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+$ sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+$ sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 # Restart SSH with the new configuration
-sudo systemctl restart sshd
+$ sudo systemctl restart sshd
 # Create the .ssh directory and the authorized_keys file
-mkdir -p ~/.ssh
-touch ~/.ssh/authorized_keys
+$ mkdir -p ~/.ssh
+$ touch ~/.ssh/authorized_keys
 # Add the public key to the authorized_keys file
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.ssh/authorized_keys
+$ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.ssh/authorized_keys
         \end{lstlisting}
         \begin{center}
             \includegraphics[width=2cm]{image/digicomp-lightbulb} \\ Expliquer chaque commande \\
@@ -1253,7 +1253,7 @@ drwxrwxr-x 10 chrichri chrichri 4,0K août  15 16:07 ..
     \end{frame}
 
     \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Représentation binaire la notation octale avec Python\cref{octal}}
-        \begin{lstlisting}[language=bash]
+        \begin{lstlisting}
 int("000", 2) # Masque binaire de 3 de longs donc 0 est le minimum
 Out[30]: 0
 int("111", 2) # 7 le maximum, de 0 à 7 il y a 8 valeurs d'où octal
@@ -1277,7 +1277,7 @@ Out[38]: 5
 
     \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Notation octale\cref{octal}}
         Cela fait bien des droits qui vont de 0 pour la lecture seule au user, à 777 pour la lecture, l'écriture et l'exécution au user, groupe et autres.
-        \begin{lstlisting}[language=bash]
+        \begin{lstlisting}
 "".join(map(str, [int("100", 2), int("000", 2), int("000", 2)])) # r-- pour user
 Out[46]: '400'
 "".join(map(str, [int("111", 2), int("111", 2), int("111", 2)])) # rwx pour tous
@@ -1365,7 +1365,7 @@ $ sudo userdel digiformateur
             \begin{columns}
                 \column{0.5\textwidth}
                 \begin{itemize}
-                    \item Créez un mot de passe suffisamment long, complexe et inattendu~:
+                    \item Créer un mot de passe suffisamment long, complexe et inattendu~:
                     de 8 caractères minimum et contenant des minuscules, des majuscules,
                     des chiffres et des caractères spéciaux.
 
@@ -1518,7 +1518,7 @@ Numéro  Début  Fin     Taille  Système de fichiers  Drapeaux
     \begin{frame}[fragile]{Système de fichiers}{Comment rajouter un disque~?}
         \begin{scriptsize}
             En connectant un nouveau disque on constate bien avec \lstinline{parted} qu'il y a un nouveau disque~:
-            \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+            \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 Modèle~: Intuix DiskOnKey (scsi)
 Disque /dev/sda~: 252MB
 Taille des secteurs (logiques/physiques)~: 512B/512B
@@ -1637,21 +1637,21 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
     \begin{frame}[fragile]{Système de fichiers}{La table du système de fichiers (\lstinline{/etc/fstab})}
         \lstinline{/etc/fstab} est un fichier de configuration associe des points de montage à des disques.
         On y trouve les UUID des disques, le point de montage, le type de système de fichier, les options de montage du disque principale~:
-        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+        \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 UUID=9bcc82ee-9214-4eac-90f6-9695c585874b /               ext4    errors=remount-ro 0       1
         \end{lstlisting}
         La partition de boot montée sur \lstinline{/boot/efi}~:
-        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+        \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 UUID=EE30-267D  /boot/efi       vfat    umask=0077      0       1
         \end{lstlisting}
         La \lstinline{swapfile} qui est commentée pour car c'est une extension de la RAM sur le disque, c'est configuration invite l'OS à utiliser un maximum la RAM~.
         La partition \lstinline{/tmp} montée en mémoire pour de meilleurs performances avec certaines commandes comme \lstinline{sort}, la mémoire est plus rapide que le SSD.~:
-        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+        \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 # Temp file in memory.
 tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{lstlisting}
         On peut aussi utiliser ce fichier pour configurer le montage au moment du démarrage d'un disque supplémentaire, clé USB sur un point de montage~:
-        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+        \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 # /boot was on /dev/sda5 during installation
 /dev/sda5                                    /boot           ext2    defaults          0       2
         \end{lstlisting}
@@ -2149,15 +2149,15 @@ WantedBy=multi-user.target
 
     \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions (commandes à exécuter sur la machine hôte)}
         \begin{lstlisting}[language=bash]
-qemu-img create -f qcow2 linux.qcow2 10G # Create a disk image
+$ qemu-img create -f qcow2 linux.qcow2 10G # Create a disk image
 # Download a minial Ubuntu ISO
-wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
+$ wget http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso
 # Install the OS using a virtual CDROM
-qemu-system-x86_64 -m 2G -smp 1 -nic user -boot d -cdrom mini.iso -hda linux.qcow2 -k fr -enable-kvm
+$ qemu-system-x86_64 -m 2G -smp 1 -nic user -boot d -cdrom mini.iso -hda linux.qcow2 -k fr -enable-kvm
 # Run the VM to configure and test SSH
-qemu-system-x86_64 -m 2G -smp 1 -nic user,hostfwd=tcp::5022-:22,hostfwd=tcp::5080-:80 -display none -hda linux.qcow2 -k fr -enable-kvm
+$ qemu-system-x86_64 -m 2G -smp 1 -nic user,hostfwd=tcp::5022-:22,hostfwd=tcp::5080-:80 -display none -hda linux.qcow2 -k fr -enable-kvm
         \end{lstlisting}
-        Expliquez chacune des lignes de commande ci-dessus.
+        Expliquer chacune des lignes de commande ci-dessus.
         \bigbreak
         Ressources utiles~:
         \begin{itemize}
@@ -2169,7 +2169,7 @@ qemu-system-x86_64 -m 2G -smp 1 -nic user,hostfwd=tcp::5022-:22,hostfwd=tcp::508
 
     \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions}
         Le service de la machine hôte~:
-        \begin{lstlisting}[language=bash]
+        \begin{lstlisting}
 [Unit]
 Description=Qemu Ubuntu VM for Digicomp classes
 After=network.target
@@ -2183,7 +2183,7 @@ ExecStart=/usr/bin/qemu-system-x86_64 -m 2G -smp 1,maxcpus=1 -nic user,hostfwd=t
 [Install]
 WantedBy=multi-user.target
         \end{lstlisting}
-        Expliquez chaque option de la configuration du service.
+        Expliquer chaque option de la configuration du service.
         \pause
         \begin{dangercolorbox}
             \lstinline{-enable-kvm} si l'hôte est un Linux également.
@@ -2194,7 +2194,7 @@ WantedBy=multi-user.target
 
     \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions}
         Le service dans la VM~:
-        \begin{lstlisting}[language=bash]
+        \begin{lstlisting}
 [Unit]
 Description=Digicomp Hello World
 After=network.target
@@ -2208,26 +2208,26 @@ ExecStart=/usr/bin/gunicorn -w 1 hello:app -b 0.0.0.0:8080
 [Install]
 WantedBy=multi-user.target
         \end{lstlisting}
-        Expliquez chaque option de la configuration du service.
+        Expliquer chaque option de la configuration du service.
     \end{frame}
 
     \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions (commande à exécuter sur la VM)}
         Commande pour configurer la VM~:
         \begin{lstlisting}[language=bash]
 # Install gunicorn, pip install gunicorn is no longer recommanded
-sudo apt-get install python3-gunicorn
+$ sudo apt-get install python3-gunicorn
 # Configure SSH
-sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+$ sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+$ sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 # Restart SSH with the new configuration
-sudo systemctl restart sshd
+$ sudo systemctl restart sshd
 # Create the .ssh directory and the authorized_keys file
-mkdir -p ~/.ssh
-touch ~/.ssh/authorized_keys
+$ mkdir -p ~/.ssh
+$ touch ~/.ssh/authorized_keys
 # Add the public key to the authorized_keys file
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.ssh/authorized_keys
+$ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.ssh/authorized_keys
         \end{lstlisting}
-        Expliquez chaque commande.
+        Expliquer chaque commande.
     \end{frame}
 
 
@@ -2666,7 +2666,7 @@ network:
         Physiquement c'est mon laptop mais quand je me connecte c'est l'interface de la VM Qemu.
         Depuis n'importe qu'elle terminale sur ce réseau je peux me connecter à ma VM avec la commande~:
         \begin{lstlisting}
-ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
+$ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
         \end{lstlisting}
         \bigbreak
         L'interface \lstinline{lo} est la boucle locale, le \lstinline{localhost}, elle permet de communiquer avec sa propre machine.
@@ -2872,13 +2872,13 @@ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
         Bind 9 est un serveur DNS open source qui implémente les protocoles DNS~.
         S'il n'est pas installé directement sous Ubuntu, il peut s'installer avec la commande~:
         \begin{lstlisting}
-sudo apt install bind9
+$ sudo apt install bind9
         \end{lstlisting}
         Il serait le serveur DNS le plus utilisé sur internet.
         \bigbreak
         Pour un A records, \textit{i.e.}, une simple association d'une IP à un nom~:
         \begin{lstlisting}
-chris-digicomp.local IN    A      <mon IP>
+$ chris-digicomp.local IN    A      <mon IP>
         \end{lstlisting}
     \end{frame}
 
@@ -3041,7 +3041,7 @@ chris-digicomp.local IN    A      <mon IP>
         \bigbreak
         La commande pour générer les clés Ed25519 est~:
         \begin{lstlisting}
-ssh-keygen -t ed25519 -C "your_email@example.com"
+$ ssh-keygen -t ed25519 -C "your_email@example.com"
         \end{lstlisting}
         \begin{center}
             \includegraphics[width=4cm]{image/Ed25519-curve}
@@ -3101,21 +3101,21 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
         Pour pousser du code sur une autre machine (qui est donc serveur SSH) la destination est préfixée par le user et l'hôte~:
         \bigbreak
         \begin{lstlisting}[language=bash]
-rsync -a /chemin/vers/mon-dossier/ utilisateur@serveur:/chemin/vers/mon-dossier/
+$ rsync -a /chemin/vers/mon-dossier/ utilisateur@serveur:/chemin/vers/mon-dossier/
         \end{lstlisting}
         Pour récupérer du code depuis une autre machine la source est préfixée par le user et l'hôte~:
         \begin{lstlisting}[language=bash]
-rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossier/
+$ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossier/
         \end{lstlisting}
     \end{frame}
     \begin{frame}{Réseau}{Exercice \execcounterdispinc}
         Utiliser \lstinline{rsync} pour synchroniser un dossier entre deux VMs.
         \begin{itemize}
-            \item Envoyé un fichier sur la VM de votre camarade.
+            \item Envoyer un fichier sur la VM de votre camarade.
             \item Vérifier que le fichier transféré est bien synchronisé donc identique avec \lstinline{sha256sum} ou \lstinline{md5sum}.
             \item Récupérer un fichier de la VM de votre camarade.
             \item Vérifier que le fichier transféré est bien synchronisé donc identique avec \lstinline{sha256sum} ou \lstinline{md5sum}.
-            \item A l'image d'un backup périodique, utiliser crontab et \lstinline{rsync} pour synchroniser un fichier toutes les 5 minutes.
+            \item À l'image d'un backup périodique, utiliser crontab et \lstinline{rsync} pour synchroniser un fichier toutes les 5 minutes.
         \end{itemize}
         \begin{center}
             \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
@@ -3134,7 +3134,7 @@ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossier/
             Basé sur la factorisation de grands nombres premiers et l'arithmétique modulaire.
             Parce qu'il y a un déséquilibre entre la facilité de multiplication et la difficulté de factorisation.
             \item ECC~: Elliptic Curve Cryptography.
-            Développé par Neal Koblitz et Victor Miller et publié en 1985.
+            Développée par Neal Koblitz et Victor Miller et publié en 1985.
             Ces algorithmes sont recommandés par le NIST dans les années 2000.
             On utilise des courbes elliptiques pour la cryptographie dans les clés SSH, les cartes bancaires, le Bitcoin, \textit{etc}.
         \end{itemize}
@@ -3318,7 +3318,7 @@ server {
         \end{lstlisting}
         De son côté, Gunicorn est bindé sur ce même socket Unix~:
         \begin{lstlisting}[language=bash]
-gunicorn app.py -b /var/run/sock-guni
+$ gunicorn app.py -b /var/run/sock-guni
         \end{lstlisting}
     \end{frame}
 
@@ -3645,9 +3645,9 @@ Le fichier n'existe pas
             \item Permet de générer rapidement des listes ou des variantes.
             \item Exemple :
             \begin{lstlisting}[language=bash]
-echo {1..5}  # Produit : 1 2 3 4 5
+$ echo {1..5}  # Produit : 1 2 3 4 5
 1 2 3 4 5
-echo {a..e}  # Produit : a b c d e
+$ echo {a..e}  # Produit : a b c d e
 a b c d e
             \end{lstlisting}
         \end{itemize}
@@ -3659,8 +3659,8 @@ a b c d e
             \item Permet des manipulations avancées des variables (longueur, remplacement, sous-chaîne).
             \item Exemple :
             \begin{lstlisting}[language=bash]
-nom="Ryan"
-echo ${nom:1:3}  # Produit : yan
+$ nom="Ryan"
+$ echo ${nom:1:3}  # Produit : yan
 yan
             \end{lstlisting}
         \end{itemize}
@@ -3672,8 +3672,8 @@ yan
             \item Permet d'effectuer des opérations mathématiques directement dans le script.
             \item Exemple :
             \begin{lstlisting}[language=bash]
-resultat=$((3 + 5))
-echo $resultat  # Produit : 8
+$ resultat=$((3 + 5))
+$ echo $resultat  # Produit : 8
 8
             \end{lstlisting}
         \end{itemize}
@@ -3685,7 +3685,7 @@ echo $resultat  # Produit : 8
             \item Utilisé pour les scripts ou les messages longs.
             \item Exemple :
             \begin{lstlisting}[language=bash]
-cat <<EOF
+$ cat <<EOF
 Ceci est un texte
 multi-ligne.
 EOF
@@ -3723,12 +3723,12 @@ multi-ligne.
 
     \begin{frame}[fragile]{Buildroot}{Script}
         Les package nécessaire selon la documentation officielle peuvent s'installer comme suit~:
-        \begin{lstlisting}
-sudo apt-get update && sudo apt-get install -y which sed make binutils build-essential diffutils gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc findutils wget python3 libncurses5-dev qt5-qmake libglib2.0-dev libgtk2.0-dev libglade2-dev bzr cvs git mercurial openssh-client subversion openjdk-11-jdk asciidoc w3m dblatex graphviz python3-matplotlib python3-aiohttp
+        \begin{lstlisting}[language=bash]
+$ sudo apt-get update && sudo apt-get install -y which sed make binutils build-essential diffutils gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc findutils wget python3 libncurses5-dev qt5-qmake libglib2.0-dev libgtk2.0-dev libglade2-dev bzr cvs git mercurial openssh-client subversion openjdk-11-jdk asciidoc w3m dblatex graphviz python3-matplotlib python3-aiohttp
         \end{lstlisting}
         Buildroot compilé peut se télécharger sur leur site avec la commande~:
         \begin{lstlisting}[language=bash]
-wget http://www.buildroot.org/downloads/buildroot-2024.05.tar.gz
+$ wget http://www.buildroot.org/downloads/buildroot-2024.05.tar.gz
         \end{lstlisting}
     \end{frame}
 
