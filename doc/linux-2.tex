@@ -119,7 +119,7 @@
         Multi user au sens \textit{Time-Sharing}, \textit{i.e.}, plus d'un utilisateur en même temps.
 
         Les premiers OS Multi user était OS/360 d'IBM dans les années 60.
-        Un concurrent est développé par Bell Labs, une filiale d'AT\&T (Avant le démantèlement en 1982), c'est Unix en 1969.
+        Unix est un concurrent développé par Bell Labs, une filiale d'AT\&T (Avant le démantèlement en 1982), en 1969.
 
         Linux est ainsi multi user dès le début.
         Par opposition à Windows, qui par défaut (sans RDP ni bricolage), ne l'est pas.
@@ -242,7 +242,7 @@
     \end{frame}
 
     \begin{frame}{Les distributions}{Des critères manquants~?}
-        L'énorme succès d'une distribution à part, Alpine Linux, pousser par les technologies de virtualisation et de conteneurisation.
+        L'énorme succès d'une distribution à part, Alpine Linux, poussée par les technologies de virtualisation et de conteneurisation.
         \bigbreak
         Une des premières phrases de présentation sur leur site est \textit{Alpine Linux is built around musl libc and busybox. A container requires no more than 8 MB and a minimal installation to disk requires around 130 MB of storage.}\footnote{About, \url{https://alpinelinux.org/about/}}.
         \bigbreak
@@ -292,7 +292,7 @@
         \begin{itemize}
             \item C'est un exécutable.
             \item Un interpréteur de ligne de commande.
-            Ne pas confondre avec des Shell spécifique comme le Python Shell ou le MySQL Shell qui interagissent spécifiquement avec ces applications.
+            Ne pas confondre avec des Shells spécifiques comme le Python Shell ou le MySQL Shell qui interagissent spécifiquement avec ces applications.
             \item Et donc un interpréteur de scripts Shell.
             \item C'est une interface entre l'OS et l'humain.
             \item Existe sur la plupart des plateformes Linux, Unix, Windows® (\lstinline{Bash}, installé avec Git par exemple), \textit{etc}.
@@ -353,7 +353,7 @@ root@71641013d445:/usr/src/celia# ls
         \begin{itemize}
             \item Un interpréteur de lignes de commandes.
             \item \lstinline{sh} et \lstinline{bash} peuvent appeler les mêmes exécutables.
-            \item \lstinline{sh} et \lstinline{bash} n'ont pas des scripts compatibles.
+            \item \lstinline{sh} et \lstinline{bash} n'ont pas des scripts toujours compatibles.
             \item \lstinline{sh}, le Shell POSIX ou Bourne Shell est plus léger et plus rapide que \lstinline{bash}.
             \item \lstinline{bash}, le Bourne Again Shell est plus complet et plus facile à utiliser.
             \item Shell n'est qu'une interface.
@@ -436,29 +436,29 @@ $ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
                 \centering
                 \begin{tabular}{|p{3.5cm}|p{8cm}|}
                     \hline
-                    \textbf{Commande}         & \textbf{Description}                                                            \\
+                    \textbf{Commande}                                     & \textbf{Description}                                                            \\
                     \hline
-                    Ctrl+b puis D             & Détacher de la session courante                                                 \\
+                    Ctrl+b puis D                                         & Détacher de la session courante                                                 \\
                     \hline
-                    Ctrl+b puis \%            & Diviser la fenêtre en deux volets horizontalement                               \\
+                    Ctrl+b puis \%                                        & Diviser la fenêtre en deux volets horizontalement                               \\
                     \hline
-                    Ctrl+b puis ``            & Diviser la fenêtre en deux volets verticalement                                 \\
+                    Ctrl+b puis ``                                        & Diviser la fenêtre en deux volets verticalement                                 \\
                     \hline
-                    Ctrl+b puis Flèche        & Se déplacer entre les volets                                                    \\
+                    Ctrl+b puis \emoji{left-arrow} ou \emoji{right-arrow} & Se déplacer entre les volets                                                    \\
                     \hline
-                    Ctrl+b puis X             & Fermer le volet                                                                 \\
+                    Ctrl+b puis X                                         & Fermer le volet                                                                 \\
                     \hline
-                    Ctrl+b puis C             & Créer une nouvelle fenêtre                                                      \\
+                    Ctrl+b puis C                                         & Créer une nouvelle fenêtre                                                      \\
                     \hline
-                    Ctrl+b puis N ou P        & Passer à la fenêtre suivante ou précédente                                      \\
+                    Ctrl+b puis N ou P                                    & Passer à la fenêtre suivante ou précédente                                      \\
                     \hline
-                    Ctrl+b puis 0 (1,2\ldots) & Aller à une fenêtre spécifique par numéro                                       \\
+                    Ctrl+b puis 0 (1,2\ldots)                             & Aller à une fenêtre spécifique par numéro                                       \\
                     \hline
-                    Ctrl+b puis~:             & Entrer dans la ligne de commande pour taper des commandes (avec autocomplétion) \\
+                    Ctrl+b puis~:                                         & Entrer dans la ligne de commande pour taper des commandes (avec autocomplétion) \\
                     \hline
-                    Ctrl+b puis ?             & Voir tous les raccourcis clavier (appuyer sur Q pour quitter)                   \\
+                    Ctrl+b puis ?                                         & Voir tous les raccourcis clavier (appuyer sur Q pour quitter)                   \\
                     \hline
-                    Ctrl+b puis W             & Ouvrir un panneau pour naviguer entre les fenêtres de plusieurs sessions        \\
+                    Ctrl+b puis W                                         & Ouvrir un panneau pour naviguer entre les fenêtres de plusieurs sessions        \\
                     \hline
                 \end{tabular}
             \end{table}
@@ -633,13 +633,13 @@ lrwxrwxrwx 1 chrichri chrichri 28 janv. 14 21:27 /home/chrichri/.ssh -> /home/ch
         Il existe deux solutions pour découvrir ces options~:
         \begin{itemize}
             \item Utiliser l'aide de la commande.
-            Le plus souvent avec l'option \lstinline{-h}, équivalente à \lstinline{--help}.
+            Le plus souvent avec l'option \lstinline{--help} souvent équivalente à \lstinline{-h}.
             \begin{lstlisting}[language=bash]
 $ ls --help # -h c'est human readable avec ls...
             \end{lstlisting}
-            \item Ce qui revient à lire la documentation de la commande avec la commande~:
+            \item Une documentation souvent plus complète est accessible avec \lstinline{man}~:~:
             \begin{lstlisting}[language=bash]
-$ man ls # Same as above
+$ man ls
             \end{lstlisting}
         \end{itemize}
     \end{frame}
@@ -684,7 +684,7 @@ Currently defined functions:
 $ busybox ls
 LICENSE            checkmytex.sh      compress-image.sh  dept.csv           employee.csv       sqlite-hr.sh       venv
         \end{lstlisting}
-        Et s'utilise en préfixant la commande par \lstinline{busybox <commande>}.
+        Il s'utilise en préfixant la commande par \lstinline{busybox <commande>}.
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ busybox sha256sum employee.csv
 c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
@@ -747,17 +747,34 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
     \end{frame}
 
     \begin{frame}{Commandes de base}{Opérateurs de redirection et piping\footnote{Five ways to use redirect operators in Bash, \url{https://www.redhat.com/sysadmin/redirect-operators-bash}}}
+        \begin{footnotesize}
+            \begin{itemize}
+                \item \lstinline{>}~: Redirige la sortie standard vers un fichier.
+                \item \lstinline{>>}~: Redirige la sortie standard vers un fichier en ajoutant le contenu à la fin.
+                \item \lstinline{<}~: Redirige un fichier vers l'entrée standard.
+                \item \lstinline{2>}~: Redirige la sortie d'erreur vers un fichier.
+                \item \lstinline{|}~: Piping, redirige la sortie standard d'une commande vers l'entrée standard d'une autre.
+            \end{itemize}
+            À quoi ces opérateurs peuvent-ils servir~?
+            \begin{center}
+                \includegraphics[width=3cm]{image/question-mark}
+            \end{center}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}{Commandes de base}{Opérateurs logiques}
         \begin{itemize}
-            \item \lstinline{>}~: Redirige la sortie standard vers un fichier.
-            \item \lstinline{>>}~: Redirige la sortie standard vers un fichier en ajoutant le contenu à la fin.
-            \item \lstinline{<}~: Redirige un fichier vers l'entrée standard.
-            \item \lstinline{2>}~: Redirige la sortie d'erreur vers un fichier.
-            \item \lstinline{|}~: Piping, redirige la sortie standard d'une commande vers l'entrée standard d'une autre.
+            \item \lstinline{||}~: Exécute la commande suivante si la précédente a échoué.
+            \item \lstinline{\&\&}~: Exécute la commande suivante si la précédente a réussi.
         \end{itemize}
-        À quoi ces opérateurs peuvent-ils servir~?
-        \begin{center}
-            \includegraphics[width=3cm]{image/question-mark}
-        \end{center}
+        Ils peuvent définir le comportement d'un script et être utilisés dans des conditions.
+        \bigbreak
+        Lancer un \lstinline{sudo apt upgrade} uniquement si \lstinline{sudo apt update} \textbf{a fonctionné}.
+        \bigbreak
+        Logger un message d'erreur si \lstinline{ls klazkjhfzklefjh} \textbf{n'a pas fonctionné}.
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
     \begin{frame}{Commandes de base}{Exercice \execcounterdispinc{}~:}
@@ -1108,7 +1125,7 @@ lentgh of the string: 46
 lentgh of the struct: 35
         \end{lstlisting}
         La valeur d'un octet est comprise entre 0 et 255, mais pour obtenir du texte, on passe par une table de correspondance, un encodage, qui donnera un seul caractère.
-        La valeur numérique la plus élevée pour ce même octet en texteb donc 9.
+        La valeur numérique la plus élevée pour ce même octet en texte est donc 9.
         \bigbreak
         Pour des soucis de performance, de coût (du cloud), il n'est pas rare que les formats de données soit binaires.
     \end{frame}
@@ -1288,7 +1305,7 @@ Out[45]: '777'
         \lstinline{<mode>} étant le chiffre calculé entre 000 et 777 calculé au dessus.
         Comme pour \lstinline{chown}, l'option \lstinline{-R} peut être ajoutée pour être récursif dans les sous-dossiers et fichiers.
         \bigbreak
-        Des utilitaires de validation de cette notation, plus user friendly que Python, sont en ligne comme \url{https://chmod-calculator.com/}.
+        Des utilitaires de validation de cette notation, plus \textit{user friendly} que Python, sont en ligne comme \url{https://chmod-calculator.com/}.
     \end{frame}
 
     \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Notation octale\cref{octal}}
@@ -1404,8 +1421,8 @@ $ sudo userdel digiformateur
             \item Créer un groupe pour ce serveur/site web.
             \item Créer un user type développeur qui aura des droits adéquats sur un dossier et fichier \lstinline{/var/www/html/digicomp/index.html}.
             \item Créer un user type production qui aura des droits adéquats sur un dossier et fichier \lstinline{/var/www/html/digicomp/index.html}.
-            \item Un script shell à exécuter grâce au shebang \lstinline{\#!/bin/bash} qui lance la commande Python \lstinline{python3 -m http.server -d /var/www/html/digicomp/}.
-            Ce script shell ne peut être exécuté par l'utilisateur de production uniquement et aucune resource ne doit pouvoir être modifiée.
+            \item Un script Shell à exécuter grâce au shebang \lstinline{\#!/bin/bash} qui lance la commande Python \lstinline{python3 -m http.server -d /var/www/html/digicomp/}.
+            Ce script Shell ne peut être exécuté par l'utilisateur de production uniquement et aucune resource ne doit pouvoir être modifiée.
         \end{itemize}
     \end{frame}
 
@@ -1463,6 +1480,31 @@ $ sudo dd if=/dev/nvme0n1p3 ibs=512 count=1 skip=239 2> /dev/null | hexdump -C
     \begin{frame}{Système de fichiers}{Du hardware au Kernel\footnote{Linux File System\url{https://www.javatpoint.com/linux-file-system}}}
         \centering
         \includegraphics[width=11cm]{image/linux-file-system-stack}
+    \end{frame}
+
+    \subsection{Copier un disque ou une partition}\label{subsec:dd}
+
+    \begin{frame}[fragile]{Système de fichiers}{Comment copier un disque ou une partition~?\footnote{Commande \textquote{dd}, \url{https://doc.ubuntu-fr.org/dd}}}
+        \begin{footnotesize}
+            La syntaxe générale de la commande est~:
+            \begin{lstlisting}[language=bash]
+dd if=<source> of=<cible> bs=<taille des blocs> skip= seek= conv=<conversion>
+            \end{lstlisting}
+            \begin{itemize}
+                \item \lstinline{if}~: Input File, le fichier source.
+                \item \lstinline{of}~: Output File, le fichier cible.
+                \item \lstinline{bs}~: Block Size, la taille des blocs.
+                \item \lstinline{skip}~: Skip, le nombre de blocs à sauter en entrée.
+                \item \lstinline{seek}~: Seek, le nombre de blocs à sauter en sortie.
+                \item \lstinline{conv}~: Conversion, les conversions à appliquer.
+                Modifie les données, \textit{e.g.}, change la table d'encodage de ASCI à EBCDIC, le comportement de la copie\ldots
+            \end{itemize}
+            Pour copier un disque ou une partition, il faut être sûr que le disque ou la partition cible est plus grand que le disque ou la partition source.
+            \bigbreak
+            \lstinline{dd} est une commande puissante, mais aussi très dangereuse.
+            Il est très facile de détruire des données avec cette dernière.
+            Son surnom en français \textquote{Destructeur de Données}\ldots
+        \end{footnotesize}
     \end{frame}
 
     \subsection{Montage du système de fichiers}\label{subsec:mount}
@@ -1742,7 +1784,16 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         Le PV peut être un disque RAID, par sécurité, pour prévenir une perte de données c'est même conseillé.
     \end{frame}
 
-    \begin{frame}{Logical Volume Manager, A.K.A LVM}{Définition\cref{lvm}}
+    \begin{frame}{Système de fichier}{LVM over RAID}
+        Pour bénéficier de la flexibilité de LVM, ajout/diminution d'espace disque et de la sécurité de RAID software ou hardware grâce à la redondance, il est possible d'utiliser les deux ensembles.
+
+        C'est LVM qui est au dessus du RAID, le RAID est donc le PV de LVM, d'où ici le terme \textit{LVM over RAID}.
+        \bigbreak
+        \centering
+        \includegraphics[width=5cm]{image/tux-supports-stone}
+    \end{frame}
+
+    \begin{frame}{Logical Volume Manager, A.K.A LVM}{LVM over RAID\cref{lvm}}
         Si les données sont strippées (avec les options \lstinline{-I} et/ou \lstinline{-i} de \lstinline{lvm2}\footnote{Analysing a Standard Logical Volume, \url{https://www.theurbanpenguin.com/striped-lvm-volumes/}}) le risque de perte de données est plus grand sans RAID mais la performance est meilleure comme avec RAID 0.
         \bigbreak
         \begin{columns}
@@ -1904,7 +1955,7 @@ root           2       0  0 09:23 ?        00:00:00 [kthreadd]
 
     \begin{frame}[fragile]{Gestion des processus}{La commande \lstinline{kill}}
         La commande \lstinline{top} permet de terminer un processus dans l'interface avec \textbf{k}.
-        En fonction de son PID, qu'on aurait auparavant dans cette même interface.
+        En fonction de son PID, qu'on aurait auparavant trouvé dans cette même interface.
         ou avec la commande \lstinline{ps}, on peut le tuer avec la commande \lstinline{kill}.
         \bigbreak
         Mais il existe une commande spécifique, c'est \lstinline{kill}, elle envoie un signal au processus ici SIGKILL avec l'option \lstinline{-9}.
@@ -1975,9 +2026,9 @@ $ pkill -9 <nom>
 
     \begin{frame}{Système de fichier}{Exercices sur les processus}
         \begin{small}
-            Exercice \execcounterdispinc{}, quels droits ai-je \lstinline{/proc} sur les processus des autres utilisateurs~?
+            Exercice \execcounterdispinc{}, quels droits ai-je sur \lstinline{/proc} sur les processus des autres utilisateurs~?
             \bigbreak
-            Exercice \execcounterdispinc{}, quels droits ai-je \lstinline{/proc} sur mes processus~?
+            Exercice \execcounterdispinc{}, quels droits ai-je sur \lstinline{/proc} sur mes processus~?
             \bigbreak
             Exercice \execcounterdispinc{}, terminer un processus découvert sous \lstinline{top} avec la commande \lstinline{kill}.
             \bigbreak
@@ -2553,7 +2604,7 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
                 \item Les couches matérielles sont les câbles, les cartes réseaux, les switchs, les routeurs, les serveurs, les clients, \textit{etc}.
                 \item Les couches protocolaires sont les protocoles de communication, les adresses IP, les ports, les protocoles de routage, les protocoles de sécurité, protocoles applicatifs, \textit{etc}.
                 \item Le même protocole peut être supporté par des couches et des hardwares différents de la stack.
-                Par exemple le WiFi peut être gérer par un hardware dédiée comme un SOC WiFi ESP32\footnote{ESP32, A feature-rich MCU with integrated Wi-Fi and Bluetooth connectivity for a wide-range of applications, \url{https://www.espressif.com/en/products/socs/esp32}} ou un SD-WLAN de Verizon\footnote{Apprenez à votre Wi-Fi à prendre ses propres décisions, \url{https://www.verizon.com/business/fr-fr/products/networks/managed-network-services/managed-sd-wireless-lan/}}.
+                Par exemple le WiFi peut être géré par un hardware dédié comme un SOC WiFi ESP32\footnote{ESP32, A feature-rich MCU with integrated Wi-Fi and Bluetooth connectivity for a wide-range of applications, \url{https://www.espressif.com/en/products/socs/esp32}} ou un SD-WLAN de Verizon\footnote{Apprenez à votre Wi-Fi à prendre ses propres décisions, \url{https://www.verizon.com/business/fr-fr/products/networks/managed-network-services/managed-sd-wireless-lan/}}.
                 \item Le même protocole peut avoir des couches inférieurs de la stack différentes.
                 Par exemple IPv6 over Ethernet ou IPv6 over WiFi.
                 Matter, un protocole applicatif, unifie les protocoles de communication DSL, DOCSIS, Cellulaire, Wi-Fi, Thread, 802.15.4, Bluetooth, BLE, \textit{etc}\footnote{Comment fonctionne Matter ?, \url{https://nodon.fr/protocoles-sans-fil/matter/}}.
@@ -3085,7 +3136,7 @@ $ ssh-keygen -t ed25519 -C "your_email@example.com"
         \begin{columns}
             \column{0.7\textwidth}
             Rsync est un outil de synchronisation de fichiers qui permet de copier des fichiers locaux ou distants.
-            Mais sont réel atout est bien pour fichiers distant, en local on a \lstinline{cp}\ldots
+            Mais sont réel atout est bien pour les fichiers distants, en local on a \lstinline{cp}\ldots
             \bigbreak
             Il est souvent utilisé pour synchroniser des fichiers entre un serveur et un client SSH~.
             \bigbreak
@@ -3107,7 +3158,9 @@ $ rsync -a /chemin/vers/mon-dossier/ utilisateur@serveur:/chemin/vers/mon-dossie
         \begin{lstlisting}[language=bash]
 $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossier/
         \end{lstlisting}
+        Pour spécifier le port SSH si différent de 22, il faut rajouter un morceau de commande SSH en argument \lstinline{-e "ssh -p <port>"}.
     \end{frame}
+
     \begin{frame}{Réseau}{Exercice \execcounterdispinc}
         Utiliser \lstinline{rsync} pour synchroniser un dossier entre deux VMs.
         \begin{itemize}
@@ -3120,6 +3173,50 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         \begin{center}
             \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
         \end{center}
+    \end{frame}
+
+    \begin{frame}{Réseau}{Exercice \execcounterdispinc}
+        \begin{footnotesize}
+            Utiliser \lstinline{rsync} pour backuper votre VM et envoyer le backup sur une autre machine.
+            \begin{itemize}
+                \item Créer le script sur la machine physique, \textit{i.e.}, l'hôte.
+                Il a pour but de prévenir un incident sur la machine physique en utilisant une autre machine.
+                \item Le script utilise une compression de l'image du disque pour sauvegarder les données.
+                La plus efficace en terme de taille que vous trouverez.
+                \item Le fichier de backup est envoyé horodaté pour savoir lequel reprendre en cas d'incident.
+                \item Intégrer ce script à crontab pour qu'il s'exécute toutes les nuits.
+                \item Aucun fichier ne subsiste sur la machine physique après envoie du backup.
+            \end{itemize}
+        \end{footnotesize}
+        \begin{center}
+            \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+        \end{center}
+    \end{frame}
+
+    \begin{frame}{Réseau}{Exercice \execcounterdispinc}
+        \begin{footnotesize}
+            Utiliser \lstinline{rsync} et \lstinline{dd} pour backuper votre machine physique et envoyer le backup sur une autre machine.
+            \begin{itemize}
+                \item Créer le script sur la machine physique, \textit{i.e.}, l'hôte.
+                Il a pour but de prévenir un incident sur la machine physique en utilisant une autre machine.
+                \item Lister les partitions et trouver une partition de petite taille pour l'exercice.
+                \item Le script copie la partition avec \lstinline{dd}
+                \item Le script utilise une compression de l'image du disque pour sauvegarder les données.
+                La plus efficace en terme de taille que vous trouverez.
+            \end{itemize}
+            \begin{columns}
+                \column{0.7\textwidth}
+                \begin{itemize}
+                    \item Le fichier de backup est envoyé horodaté pour savoir lequel reprendre en cas d'incident.
+                    \item Intégrer ce script à crontab pour qu'il s'exécute toutes les nuits.
+                    \item Aucun fichier ne subsiste sur la machine physique après envoie du backup.
+                \end{itemize}
+                \column{0.3\textwidth}
+                \begin{center}
+                    \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+                \end{center}
+            \end{columns}
+        \end{footnotesize}
     \end{frame}
 
     \subsection{Cryptographie Asymétrique}\label{subsec:cryptographie-asymetrique}
@@ -3695,6 +3792,70 @@ multi-ligne.
         \end{itemize}
     \end{frame}
 
+    \begin{frame}[fragile]{Exercice\footnote{\label{fibo-ross}How Fast are \lstinline{def} \lstinline{cdef} \lstinline{cpdef}?, \url{https://notes-on-cython.readthedocs.io/en/latest/fibo_speed.html}} \execcounterdispinc{}}
+        Sachant que la commande \lstinline{source} permet de charger un script Shell dans le Shell en cours d'utilisation.
+
+        Écrire une fonction récursive qui calcul la série de Fibonacci simple à l'image du pseudo-code suivant~:
+        \begin{footnotesize}
+            \begin{verbatim}
+function fib(n)
+    if n < 2 then
+        return n
+    else
+        val = fib(n-2) + fib(n-1)
+        cache[n] = val
+        return val
+    end if
+end function
+            \end{verbatim}
+        \end{footnotesize}
+        \begin{itemize}
+            \item Quel(s) Shell peut-on utiliser~?
+            \item Charger la function avec \lstinline{source} pour l'utiliser dans votre Shell.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Exercice\cref{fibo-ross} \execcounterdispinc{}}
+        Écrire une fonction récursive qui calcul la série de Fibonacci avec caching à l'image du pseudo-code suivant~:
+        \begin{footnotesize}
+            \begin{verbatim}
+function fib_cached(n, cache)
+    if n < 2 then
+        return n
+    elese
+        if cache contains n then
+            return cache[n]
+        else
+            val = fib_cached(n-2, cache) + fib_cached(n-1, cache)
+            cache[n] = val
+            return val
+        end if
+    end if
+end function
+            \end{verbatim}
+        \end{footnotesize}
+        \begin{itemize}
+            \item Quel(s) Shell peut-on utiliser~?
+            \item Charger la function avec \lstinline{source} pour l'utiliser dans votre Shell.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Exercice\cref{fibo-ross} \execcounterdispinc{}}
+        Comparer le temps execution de la fonction récursive simple et de la fonction récursive avec caching en utilisant la commande \lstinline{time}.
+
+        La syntaxe de la commande \lstinline{time} est la suivante~:
+        \begin{lstlisting}[language=bash]
+$ time <commande>
+        \end{lstlisting}
+        \begin{itemize}
+            \item Y-a-til une différence significative de performance~?
+            \item Si oui, laquelle et pourquoi~?
+        \end{itemize}
+        \bigbreak
+        \centering
+        \includegraphics[width=5cm]{image/guy-in-front-of-desktop}
+    \end{frame}
+
 
     \section{Builder sa distribution}\label{sec:build-distribution}
     \begin{frame}{Builder sa distribution}{Pourquoi~?}
@@ -3722,7 +3883,7 @@ multi-ligne.
     \end{frame}
 
     \begin{frame}[fragile]{Buildroot}{Script}
-        Les package nécessaire selon la documentation officielle peuvent s'installer comme suit~:
+        Les packages nécessaires selon la documentation officielle peuvent s'installer comme suit~:
         \begin{lstlisting}[language=bash]
 $ sudo apt-get update && sudo apt-get install -y which sed make binutils build-essential diffutils gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc findutils wget python3 libncurses5-dev qt5-qmake libglib2.0-dev libgtk2.0-dev libglade2-dev bzr cvs git mercurial openssh-client subversion openjdk-11-jdk asciidoc w3m dblatex graphviz python3-matplotlib python3-aiohttp
         \end{lstlisting}
