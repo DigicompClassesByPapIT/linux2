@@ -20,6 +20,9 @@
 
     \begin{frame}
         \titlepage
+        \bigbreak
+        \centering
+        \url{https://github.com/DigicompClassesByPapIT/linux2}
     \end{frame}
 
 
@@ -381,8 +384,8 @@ root@71641013d445:/usr/src/celia# ls
         \bigbreak
         L'absence de bureau, avoir uniquement cette interface, est une des raisons de cette différence de taille.
 
-        L'interface graphique n'est donc pas installé dans les distributions dédiées aux serveurs.
-        Shell et l'accès Shell distant sécurisé \lstinline{SSH} (Secure SHell), sont utilisés.
+        L'interface graphique n'est donc pas installée dans les distributions dédiées aux serveurs.
+        Shell et l'accès Shell distant sécurisé SSH (Secure SHell), sont utilisés.
         Un client SSH comme Putty, SSH de GitBASH sous Windows® ou un terminal sous Linux permettent d'accéder à un server Linux.
         \bigbreak
         GitBash permet d'unifier les deux environnements Linux et Windows, de pratiquer le Bash sur les 2 plateformes.
@@ -493,7 +496,7 @@ ts-test
 
     \begin{frame}[fragile]{Shell}{Les alias}
         Les alias sont des raccourcis pour des commandes.
-        ils sont donc intéressant à paramétrer pour les commandes longues et récurrente.
+        ils sont donc intéressant à paramétrer pour les commandes longues et récurrentes.
         \bigbreak
         Par exemple, pour la commande \lstinline{ls -l}~:
         \begin{lstlisting}[language=bash]
@@ -505,7 +508,7 @@ total 3484
 ...
         \end{lstlisting}
         \bigbreak
-        Pour rendre l'alias permanent, il faut l'ajouter dans le fichier \lstinline{.bashrc} ou \lstinline{.bash\_profile}~:
+        Pour rendre l'alias permanent, il faut l'ajouter dans le fichier \lstinline{.bashrc} ou \lstinline{.bash_profile}~:
         \begin{lstlisting}[language=bash]
 $ echo "alias ll='ls -l'" >> ~/.bashrc
         \end{lstlisting}
@@ -516,11 +519,10 @@ $ echo "alias ll='ls -l'" >> ~/.bashrc
         La machine Linux à administrer sera le plus souvent dans un cloud, une salle serveur, un data center, elle sera distante.
         Dans une infrastructure sécurisée.
         \bigbreak
-        Mais avec un user, un Shell par défaut, et un protocole sécurisé comme le SSH~.
-        Nous allons pouvoir nous connecter et l'administrer à distance.
+        Mais avec un user, un Shell par défaut, et un protocole sécurisé comme le SSH, nous allons pouvoir nous connecter et l'administrer à distance.
         \bigbreak
         Les bonnes pratiques sont d'utiliser les clés SSH uniquement, pas de connexion SSH avec l'utilisateur root,
-        Tutoriel utile~:
+        tutoriel utile~:
         \begin{itemize}
             \item \href{https://phoenixnap.com/kb/generate-setup-ssh-key-ubuntu}{Configuration du login SSH sur Ubuntu}
         \end{itemize}
@@ -543,7 +545,7 @@ $ echo "alias ll='ls -l'" >> ~/.bashrc
                         \item Le mot de passe doit être communiqué à chaque connexion, il est donc plus vulnérable à une interception/sniffing/MITHM~.
                         La clé privée reste sur le client, elle n'est pas communiquée.
                         \item La clé SSH est plus complexe à deviner qu'un mot de passe.
-                        \item On peut automatiser des taches depuis la machine cliente avec la clé SSH~.
+                        \item On peut automatiser des tâches depuis la machine cliente avec la clé SSH~.
                     \end{itemize}
                 \end{column}
                 \begin{column}{0.4\textwidth}
@@ -559,9 +561,9 @@ $ echo "alias ll='ls -l'" >> ~/.bashrc
         Restreindre l'accès à la VM au SSH avec une clé SSH, aucun mot de passe.
         \bigbreak
         Exercice \execcounterdispinc{}~:
-        Créer un user pour un de vos camarades.
+        Créez un user pour un de vos camarades.
         Lui donner un Shell \lstinline{sh} par défaut.
-        Configurer lui communiquer les clés SSH pour qu'il puisse se connecter.
+        Configurez lui les clés SSH pour qu'il puisse se connecter.
     \end{frame}
 
     \begin{frame}[fragile]{Shell}{Une des solutions (commande à exécuter sur la VM)}
@@ -710,7 +712,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
             \item \textbf{entrée standard (Entrée standard)}~:
             \begin{itemize}
                 \item Flux pour les données d'entrée d'un programme.
-                \item Exemple~: Taper la commande \lstinline{ls} utilise entrée standard pour entrer la commande.
+                \item Exemple~: Taper la commande \lstinline{echo "Coucou" | at now}, elle utilise l'entrée standard de la commande \lstinline{at}.
             \end{itemize}
             \item \textbf{sortie standard (Sortie standard)~:}
             \begin{itemize}
@@ -725,7 +727,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
             \item \textbf{sortie d'erreur (Erreur standard)}~:
             \begin{itemize}
                 \item Flux pour les messages d'erreur ou diagnostics.
-                \item Exemple~: L'erreur \lstinline{No such file or directory} de \lstinline{ls} est affichée via sortie d'erreur.
+                \item Exemple~: L'erreur \lstinline{No such file or directory} de \lstinline{ls} est affichée via la sortie d'erreur.
             \end{itemize}
             \item \textbf{Identifiants des flux~:}
             \begin{itemize}
@@ -753,6 +755,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
                 \item \lstinline{>>}~: Redirige la sortie standard vers un fichier en ajoutant le contenu à la fin.
                 \item \lstinline{<}~: Redirige un fichier vers l'entrée standard.
                 \item \lstinline{2>}~: Redirige la sortie d'erreur vers un fichier.
+                \item \lstinline{&>}~: Redirige la sortie standard et d'erreur vers un fichier.
                 \item \lstinline{|}~: Piping, redirige la sortie standard d'une commande vers l'entrée standard d'une autre.
             \end{itemize}
             À quoi ces opérateurs peuvent-ils servir~?
@@ -795,10 +798,10 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
 
     \begin{frame}{Commandes de base}{Exercice \execcounterdispinc{}~:}
         \begin{itemize}
-            \item Rediriger la sortie standard standard de la commande \lstinline{ls} dans un fichier \lstinline{ls-output.txt}.
-            \item Rediriger la sortie d'erreur error de la commande \lstinline{ls} dans un fichier \lstinline{ls-error.txt}.
+            \item Rediriger la sortie standard de la commande \lstinline{ls} dans un fichier \lstinline{ls-output.txt}.
+            \item Rediriger la sortie d'erreur de la commande \lstinline{ls} dans un fichier \lstinline{ls-error.txt}.
             \item Rediriger les deux flux dans un fichier \lstinline{ls-output-error.txt}.
-            \item Rediriger le contenu du fichier \lstinline{ls-output.txt} dans la entrée standard de la commande \lstinline{grep} pour filter sur un type d'extension de fichier.
+            \item Rediriger le contenu du fichier \lstinline{ls-output.txt} dans l'entrée standard de la commande \lstinline{grep} pour filter sur un type d'extension de fichier.
         \end{itemize}
     \end{frame}
 
@@ -816,6 +819,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
             \item \lstinline{cut}~: Permet de découper un fichier en colonnes et de les sélectionner.
             \item \lstinline{sort}~: Trie les lignes d'un fichier.
             \item \lstinline{join}~: Joint les lignes de deux fichiers sur un champ commun.
+            \item \lstinline{uniq}~: Supprime les lignes en double.
         \end{itemize}
     \end{frame}
 
@@ -937,7 +941,7 @@ $ head -n 3 proftpd.log.1 | sed -E '1d;s/\] .*.com/] XXX/g'
     \begin{frame}[fragile]{Commandes de traitement de données}{\lstinline{cut} pour gérer les colonnes}
         Il est très utile pour travailler avec les fichiers de données comme CSV, TSV~.
 
-        Il les découpe en colonne et permet de sélectionner les colonnes voulues sur la base d'un séparateur spécifié avec l'option \lstinline{-d} ou \lstinline{--delimiter}.
+        Il les découpe en colonnes et permet de sélectionner les colonnes voulues sur la base d'un séparateur spécifié avec l'option \lstinline{-d} ou \lstinline{--delimiter}.
         \bigbreak
         \lstinline{-f 1,3} pour sélectionner les colonnes 1 et 3~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
@@ -1026,7 +1030,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
     \begin{frame}{Commandes de traitement de données}{\lstinline{awk}}
         \begin{itemize}
             \item \textquote{The right tool for a job}.
-            \item N'est même pas packagé, il vient dans toute les distributions.
+            \item N'est même pas packagé, il vient dans toutes les distributions.
             \item Data orientated.
             \item Search a matching pattern.
             \item Add numbers.
@@ -1035,10 +1039,18 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \end{itemize}
     \end{frame}
 
+    \begin{frame}{Commandes de traitement de données}{Les traitement du type Unix, l'ETL du pauvre \emoji{rolling-on-the-floor-laughing}~?}
+        Le data wrangling avant de remplir les bases des applicatifs~:
+        \begin{center}
+            \includegraphics[width=11cm]{image/pre-traitement-unix.drawio}
+        \end{center}
+        Un ETL peut le faire mais beaucoup utilisent encore ces outils\ldots
+    \end{frame}
+
     \begin{frame}{Commandes de traitement de données}{\lstinline{awk}, exercice \execcounterdispinc{}~:}
-        Mais c'est aussi pour ajouter des nombres sont créateur à dit, on peut donc faire de l'analytique avec~!
+        Mais c'est aussi pour ajouter des nombres son créateur à dit, on peut donc faire de l'analytique avec~!
         \bigbreak
-        Quel la somme des salaires par département dans le fichier \lstinline{employee.csv}~?
+        Quelle est la somme des salaires par département dans le fichier \lstinline{employee.csv}~?
         \bigbreak
         \centering
         \includegraphics[width=3cm]{image/question-mark}
@@ -1046,21 +1058,40 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
 
     \subsubsection{Exercice}\label{subsubsec:data-exercice}
     \begin{frame}{Commandes de traitement de données}{Exercice \execcounterdispinc{}~:}
-        Cet exercice a pour objectif d'illustrer qu'un prétraitement avec ces commandes est efficace.
-        Plus qu'un équivalent SQL~.
-        \bigbreak
-        Il est courant de limiter les données en base SQL aux besoins des programmes haut-niveau, d'un backend Java, CoBOL, PHP par exemple, pour ne pas surcharger les serveurs SQL~.
-        \bigbreak
-        Ces commandes ne remplacent pas SQL, car elles s'interfacent difficilement avec ces programmes haut-niveau.
-        \bigbreak
-        Par contre, elles peuvent traiter des flux de données avant de les mettre en base.
-        L'exercice consiste à développer avec ces commandes l'équivalent des \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/sqlite-hr.sh}{traitements SQL de ce fichier}.
+        \begin{footnotesize}
+            Cet exercice a pour objectif d'illustrer qu'un prétraitement avec ces commandes est efficace.
+            Plus qu'un équivalent SQL~.
+            \bigbreak
+            Il est courant de limiter les données en base SQL aux besoins des programmes haut-niveau, d'un backend Java, CoBOL, PHP par exemple, pour ne pas surcharger les serveurs SQL~.
+            \bigbreak
+            Ces commandes ne remplacent pas SQL, car elles s'interfacent difficilement avec ces programmes haut-niveau.
+            \bigbreak
+            Par contre, elles peuvent traiter des flux de données avant de les mettre en base.
+            L'exercice consiste à développer avec ces commandes l'équivalent des \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/sqlite-hr.sh}{traitements SQL de ce fichier}.
+            Avec les données des fichiers \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/employee.csv}{\lstinline{employee.csv}} et \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/dept.csv}{\lstinline{dept.csv}}.
 
-        Analyser~:
+            Analyser~:
+            \begin{itemize}
+                \item Ce qui peut être qualifié d'\textquote{efficace}.
+                \item Ce que cette \textquote{efficacité} apporte à l'entreprise.
+                \item Quelle version SQL ou Shell est la plus sensible aux bugs et pourquoi~?
+            \end{itemize}
+        \end{footnotesize}
+    \end{frame}
+
+    \begin{frame}{Commandes de traitement de données}{Exercice \execcounterdispinc{}~:}
+        De la même manière, préparer les fichiers suivants \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/receveur.csv}{\lstinline{receveur.csv}} et \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/porteur.csv}{\lstinline{porteur.csv}} pour qu'ils soient \textit{loadés} en la base SQL par le script \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/sqlite-load-bank.sh}{\lstinline{sqlite-load-bank.sh}}.
+        \bigbreak
+        Ces fichiers sont des flux de cartes bancaires.
+        Un fichier du porteur de carte l'autre du commerçant aussi appelé receveur (de carte).
         \begin{itemize}
-            \item Ce qui peut être qualifié d'\textquote{efficace}.
-            \item Ce que cette \textquote{efficacité} apporte à l'entreprise.
-            \item Quelle version SQL ou Shell est la plus sensible aux bugs et pourquoi~?
+            \item Vérifier que toutes les transactions sont uniques, sinon arrêter le script en code retour 2.
+            \item Il y a deux tables.
+            Nettoyer les fichiers pour qu'ils soient le plus légers possibles lors de la manipulation.
+            Faites deux branches, une pour chaque table et supprimer les colonnes inutiles.
+            \item Vérifier que les fichiers sont bien nettoyés.
+            \item Sommer les montants dans un fichier, par identifiant de banque dans un fichier et par identifiant de client dans un autre.
+            \item Loader les fichiers dans la base.
         \end{itemize}
     \end{frame}
 
@@ -1103,7 +1134,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
             \item \lstinline{egrep}~: Extended \lstinline{grep}.
             \item \lstinline{gsed}~: La version sous licence GNU de \lstinline{sed}.
             \item \lstinline{gawk}~: La version sous licence GNU de \lstinline{awk}.
-            \item \lstinline{bawk}~: \lstinline{bawk}, binary \lstinline{bawk}, pour parser des fichiers binaires.
+            \item \lstinline{bawk}~: Binary \lstinline{awk}, pour parser des fichiers binaires.
             \item \lstinline{busybox}~: Ils ont tous une version dans cette boîte à outils.
         \end{itemize}
         \bigbreak
@@ -1187,7 +1218,7 @@ chrichri~: chrichri adm dialout cdrom sudo audio dip video plugdev lpadmin pulse
         Il n'a pas de membre.
         \bigbreak
         Pour qu'une ressource, fichier, dossier, appartienne à un groupe, il faut que le groupe soit propriétaire de la ressource.
-        Pour cela, la commande \lstinline{chown}(CHange OWNer) permet de changer le propriétaire d'une ressource.
+        Pour cela, la commande \lstinline{chown} (CHange OWNer) permet de changer le propriétaire d'une ressource.
 % Shell listing
         \begin{lstlisting}[language=bash]
 $ mkdir digicomp-little-secret
@@ -1212,13 +1243,13 @@ drwxrwxr-x 10 chrichri chrichri 4,0K août  15 16:07 ..
         Mais\ldots
         \begin{lstlisting}[language=bash]
 $ cat digicomp-little-secret/secret.txt
-Le code de l'entré est 8564
+Le code de l'entrée est 8564
 $ echo "Le code de l'entré est 2539" > digicomp-little-secret/secret.txt
 bash: digicomp-little-secret/secret.txt: Permission non accordée
         \end{lstlisting}
         Qu'est-ce que cela veut dire~?
         \begin{center}
-            \includegraphics[width=3cm]{image/question-mark}
+            \includegraphics[width=2cm]{image/question-mark}
         \end{center}
     \end{frame}
 
@@ -1293,7 +1324,7 @@ Out[38]: 5
     \end{frame}
 
     \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Notation octale\cref{octal}}
-        Cela fait bien des droits qui vont de 0 pour la lecture seule au user, à 777 pour la lecture, l'écriture et l'exécution au user, groupe et autres.
+        Cela fait bien des droits qui vont de 0 pour aucun droit à personne, à 777 pour la lecture, l'écriture et l'exécution au user, groupe et autres.
         \begin{lstlisting}
 "".join(map(str, [int("100", 2), int("000", 2), int("000", 2)])) # r-- pour user
 Out[46]: '400'
@@ -1302,7 +1333,8 @@ Out[45]: '777'
         \end{lstlisting}
         Ces droits s'appliquent avec la commande \lstinline{chmod} pour CHange MODe.
         Selon le format suivant \lstinline{chmod <mode> <file>}.
-        \lstinline{<mode>} étant le chiffre calculé entre 000 et 777 calculé au dessus.
+
+        \lstinline{<mode>} étant le chiffre entre 000 et 777 calculé au-dessus.
         Comme pour \lstinline{chown}, l'option \lstinline{-R} peut être ajoutée pour être récursif dans les sous-dossiers et fichiers.
         \bigbreak
         Des utilitaires de validation de cette notation, plus \textit{user friendly} que Python, sont en ligne comme \url{https://chmod-calculator.com/}.
@@ -1331,9 +1363,10 @@ $ echo "Le code de l'entrée est 8564" > digicomp-little-secret/secret.txt
     \begin{frame}{Utilisateurs, groupes et droits d'accès}{Les utilisateurs}
         Les utilisateurs sont les personnes qui utilisent le système.
         Les bonnes pratiques veulent qu'il y en a un par personne physique.
-        L'utilisateur a pour s'identifier un user et un mot de passe et/ou une clé privé.
-        C'est l'administrateur du système qui lui génère son premier mot de passe et sa première clé.
+        L'utilisateur a pour s'identifier un user et un mot de passe et/ou une clé privée.
+        C'est l'administrateur du système qui lui génère son premier mot de passe et le user génère lui-même sa première clé.
         Un user peut faire partie de plusieurs groupes, comme ici \lstinline{daniel} qui est \lstinline{dba} et \lstinline{prod}.
+        \bigbreak
         \begin{columns}
             \column{0.5\textwidth}
             Exemple de commandes pour gérer un utilisateur~:
@@ -1395,7 +1428,7 @@ $ sudo userdel digiformateur
                 \centering
                 \includegraphics[width=6.5cm]{image/real-password-cracking} \\ Hashcat benchmark\footnotemark \\
             \end{columns}
-            Mais le mot de passe seul n'est pas suffisant, le plus sûr reste le SSH avec la paire de clés privé et publique.
+            Mais le mot de passe seul n'est pas suffisant, le plus sûr reste le SSH avec la paire de clés privée et publique.
             \footnotetext{Those Tables With Password Cracking Times That Scare You And Peddle Snake Oil — Are Mostly Wrong!, \url{https://billatnapier.medium.com/those-tables-password-cracking-times-that-scare-you-are-mostly-wrong-7d03bf4aec6}}
         \end{footnotesize}
     \end{frame}
@@ -1405,7 +1438,7 @@ $ sudo userdel digiformateur
         Cet exercice a pour objectif de montrer que les droits d'accès sont une question de sécurité, les configurations et les services sont très sensibles.
         En effet, les services sont le plus souvent exécutés par l'utilisateur root et ont donc le maximum de droits.
         \bigbreak
-        Il est courant de donner des droits en lecture seule à un fichier de configuration, mais de ne pas donner de droits en écriture.
+        Il est courant de donner des droits en lecture seule à un fichier de configuration, mais de ne pas donner de droit en écriture.
         \begin{itemize}
             \item Créer un user qui aura des droits en écriture sur la configuration d'un service dans \lstinline{/etc/systemd/system}.
             \item Créer un groupe qui aura des droits en écriture sur la configuration d'un autre service dans \lstinline{/etc/systemd/system}.
@@ -1500,10 +1533,11 @@ dd if=<source> of=<cible> bs=<taille des blocs> skip= seek= conv=<conversion>
                 Modifie les données, \textit{e.g.}, change la table d'encodage de ASCI à EBCDIC, le comportement de la copie\ldots
             \end{itemize}
             Pour copier un disque ou une partition, il faut être sûr que le disque ou la partition cible est plus grand que le disque ou la partition source.
-            \bigbreak
-            \lstinline{dd} est une commande puissante, mais aussi très dangereuse.
-            Il est très facile de détruire des données avec cette dernière.
-            Son surnom en français \textquote{Destructeur de Données}\ldots
+            \begin{dangercolorbox}
+                \lstinline{dd} est une commande puissante, mais aussi très dangereuse.
+                Il est très facile de détruire des données avec cette dernière.
+                Son surnom en français \textquote{Destructeur de Données}\ldots
+            \end{dangercolorbox}
         \end{footnotesize}
     \end{frame}
 
@@ -1592,7 +1626,7 @@ tmpfs                       1615416      2596    1612820   1% /run/user/1000
     \begin{frame}[fragile]{Système de fichiers}{Comment rajouter un disque~?}
         Créons un \textquote{point de montage} et montons ce disque~:
         \begin{lstlisting}[language=bash]
-$ sudo mkdir /mnt/sda-usb # /mnt pour les montage par convention mais peut être ailleurs
+$ sudo mkdir /mnt/sda-usb # /mnt pour les montages par convention mais peut être ailleurs
 $ sudo mkfs.ext4 /dev/sda # formatage du disque en Ext4 car le FS était incompatible
 $ sudo mount /dev/sda /mnt/sda-usb
 $ ls /mnt/sda-usb -lha
@@ -1610,7 +1644,7 @@ drwx------ 2 root root  16K août  17 15:21 lost+found
     \end{frame}
 
     \begin{frame}[fragile]{Système de fichiers}{Comment rajouter un disque~?}
-        Comme ces commandes ont été exécutées par le supersaturation, il est probable ques les droits bloque l'écriture~:
+        Comme ces commandes ont été exécutées par le superutilisateur, il est probable que les droits bloquent l'écriture~:
         \begin{lstlisting}[language=bash]
 $ cp ocr_speed.txt /mnt/sda-usb
 cp: impossible de créer le fichier standard '/mnt/sda-usb/ocr_speed.txt': Permission non accordée
@@ -1623,7 +1657,7 @@ $ /mnt/sda-usb/ocr_speed.txt -lha
         \end{lstlisting}
         Des modifications ont pu être apportées.
         \bigbreak
-        Avant de retirer le disque peut démonter le disque et éventuellement supprimer le point de montage~:
+        Avant de retirer le disque, on peut démonter le disque et éventuellement supprimer le point de montage~:
         \begin{lstlisting}[language=bash]
 $ sudo umount /dev/sda
 $ ls /mnt/sda-usb
@@ -1641,7 +1675,7 @@ $ sudo rm -rf /mnt/sda-usb
             \item Le disque est une clé USB pluggée à votre PC~.
             \item Créer le point de montage sur le bureau.
             \item Montez-y la clé USB~.
-            Après l'avoir démonter si elle a été montée automatiquement par l'OS~.
+            Après l'avoir démonté si elle a été montée automatiquement par l'OS~.
             \item Modifier les droits pour qu'elle soit en lecture seule.
             \item Démonter la clé USB~.
             \item Supprimer le point de montage.
@@ -1653,8 +1687,8 @@ $ sudo rm -rf /mnt/sda-usb
 
     \subsection{La table du système de fichiers (/etc/fstab)}\label{subsec:fstab}
     \begin{frame}[fragile]{Système de fichiers}{La table du système de fichiers (\lstinline{/etc/fstab})}
-        \lstinline{/etc/fstab} est un fichier de configuration associe des points de montage à des disques.
-        Il est lu au démarrage du système pour monter les disques automatiquement et ne pas avoir à passer les commandes vues précédemment.
+        \lstinline{/etc/fstab} est un fichier de configuration qui associe des points de montage à des disques.
+        Il est lu au démarrage du système pour monter les disques automatiquement et ne pas avoir à lancer les commandes vues précédemment.
         \bigbreak
         Il permet également de configurer des partitions spécialisées comme \lstinline{/tmp} ou \lstinline{swapfile}.
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
@@ -1677,7 +1711,6 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
     \end{frame}
 
     \begin{frame}[fragile]{Système de fichiers}{La table du système de fichiers (\lstinline{/etc/fstab})}
-        \lstinline{/etc/fstab} est un fichier de configuration associe des points de montage à des disques.
         On y trouve les UUID des disques, le point de montage, le type de système de fichier, les options de montage du disque principale~:
         \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 UUID=9bcc82ee-9214-4eac-90f6-9695c585874b /               ext4    errors=remount-ro 0       1
@@ -1686,13 +1719,13 @@ UUID=9bcc82ee-9214-4eac-90f6-9695c585874b /               ext4    errors=remount
         \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 UUID=EE30-267D  /boot/efi       vfat    umask=0077      0       1
         \end{lstlisting}
-        La \lstinline{swapfile} qui est commentée pour car c'est une extension de la RAM sur le disque, c'est configuration invite l'OS à utiliser un maximum la RAM~.
-        La partition \lstinline{/tmp} montée en mémoire pour de meilleurs performances avec certaines commandes comme \lstinline{sort}, la mémoire est plus rapide que le SSD.~:
+        La \lstinline{swapfile} qui est commentée pour car c'est une extension de la RAM sur le disque, cette configuration invite l'OS à utiliser un maximum la RAM~.
+        La partition \lstinline{/tmp} montée en mémoire pour de meilleures performances avec certaines commandes comme \lstinline{sort}, la mémoire est plus rapide que le SSD.~:
         \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 # Temp file in memory.
 tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{lstlisting}
-        On peut aussi utiliser ce fichier pour configurer le montage au moment du démarrage d'un disque supplémentaire, clé USB sur un point de montage~:
+        On peut aussi utiliser ce fichier pour configurer le montage au moment du démarrage d'un disque supplémentaire, \textit{e.g.}, la clé USB sur un point de montage~:
         \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 # /boot was on /dev/sda5 during installation
 /dev/sda5                                    /boot           ext2    defaults          0       2
@@ -1700,7 +1733,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
     \end{frame}
 
     \begin{frame}{Système de fichiers}{Exercices de configuration de la table du système de fichiers (\lstinline{/etc/fstab})}
-        Exercice \execcounterdispinc: Reprendre les consignes de l'exercice  \theexemountcounter{} et ajouter le disque à la table du système de fichiers \lstinline{/etc/fstab} pour que la clé soit montée automatiquement au démarrage.
+        Exercice \execcounterdispinc: Reprendre les consignes de l'exercice  \theexemountcounter{} et ajouter le disque à la table du système de fichiers \lstinline{/etc/fstab} pour que la clé USB soit montée automatiquement au démarrage.
         \bigbreak
         Exercice \execcounterdispinc: Créer un disque virtuel de 1 Go et le monter automatiquement au démarrage en configurant \lstinline{/etc/fstab}.
         \bigbreak
@@ -1738,7 +1771,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
             Le software prend des ressources qui pourraient être utilisées par d'autres softwares.
             \item Le RAID hardware est plus cher, car il nécessite un contrôleur RAID~.
             \item Le RAID hardware est plus difficile à maintenir.
-            \item Un Contrôleurs RAID Intel® coûtent 100 à 700 CHF~.
+            \item Un Contrôleur RAID Intel® coûtent 100 à 700 CHF~.
         \end{itemize}
     \end{frame}
 
@@ -1767,7 +1800,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
 
     \begin{frame}{Logical Volume Manager, A.K.A LVM}{Définition\footnote{\label{lvm}LVM, une autre manière de partitionner, \url{https://doc.ubuntu-fr.org/lvm}}}
         Il permet la création et la création de volumes logiques.
-        Ces derniers sont des partitions virtuelles qui peuvent être agrandies ou réduites sans perte de données.
+        Ces derniers sont des partitions virtuelles qui peuvent être agrandies ou réduites sans perte de donnée.
         Et sont décorrélées des disques physiques (les PV ou \textquote{Physical Volume}).
         \bigbreak
         Un ou plusieurs PV sont regroupés en un ou plusieurs VG \textquote{Volume group}.
@@ -1781,13 +1814,13 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \centering
         \includegraphics[width=10cm]{image/lvm}
         \flushleft
-        Le PV peut être un disque RAID, par sécurité, pour prévenir une perte de données c'est même conseillé.
+        Le PV peut être un disque RAID, par sécurité, pour prévenir une perte de données, c'est même conseillé.
     \end{frame}
 
     \begin{frame}{Système de fichier}{LVM over RAID}
         Pour bénéficier de la flexibilité de LVM, ajout/diminution d'espace disque et de la sécurité de RAID software ou hardware grâce à la redondance, il est possible d'utiliser les deux ensembles.
 
-        C'est LVM qui est au dessus du RAID, le RAID est donc le PV de LVM, d'où ici le terme \textit{LVM over RAID}.
+        C'est LVM qui est au-dessus du RAID, le RAID est donc le PV de LVM, d'où ici le terme \textit{LVM over RAID}.
         \bigbreak
         \centering
         \includegraphics[width=5cm]{image/tux-supports-stone}
@@ -1798,7 +1831,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \bigbreak
         \begin{columns}
             \column{0.5\textwidth}
-            L'idéale en terme de sécurité et de performance est d'avoir un RAID 1 pour les PV et les volumes logiques strippées.
+            L'idéal en termes de sécurité et de performance est d'avoir un RAID 1 pour les PV et les volumes logiques strippées.
             \bigbreak
             Par défaut, avec la commande \lstinline{mount}, le montage configuré sera perdu au redémarrage.
             Une configuration de \lstinline{/etc/fstab} permet de garder le montage du LV après redémarrage.
@@ -1835,7 +1868,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \bigbreak
         \begin{columns}
             \column{0.7\textwidth}
-            \lstinline{ps} affiche les informations de manière statique alors que est dynamique, interactif et temps réel.
+            \lstinline{ps} affiche les informations de manière statique alors que \lstinline{top} est dynamique, interactif et temps réel.
             \lstinline{ps} peut donc être utilisé également dans des scripts Shell.
 
             Les processus peuvent être tués avec la commande \lstinline{kill}.
@@ -1865,9 +1898,11 @@ $ ps -fC java
 UID          PID    PPID  C STIME TTY          TIME CMD
 chrichri  265707    8404 80 13:08 ?        00:42:46 /home/chrichri/pycharm...
         \end{lstlisting}
-        \bigbreak
+    \end{frame}
+
+    \begin{frame}[fragile]{Gestion des processus}{Les commandes \lstinline{ps}}
         Les processus de l'utilisateur courant~:
-        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+        \begin{lstlisting}[language=bash]
 $ ps -u chrichri
     PID TTY          TIME CMD
    8059 ?        00:00:06 systemd
@@ -1877,11 +1912,11 @@ $ ps -u chrichri
         \end{lstlisting}
         \bigbreak
         Les processus de l'utilisateur courant et de tous les autres utilisateurs, \textit{i.e.}, tous les processus~:
-        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
-$ ps -ef
+        \begin{lstlisting}[language=bash]
+$ ps -Af
 UID          PID    PPID  C STIME TTY          TIME CMD
-root           1       0  0 09:23 ?        00:00:05 /sbin/init splash
-root           2       0  0 09:23 ?        00:00:00 [kthreadd]
+root           1       0  0 sept.06 ?      00:00:02 /sbin/init splash
+root           2       0  0 sept.06 ?      00:00:00 [kthreadd]
 ...
         \end{lstlisting}
     \end{frame}
@@ -1959,7 +1994,7 @@ root           2       0  0 09:23 ?        00:00:00 [kthreadd]
         ou avec la commande \lstinline{ps}, on peut le tuer avec la commande \lstinline{kill}.
         \bigbreak
         Mais il existe une commande spécifique, c'est \lstinline{kill}, elle envoie un signal au processus ici SIGKILL avec l'option \lstinline{-9}.
-        Elle permet de terminer un processus dont aurait trouvé le PID avec \lstinline{ps} ou \lstinline{top}.
+        Elle permet de terminer un processus dont on aurait trouvé le PID avec \lstinline{ps} ou \lstinline{top}.
         \begin{lstlisting}[language=bash]
 $ kill -9 <PID>
         \end{lstlisting}
@@ -2043,9 +2078,9 @@ $ pkill -9 <nom>
 
     \begin{frame}{Système de fichier}{Exercices \execcounterdispinc{}}
         \begin{itemize}
-            \item Lancer en arrière plan le script Shell \lstinline{endless-loop.sh}.
+            \item Lancer en arrière plan le script Shell \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/endless-loop.sh}{\lstinline{endless-loop.sh}}.
             \item Arrêter le processus correspondant au script dans \lstinline{top}.
-            \item Lancer à nouveau en arrière plan le script Shell \lstinline{endless-loop.sh}.
+            \item Lancer à nouveau en arrière plan le script Shell \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/endless-loop.sh}{\lstinline{endless-loop.sh}}.
             \item Arrêter le processus correspondant au script à l'aide de  \lstinline{ps} et \lstinline{kill}.
         \end{itemize}
         \bigbreak
@@ -2054,7 +2089,7 @@ $ pkill -9 <nom>
     \end{frame}
 
     \begin{frame}{Système de fichier}{Exercices sur les processus}
-        Exercices \execcounterdispinc{}, à partir de vos connaissances sur les process et des commandes précédentes comparer l'activité d'une machine Ubuntu, d'un WSL ubuntu et d'un WSL Debian, ou un FreeBSD~.
+        Exercices \execcounterdispinc{}, à partir de vos connaissances sur les process et des commandes précédentes comparer, l'activité d'une machine Ubuntu, d'un WSL ubuntu et d'un WSL Debian, ou un FreeBSD~.
 
         Que remarquez-vous~?
         \pause
@@ -2073,7 +2108,7 @@ $ pkill -9 <nom>
             \item Chaque processus a une priorité.
             \item Une priorité plus élevée signifie que le processus recevra plus de temps CPU~.
             \item Sur les systèmes Unix/Linux, la priorité est représentée par une valeur appelée \lstinline{nice}.
-            \item Une bonne gestion des priorités est cruciale lors montées en charge du système (scaling).
+            \item Une bonne gestion des priorités est cruciale lors des montées en charge du système (scaling).
         \end{itemize}
     \end{frame}
 
@@ -2123,7 +2158,7 @@ $ sudo renice -19 -p 906674
 
             Il faut le configurer pour qu'il démarre automatiquement, dans un certain ordre et avec les bonnes permissions.
             \bigbreak
-            La configuration principale consiste à définit une ligne de commande qui sera exécutée au démarrage du service.
+            La configuration principale consiste à définir une ligne de commande qui sera exécutée au démarrage du service.
             \bigbreak
             Avec \lstinline{systemd}\footnote{System and Service Manager, \url{https://systemd.io/}} sous Linux, on peut définir des dépendances entre les services.
             Limiter les ressources CPU, mémoire, IO, \textit{etc}.
@@ -2175,7 +2210,7 @@ WantedBy=multi-user.target
     \end{frame}
 
     \begin{frame}{Les services}{Les commandes pour monitorer l'exécution}
-        Pour monitor les logs d'un service, la commande \lstinline{journalctl} est très utile.
+        Pour monitorer les logs d'un service, la commande \lstinline{journalctl} est très utile.
         \bigbreak
         Quelques exemples de commandes utiles~:
         \begin{itemize}
@@ -2214,7 +2249,7 @@ $ qemu-system-x86_64 -m 2G -smp 1 -nic user,hostfwd=tcp::5022-:22,hostfwd=tcp::5
         \begin{itemize}
             \item \href{https://wiki.alpinelinux.org/wiki/Install_Alpine_in_QEMU}{Similaire mais avec Alpine Linux}
             \item \href{https://help.ubuntu.com/community/Installation/MinimalCD\#A64-bit_PC_.28amd64.2C_x86_64.29_.28Recommended.29}{Page d'installation Ubuntu du \textquote{MinimalCD} }
-            \item \href{https://phoenixnap.com/kb/generate-setup-ssh-key-ubuntu}{Configuration des login SSH sur Ubuntu}
+            \item \href{https://phoenixnap.com/kb/generate-setup-ssh-key-ubuntu}{Configuration des logins SSH sur Ubuntu}
         \end{itemize}
     \end{frame}
 
@@ -2290,7 +2325,8 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
         \begin{columns}
             \column{0.7\textwidth}
             \begin{itemize}
-                \item \lstinline{crontab} est le permet de planifier des tâches automatisées à intervalles réguliers.
+                \item \lstinline{crontab} est un ordonnanceur.
+                Il permet de planifier périodiquement des tâches automatisées.
                 \item Très utile pour les serveurs pour automatiser les sauvegardes, mises à jour, \textit{etc}.
                 \item \lstinline{cron} est le service d'arrière-plan qui exécute les tâches planifiées.
             \end{itemize}
@@ -2346,7 +2382,7 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
     \end{frame}
 
     \begin{frame}[fragile]{Crontab}{Exemples de crontab\cref{linuxtricks-cron}}
-        Un outil pratique en ligne est \href{https://crontab.guru/}{crontab guru} il permet de vérifier que la syntaxe fait bien ce que l'on croit.
+        Un outil pratique en ligne est \href{https://crontab.guru/}{crontab guru}, il permet de vérifier que la syntaxe fait bien ce que l'on croit.
         \bigbreak
         Par souci de testabilité, portabilité et lisibilité une bonne pratique consiste à mettre les commandes dans des scripts Shell.
         \bigbreak
@@ -2379,25 +2415,65 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
     \subsection{Service VS Cron}\label{subsec:service-vs-cron}
 
     \begin{frame}{Service VS Cron}{2 outils différents}
+        \begin{columns}
+            \column{0.7\textwidth}
+            \begin{itemize}
+                \item Cron est un \textit{scheduler}, un ordonnanceur de tâches ponctuelles, de batchs.
+                \item Les services configurent des tâches de fond.
+                Qui peuvent être relancées en cas de plantage.
+                \item Ils ne sont donc pas concurrents mais complémentaires.
+            \end{itemize}
+            \column{0.3\textwidth}
+            \includegraphics[width=4cm]{image/cron-scheduled-proc}
+        \end{columns}
+    \end{frame}
+
+    \subsection{At}\label{subsec:at}
+
+    \begin{frame}[fragile]{Commande \lstinline{at}~: Planification de tâches}
         \begin{itemize}
-            \item Cron est un \textit{scheduler}, un ordonnanceur de tâches ponctuelles, de batchs.
-            \item Les services configurent des tâches de fond.
-            Qui peuvent être relancées en cas de plantage.
-            \item Ils ne sont donc pas concurrents mais complémentaires.
+            \item La commande \lstinline{at} permet de planifier l'exécution de tâches à une heure donnée.
+            \item Elle s'utilise avec des instructions spécifiant la date et l'heure, puis en entrant les commandes à exécuter.
+            \item Nécessite un démon pour fonctionner~: \lstinline{atd}.
+            Pour l'activer~:
+            \begin{lstlisting}[language=bash]
+$ sudo systemctl start atd
+            \end{lstlisting}
+            \item Exemple d'utilisation~:
+            \begin{lstlisting}[language=bash]
+$ echo "backup.sh" | at 10:00
+            \end{lstlisting}
+            \item Les tâches sont exécutées une seule fois, contrairement à \lstinline{cron}.
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Commande \lstinline{at}~: Planification de tâches}
+        \begin{itemize}
+            \item \lstinline{atq}~: Affiche les tâches planifiées.
+            \item \lstinline{atrm}~: Supprime une tâche planifiée.
+            \item \lstinline{at} supporte différents formats de date et d'heure~:
+            \item \lstinline{HH:MM}~: Heure et minute.
+            \item \lstinline{HH:MM MM/DD/YY}~: Heure, minute, mois, jour et année.
+            \item \lstinline{now + <durée>}~: Exécution dans un certain délai.
+            \item \textit{etc}.
+        \end{itemize}
+        On peu lire les logs du service \lstinline{}~:
+        \begin{lstlisting}[language=bash]
+$ journalctl -u atd
+        \end{lstlisting}
     \end{frame}
 
 
     \section{Installation de logiciels}\label{sec:installation}
 
     \begin{frame}{Installation de logiciels}{Un package ou des sources}
-        On distingue deux grandes manière d'installer un logiciel~:
+        On distingue deux grandes manières d'installer un logiciel~:
         \begin{itemize}
             \item Avec un package manager qui télécharge un logiciel et ses dépendances.
             \item En compilant les sources.
         \end{itemize}
         \bigbreak
-        Toutes les distributions linux viennent avec un package manager au moin et un compilateur.
+        Toutes les distributions linux viennent avec un package manager au moins et un compilateur.
         Par exemple sous Ubuntu on trouve~:
         \begin{itemize}
             \item Le package manager \lstinline{apt}
@@ -2452,7 +2528,7 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
 
     \begin{frame}{Installation de logiciels}{Snap}
         Les packages Snap sont auto-porteurs, ils contiennent toutes les dépendances nécessaires.
-        Les développeurs de Snap parle de confinement.
+        Les développeurs de Snap parlent de confinement.
         \bigbreak
         Qu'est-ce que cela apporte~?
         \bigbreak
@@ -2461,7 +2537,7 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
         \pause
         \begin{itemize}
             \item Les applications sont plus sécurisées.
-            \item Pas de conflit de version quand 2 package dépendent de librairies ayant une version différente.
+            \item Pas de conflit de version quand 2 packages dépendent de librairies ayant une version différente.
             Chacun vient avec sa version.
             \item Ca fait de beaucoup de dépendances, ça prend de la place.
         \end{itemize}
@@ -2540,11 +2616,11 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
 
     \begin{frame}{Installation de logiciels}{Installation de paquets source}
         Les deux package managers précédemment cités permettent d'installer des binaires précompilés.
-        Mais la compilation sur la machine cible peut offrir de meilleurs performances via l'utilisation de flags spécifiques au hardware.
+        Mais la compilation sur la machine cible peut offrir de meilleures performances via l'utilisation de flags spécifiques au hardware.
         \bigbreak
         Une troisième voie, hybride existe avec les \textquote{ports}\footnote{Ports management, \url{https://www.unix-experience.fr/bsd/freebsd/port_management/}}.
         Sous Unix (OpenBSD/FreeBSD) il est courant d'installer via les ports qui permettent de compiler les sources sur la machine cible.
-        C'est juste de un ensemble de Makefiles qui automatise la compilation.
+        C'est juste un ensemble de Makefiles qui automatise la compilation.
         70 Mo rien que de Makefile~!
     \end{frame}
 
@@ -2600,12 +2676,12 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
     \begin{frame}{Réseau}{Définition possible}
         \begin{scriptsize}
             \begin{itemize}
-                \item Un réseau est un ensemble de couches matériels et protocolaires qui permettent à des machines de communiquer entre eux.
+                \item Un réseau est un ensemble de couches matérielles et protocolaires qui permettent à des machines de communiquer entre eux.
                 \item Les couches matérielles sont les câbles, les cartes réseaux, les switchs, les routeurs, les serveurs, les clients, \textit{etc}.
                 \item Les couches protocolaires sont les protocoles de communication, les adresses IP, les ports, les protocoles de routage, les protocoles de sécurité, protocoles applicatifs, \textit{etc}.
                 \item Le même protocole peut être supporté par des couches et des hardwares différents de la stack.
                 Par exemple le WiFi peut être géré par un hardware dédié comme un SOC WiFi ESP32\footnote{ESP32, A feature-rich MCU with integrated Wi-Fi and Bluetooth connectivity for a wide-range of applications, \url{https://www.espressif.com/en/products/socs/esp32}} ou un SD-WLAN de Verizon\footnote{Apprenez à votre Wi-Fi à prendre ses propres décisions, \url{https://www.verizon.com/business/fr-fr/products/networks/managed-network-services/managed-sd-wireless-lan/}}.
-                \item Le même protocole peut avoir des couches inférieurs de la stack différentes.
+                \item Le même protocole peut avoir des couches inférieures de la stack différentes.
                 Par exemple IPv6 over Ethernet ou IPv6 over WiFi.
                 Matter, un protocole applicatif, unifie les protocoles de communication DSL, DOCSIS, Cellulaire, Wi-Fi, Thread, 802.15.4, Bluetooth, BLE, \textit{etc}\footnote{Comment fonctionne Matter ?, \url{https://nodon.fr/protocoles-sans-fil/matter/}}.
             \end{itemize}
@@ -2634,7 +2710,7 @@ network:
     \end{frame}
 
     \begin{frame}[fragile]{Réseau}{Configuration d'une interface réseau\footnote{Static IP address assignment, \url{https://ubuntu.com/server/docs/configuring-networks\#static-ip-address-assignment}}}
-        Si la configuration par défaut ne convient pas on peut la définir dans un fichier YAML sous le chemin \lstinline{/etc/netplan/99_config.yaml}.
+        Si la configuration par défaut ne convient pas, on peut la définir dans un fichier YAML sous le chemin \lstinline{/etc/netplan/99_config.yaml}.
         \begin{lstlisting}
 network:
   version: 2
@@ -2674,7 +2750,7 @@ network:
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[fragile]{Réseau}{Connaître la configuration des interfaces réseaux avec \lstinline{ip addr}}
+    \begin{frame}[fragile]{Réseau}{Connaître la configuration des interfaces réseau avec \lstinline{ip addr}}
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -2709,7 +2785,7 @@ network:
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]{Réseau}{Connaître la configuration des interfaces réseaux avec \lstinline{ip addr}}
+    \begin{frame}[fragile]{Réseau}{Connaître la configuration des interfaces réseau avec \lstinline{ip addr}}
         Les interfaces \lstinline{wlp0s20f3} et \lstinline{enx0050b627ae40s} sont sur le même sous-réseau \lstinline{/24}, c'est le réseau du routeur du FAI~.
         Ce sont respectivement le WiFi et l'Ethernet.
         \bigbreak
@@ -2740,7 +2816,7 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
         \begin{columns}
             \column{0.55\textwidth}
             \begin{itemize}
-                \item Une VM avec 2 interfaces réseaux, gateway de la deuxième VM et l'autre à la troisième, avec les IP 192.168.1.1/24 et 172.168.1.1/18.
+                \item Une VM avec 2 interfaces réseau, gateway de la deuxième et la troisième VM, avec les IP 192.168.1.1/24 et 172.168.1.1/18.
                 \item Une VM avec une interface réseau ayant l'IP 192.168.1.10/24.
                 \item Une VM avec une interface réseau ayant l'IP 172.168.1.10/18.
             \end{itemize}
@@ -2776,8 +2852,8 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
         \bigbreak
         On peut par exemple l'utiliser pour~:
         \begin{itemize}
-            \item N'autoriser les connections entrantes que sur les ports de certains protocoles souhaités.
-            \item Bloquer toutes les connections sur les autres ports.
+            \item N'autoriser les connexions entrantes que sur les ports de certains protocoles souhaités.
+            \item Bloquer toutes les connexions sur les autres ports.
             \item Bloquer des IP malveillantes.
             \item \textit{etc}.
         \end{itemize}
@@ -2831,7 +2907,7 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
                 \item Autoriser les connexions HTTP sur le port 80.
                 \item Permettre à une connexion déjà ouverte de recevoir du trafic.
                 \item Tester le comportement du réseau.
-                Si il est celui attendu, rendre la configuration du firewall persistante.
+                S'il est celui attendu, rendre la configuration du firewall persistante.
                 \item Rebooter la VM et tester à nouveau la configuration.
             \end{itemize}
         \end{footnotesize}
@@ -2845,7 +2921,7 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
         Lorsqu'une correspondance est trouvée une ou plusieurs actions sont exécutées.
         Typiquement, fail2ban cherche des tentatives répétées de connexions infructueuses dans les fichiers journaux et procède à un bannissement en ajoutant une règle au pare-feu \lstinline{iptables} ou \lstinline{nftables} pour bannir l'adresse IP de la source.
         \begin{dangercolorbox}
-            Fail2ban en analysant les logs permet de bannir les IP au bout d'un certain nombre de tentatives ce qui limitera le remplissage des logs et l'utilisation de la bande passante.
+            Fail2ban en analysant les logs permet de bannir les IP au bout d'un certain nombre de tentatives, ce qui limitera le remplissage des logs et l'utilisation de la bande passante.
 
             Ceci va également rendre les attaques par force brute ou par dictionnaire beaucoup plus longues mais ce n'est pas une sécurité absolue contre ce type d'attaque.
         \end{dangercolorbox}
@@ -2854,7 +2930,7 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
     \begin{frame}{Réseau}{Fail2ban\footnote{\url{https://doc.ubuntu-fr.org/fail2ban}}}
         Il peut être configuré pour bannir une IP mais ferait doublons avec Iptables.
 
-        Ils est donc conseiller de l'utiliser pour ses fonctionnalités, la principale, bannir de manière automatique des IP pendant un temps donné.
+        Il est donc conseillé de l'utiliser pour ses fonctionnalités particulières, la principale, bannir de manière automatique des IP pendant un temps donné.
         \bigbreak
         Exercice \execcounterdispinc{}~:
         Installer Fail2ban sur la VM de l'exercice précédent et le configurer pour bannir une IP 20 minutes après 5 tentatives de connexion SSH infructueuses.
@@ -2896,7 +2972,7 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
         Ils permettent~:
         \begin{itemize}
             \item  Résolution de noms, MDNS~.
-            \item  Publication de service sur le réseau.
+            \item  Publication de services sur le réseau.
             \item  Allocation d'adresses.
         \end{itemize}
         \bigbreak
@@ -2931,6 +3007,7 @@ $ sudo apt install bind9
         \begin{lstlisting}
 $ chris-digicomp.local IN    A      <mon IP>
         \end{lstlisting}
+        \bigbreak
     \end{frame}
 
     \begin{frame}{Réseau}{DNS dans le cloud}
@@ -2981,7 +3058,7 @@ $ chris-digicomp.local IN    A      <mon IP>
             \item Traceroute est un outil de diagnostic réseau utilisé pour suivre le chemin des paquets de données entre la source et la destination.
             \item Il identifie chaque routeur (saut) et mesure le temps (RTT) que met le paquet à atteindre chaque routeur.
             \item Utile pour détecter où les retards ou les pertes de paquets se produisent dans le réseau.
-            \item À installer avec la commande \lstinline{sudo apt install traceroute} si il ne l'est pas .
+            \item À installer avec la commande \lstinline{sudo apt install traceroute} S'il ne l'est pas déjà.
         \end{itemize}
         \bigbreak
         Comment fonctionne Traceroute~?
@@ -3038,7 +3115,7 @@ $ chris-digicomp.local IN    A      <mon IP>
     \begin{frame}{OpenSSH}{Définition\cref{openssh-site}}
         OpenSSH est développé par quelques développeurs du projet OpenBSD et est disponible sous une licence de type BSD, donc open source.
         \bigbreak
-        OpenSSH se base sur la librairie \href{https://www.libressl.org}{LibreSSL} pour des algorithme cryptographic, AES-GCM par exemple.
+        OpenSSH se base sur la librairie \href{https://www.libressl.org}{LibreSSL} pour les algorithmes cryptographiques, AES-GCM par exemple.
         Plus légère que OpenSSL, LibreSSL n'a pas été affectée par des failles ayant affecté OpenSSL~.
         \bigbreak
         \centering
@@ -3073,7 +3150,7 @@ $ chris-digicomp.local IN    A      <mon IP>
     \end{frame}
 
     \begin{frame}{OpenSSH}{Les recommandations d'usage\footnote{\label{openssh-anssi}Recommandations pour un usage sécurisé d’(Open)SSH, \url{https://cyber.gouv.fr/sites/default/files/2014/01/NT_OpenSSH.pdf}}}
-        L'ANSSI, Agence nationale de la sécurité des systèmes d’information (française) fait des recommandations pour un usage sécurité d'OpenSSH.
+        L'ANSSI, Agence nationale de la sécurité des systèmes d’information (française) fait des recommandations pour un usage sécurisé d'OpenSSH~.
         \bigbreak
         \begin{itemize}
             \item L’usage de clés DSA n’est pas recommandé.
@@ -3136,7 +3213,7 @@ $ ssh-keygen -t ed25519 -C "your_email@example.com"
         \begin{columns}
             \column{0.7\textwidth}
             Rsync est un outil de synchronisation de fichiers qui permet de copier des fichiers locaux ou distants.
-            Mais sont réel atout est bien pour les fichiers distants, en local on a \lstinline{cp}\ldots
+            Mais son réel atout est bien pour les fichiers distants, en local on a \lstinline{cp}\ldots
             \bigbreak
             Il est souvent utilisé pour synchroniser des fichiers entre un serveur et un client SSH~.
             \bigbreak
@@ -3237,7 +3314,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         \end{itemize}
         \begin{columns}
             \begin{column}{0.8\textwidth}
-                A sécurité égale, la taille des clés ECC est plus petite que celle des clés RSA~.
+                À sécurité égale, la taille des clés ECC est plus petite que celle des clés RSA~.
             \end{column}
             \begin{column}{0.2\textwidth}
                 \centering
@@ -3344,7 +3421,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         Dans tous ces cas vus précédemment, Apache et Nginx sont utilisés comme serveur web que ce soit pour du contenu statique ou dynamique.
         \bigbreak
         Mais dans de nombreux cas, ils sont utilisés comme reverse proxy.
-        Les technologies vues aux chapitres précédents comme Spring et Flask/Gunicorn ont déjà un serveur web intégré.
+        Les technologies d'applications dynamiques comme Spring et Flask/Gunicorn ont déjà un serveur web intégré.
         Spring a un serveur Tomcat embarqué et Flask/Gunicorn utilise Gunicorn comme serveur HTTP de production.
     \end{frame}
 
@@ -3370,7 +3447,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         De telle manière qu'on peut avoir plusieurs services sur un même VPS et avec une seule IP pour diminuer les coûts.
         \bigbreak
         La configuration du Reverse Proxy consiste à faire correspondre un domaine à un port.
-        Comme on a de nombreux ports sur une machine peut s'adresser à plusieurs domaines alors qu'on a qu'une IP~.
+        Comme on a de nombreux ports sur une machine, on peut s'adresser à plusieurs domaines alors qu'on a qu'une IP~.
         \bigbreak
         \centering
         \includegraphics[width=10cm]{image/flask-gunicorn-nginx}
@@ -3419,20 +3496,15 @@ $ gunicorn app.py -b /var/run/sock-guni
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}{Apache et Nginx}{Exercice \execcounterdispinc{} et \execcounterdispinc{}, développer une configuration de Reverse Proxy}
-        \setlength\parindent{24pt}
+    \begin{frame}{Apache et Nginx}{Exercice \execcounterdispinc{}, développer une configuration de Reverse Proxy}
         Dans la VM de l'exercice précédent, configurer un Reverse Proxy pour servir l'application Gunicorn.
         Le Reverse Proxy et l'application doivent communiquer par un socket Unix.
-        \bigbreak
-        A l'aide d'un \lstinline{docker-compose.yml} déployer un serveur Nginx et l'application Spring déjà conteneurisée dans un précédent exercice.
-        Les deux doivent communiquer par TCP/IP~.
-        \setlength\parindent{0pt}
     \end{frame}
 
     \subsection{Certificat SSL}\label{subsec:certificat-ssl}
     \begin{frame}{Apache et Nginx}{Exemple de configuration avec un certificat SSL}
         Les standards modernes de sécurité web recommandent très fortement le HTTPS et l'utilisation de certificat SSL~.
-        Les clients de votre application en sont demandeur aussi.
+        Les clients de votre application en sont demandeurs aussi.
         \bigbreak
         On peut l'acheter chez une autorité (CA) de certification comme Comodo ou autre.
         Pour seulement quelques centaines ou milliers d'Euros par an \emoji{face-with-symbols-on-mouth}.
@@ -3480,9 +3552,8 @@ server {
     \section{Scripts Shell}\label{sec:scripting-shell}
 
 
-    \section{Introduction à Shell}\label{sec:shell-introduction}
     \begin{frame}{Scripts Shell}{Définition}
-        Les scripts Shell sont des fichiers texte avec l'extension \lstinline{.sh}, contenant des commandes Shell.
+        Les scripts Shell sont des fichiers de texte avec l'extension \lstinline{.sh}, contenant des commandes Shell.
         Ils sont exécutés par un interpréteur de commandes Shell.
         \bigbreak
         Ils peuvent utiliser tous les commandes vues précédemment, toutes celles dans le \textquote{path}, tous les exécutables de la machine tant que le script a les droits adéquats.
@@ -3515,14 +3586,15 @@ server {
 
     \begin{frame}{Scripts Shell}{Usages déconseillés}
         C'est un langage interprété et simple en comparaison des langages de programmation comme Python, Java, C++, \textit{etc}.
-        Trouver un autre environnement de développement pour~:
+
+        Il faut trouver un autre environnement de développement pour~:
         \begin{itemize}
-            \item Des architectures complexes qui nécessite une modularité du code, car il n'y pas de système d'import perfectionné.
+            \item Des architectures complexes qui nécessitent une modularité du code, car il n'y pas de système d'import perfectionné.
             Seulement \lstinline{source}
             \item Des performances critiques, car c'est un langage interprété.
             \item Des applications ayants des dépendances car aucun package manager.
             \item Des algorithmes complexes, car il n'éxiste aucun débuggeur sous Bash ou Shell!
-            Il faut ajouter des output du type \lstinline{echo} ou \lstinline{printf} pour débugger.
+            Il faut ajouter des outputs du type \lstinline{echo} ou \lstinline{printf} pour débugger ou des options.
         \end{itemize}
         \bigbreak
         Les scripts Shell doivent rester simples.
@@ -3532,7 +3604,7 @@ server {
         \url{https://notes-on-cython.readthedocs.io/en/latest/} nous explique l'importance de l'algorithme dans les performances.
         Un bon algorithme Python, donc interprété, est plus rapide qu'un mauvais algorithme C qui est compilé.
         \bigbreak
-        Malheureusement, les performance Shell sont si mauvaise que même un bon algorithme Shell est plus lent qu'un mauvais algorithme Python.
+        Malheureusement, les performances Shell sont si mauvaise que même un bon algorithme Shell est plus lent qu'un mauvais algorithme Python.
         \begin{lstlisting}[language=bash]
 $ time bash fibo_cached.sh 20
 6765
@@ -3553,7 +3625,7 @@ sys     0m0,006s
         \begin{center}
             \includegraphics[width=5cm]{image/pinguin-hugging-shell}
         \end{center}
-        Ceci étant dit, sa syntaxe et son outillage simple reste un outils de scripting idéal pour tous.
+        Ceci étant dit, sa syntaxe et son outillage simple en font un outils de scripting idéal pour tous.
         Par opposition à d'autres langages nécessitant une expertise plus poussée.
     \end{frame}
 
@@ -3686,7 +3758,7 @@ fi
             \item Soustraction~: \lstinline{a=$((1 - 2))}
             \item Multiplication~: \lstinline{a=$((1 * 2))}
             \item Division~: \lstinline{a=$((1 / 2))}
-            \item Modulo~: \lstinline{a=$((1 \% 2))}
+            \item Modulo~: \lstinline{a=$((1 % 2))}
             \item Incrémenter~: \lstinline{a=$((a + 1))} ou \lstinline{((a+=1))}
             \item Décrémenter~: \lstinline{a=$((a - 1))} ou \lstinline{((a-=1))}
         \end{itemize}
@@ -3698,10 +3770,10 @@ fi
             \begin{lstlisting}[language=bash]
 # Ceci est un commentaire
             \end{lstlisting}
-            \item Expansions d'historique~:
+            \item Expansion d'historique~:
             \begin{lstlisting}[language=bash]
 !!    # Répéter la dernière commande
-!n    # Répéter la n-ième commande de l'historique
+!n <chiffre>   # Répéter la n-ième commande de l'historique
             \end{lstlisting}
         \end{itemize}
     \end{frame}
@@ -3720,7 +3792,9 @@ else
 fi
 Le fichier n'existe pas
             \end{lstlisting}
-            \item Attention : Expansion des fichiers peut causer des erreurs s'il y a plusieurs résultats.
+            \begin{dangercolorbox}
+                Supporte les expansion de fichiers donc peut causer des erreurs s'il y a plusieurs résultats.
+            \end{dangercolorbox}
         \end{itemize}
     \end{frame}
 
@@ -3739,7 +3813,7 @@ Le fichier n'existe pas
     \begin{frame}[fragile]{Les différentes parenthèses en Bash\cref{penthesisbash}}{Accolades simples \texttt{\{\}}}
         \begin{itemize}
             \item Utilisées pour l'expansion de chaînes ou la création de séquences.
-            \item Permet de générer rapidement des listes ou des variantes.
+            \item Permet de générer rapidement des listes.
             \item Exemple :
             \begin{lstlisting}[language=bash]
 $ echo {1..5}  # Produit : 1 2 3 4 5
@@ -3851,9 +3925,202 @@ $ time <commande>
             \item Y-a-til une différence significative de performance~?
             \item Si oui, laquelle et pourquoi~?
         \end{itemize}
+        \begin{center}
+            \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
+        \end{center}
+    \end{frame}
+
+    \begin{frame}{Editeur Shell}{VS Code de Microsoft et ShellCheck}
+        L'objectif de cette section est d'éditer un script Shell dans un environment dédié au développement.
+        Un environment qui contient tous les outils nécessaires pour trouver rapidement les erreurs de syntaxe et tester son script.
+        \bigbreak
+        Pour le lancer taper \textquote{code} dans la barre de recherche de Linux ou \lstinline{code .} dans un terminal pour le lancer dans le répertoire courant.
+        \begin{itemize}
+            \item Ouvrir VS Code.
+            \item Ouvrir ou créer le fichier contenant le code Shell.
+            \item Trouver un plugin dédié au développement Shell dans la \textit{marketplace}.
+            Ici \textquote{ShellCheck} pour la vérification de la syntaxe.
+            En lisant la doc on comprend que c'est une intégration de ShellCheck qui vient sans ce dernier sur certaines plateformes.
+            Il faut installer ShellCheck.
+            \item Installer le plugin.
+            \item Tester le plugin en écrivant sciemment un code erroné.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Editeur Shell}{VS Code de Microsoft}
+        \centering
+        \includegraphics[width=11cm]{image/shellcheck-install}
+    \end{frame}
+
+    \begin{frame}[fragile]{Editeur Shell}{VS Code de Microsoft et ShellCheck}
+        Les erreurs/warning qui sont en ligne apparaissent dans l'IDE VS Code.
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ shellcheck fibo.ksh
+
+In fibo.ksh line 7:
+        echo $n
+             ^-- SC2086 (info): Double quote to prevent globbing and word splitting.
+
+Did you mean:
+        echo "$n"
+
+
+In fibo.ksh line 11:
+    typeset val1=$(fibo $((n - 1)))
+            ^--^ SC2034 (warning): val1 appears unused. Verify use (or export if used externally).
+            ^--^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In fibo.ksh line 12:
+    typeset val2=$(fibo $((n - 2)))
+            ^--^ SC2034 (warning): val2 appears unused. Verify use (or export if used externally).
+            ^--^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+
+
+In fibo.ksh line 14:
+    typeset val=$((valeur1 + valeur2))
+                   ^-----^ SC2154 (warning): valeur1 is referenced but not assigned.
+                             ^-----^ SC2154 (warning): valeur2 is referenced but not assigned.
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}{Editeur Shell}{VS Code de Microsoft et ShellCheck}
+        \centering
+        \includegraphics[width=12cm]{image/shellcheck-warning}
+    \end{frame}
+
+    \begin{frame}{Editeurs Shell}{Exercice \execcounterdispinc}
+        Cette exercice a pour but d'illustrer que les éditeurs fournissent une aide pour tout type de langage.
+        \begin{itemize}
+            \item Installer VS Code.
+            \item Installer le plugin ShellCheck.
+            \item Ouvrir un fichier le fichier \lstinline{fibo.sh} dans VS Code.
+            \item Essayer de le lancer avec \lstinline{sh}.
+            \item Corriger les erreurs et même les warnings mis en évidence par ShellCheck.
+            \item Relancer le script pour vérifier qu'il fonctionne.
+        \end{itemize}
         \bigbreak
         \centering
-        \includegraphics[width=5cm]{image/guy-in-front-of-desktop}
+        \includegraphics[width=3cm]{image/question-mark}
+    \end{frame}
+
+    \begin{frame}[fragile]{Shell debugging}{L'option \lstinline{-x}}
+        L'option \lstinline{-x} permet de débugger un script Shell.
+        Elle affiche les commandes exécutées et leurs arguments.
+        On peut la définir en lançant le script avec \lstinline{bash -x script.sh}.
+        Ou dans le script avec \lstinline{set -x} et \lstinline{set +x} pour désactiver.
+        \bigbreak
+        \begin{lstlisting}[language=bash]
+$ sh -x sqlite-hr.sh
++ readonly DB_NAME=hr.db
++ rm -f hr.db
++ command -v sqlite3
++ [ -x /usr/bin/sqlite3 ]
++ sqlite3 hr.db
++ sqlite3 hr.db
++ sqlite3 hr.db
++ sqlite3 hr.db
++ sqlite3 hr.db
+John    HR
+Jane    HR
+Steeve  HR
+        \end{lstlisting}
+        \bigbreak
+        Il peut devenir très difficile à comprendre quand l'algorithme est complexe.
+    \end{frame}
+
+    \begin{frame}[fragile]{Shell debugging}{Verbose, l'option \lstinline{-v}}
+        L'option \lstinline{-v} comme verbose affiche le bout de code à exécuter.
+        Elle peut compléter l'option \lstinline{-x} pour mieux comprendre le script.
+        \bigbreak
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ sh -vx sqlite-hr.sh
+#!/usr/bin/bash
+# Database
+readonly DB_NAME="hr.db"
++ readonly DB_NAME=hr.db
+# Remove the database if it exists
+rm -f $DB_NAME
++ rm -f hr.db
+# Check sqlite3 is installed
+if ! [ -x "$(command -v sqlite3)" ]; then
+  echo 'Error: sqlite3 is not installed.' >&2
+  exit 1
+fi
++ command -v sqlite3
++ [ -x /usr/bin/sqlite3 ]
+# Create a database named hr.db add employee table
+sqlite3 $DB_NAME <<EOF
+CREATE TABLE employee (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  age INTEGER NOT NULL,
+  salary INTEGER NOT NULL,
+  dept_it INTEGER NOT NULL
+);
+EOF
++ sqlite3 hr.db
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]{Shell debugging}{Les variables non définies, l'option \lstinline{-u}\footnote{\label{baeldung-shell}Identifying Unset Variables\url{https://www.baeldung.com/linux/debug-bash-script\#4-identifying-unset-variables}}}
+        L'option \lstinline{-u} permet de détecter les variables non définies alors que cette erreur peut passer inaperçue en Shell qui est un langage très permissif.
+        \bigbreak
+        \begin{lstlisting}[language=bash]
+$ cat ./add_values.sh
+#! /bin/bash
+five_val=5
+two_val=2
+total=$((five_val+tow_val))
+echo $total
+$ ./add_values.sh
+5
+$ bash -u ./add_values.sh
+./add_values.sh: line 4: tow_val: unbound variable
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]{Shell debugging}{La commande \lstinline{trace}}
+        \lstinline{trace} inspecte les appels au noyau Linux des commandes Shell après leur exécution.
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+            $ sudo strace -c -fp 128996
+[sudo] Mot de passe de chrichri :
+strace: Process 128996 attached
+...
+strace: Process 129580 attached
+strace: Process 129599 attached
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 60,69    0,010394         324        32        16 wait4
+ 10,98    0,001881         117        16           execve
+  8,38    0,001435          89        16           clone
+  3,86    0,000661           2       272       176 openat
+  3,84    0,000657           3       176           mmap
+  2,43    0,000417           2       160           rt_sigprocmask
+  1,94    0,000333          20        16           write
+  1,21    0,000207          12        16           clock_nanosleep
+...
+  0,12    0,000021           1        16           getrandom
+  0,12    0,000020           1        16           prlimit64
+  0,11    0,000018           0        32           set_robust_list
+  0,10    0,000017           1        16           set_tid_address
+  0,10    0,000017           1        16           rseq
+  0,01    0,000002           0        16           getpid
+------ ----------- ----------- --------- --------- ----------------
+100,00    0,017127          11      1456       224 total
+[1]+  Processus arrêté      nohup ./endless-loop.sh
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}{Shell debugging}{Pas de debugguer avec point d'arret et pas-à-pas\cref{baeldung-shell}}
+        La quasi totalité des langages de programmation même ceux plus anciens que Shell on un débuggeur.
+
+        On peut mettre des points d'arrêt, avancer pas-à-pas, voir les valeurs des variables, \textit{etc}.
+
+        Mais à ma connaissance, cela n'existe pas pour Shell.
+        \bigbreak
+        \centering
+        \includegraphics[width=5cm]{image/tux-reassure-shell}
     \end{frame}
 
 
@@ -3874,11 +4141,12 @@ $ time <commande>
             \includegraphics[width=4cm]{image/building-linux}
         \end{columns}
     \end{frame}
+
     \begin{frame}{Buildroot}{Définition}
         Buildroot permet de configurer un build de Linux pour des \textquote{targets} variées, des systèmes embarqués, principalement, mais aussi des architectures plus classiques comme PC x86 et Qemu.
         \bigbreak
-        Il est possible de configurer le noyau, les outils de base, les biblIOThèques, les applications, les systèmes de fichiers racine, le package manager, \textit{etc}.
-        Dans le but d'avoir une distribution spécifique aux besoin de son application.
+        Il est possible de configurer le noyau, les outils de base, les bibliothèques, les applications, les systèmes de fichiers racine, le package manager, \textit{etc}.
+        Dans le but d'avoir une distribution spécifique aux besoins de son application.
         Sans embarqués des dépendances et librairies inutiles.
     \end{frame}
 
@@ -3887,7 +4155,7 @@ $ time <commande>
         \begin{lstlisting}[language=bash]
 $ sudo apt-get update && sudo apt-get install -y which sed make binutils build-essential diffutils gcc g++ bash patch gzip bzip2 perl tar cpio unzip rsync file bc findutils wget python3 libncurses5-dev qt5-qmake libglib2.0-dev libgtk2.0-dev libglade2-dev bzr cvs git mercurial openssh-client subversion openjdk-11-jdk asciidoc w3m dblatex graphviz python3-matplotlib python3-aiohttp
         \end{lstlisting}
-        Buildroot compilé peut se télécharger sur leur site avec la commande~:
+        Buildroot pré-compilé peut se télécharger sur leur site avec la commande~:
         \begin{lstlisting}[language=bash]
 $ wget http://www.buildroot.org/downloads/buildroot-2024.05.tar.gz
         \end{lstlisting}
