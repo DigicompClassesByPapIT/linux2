@@ -1843,6 +1843,11 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
     \end{frame}
 
     \begin{frame}{Système de fichier}{Exercice \execcounterdispinc}
+        \begin{dangercolorbox}
+            Avant de commencer cet exercice, veuillez archiver (Zip, 7zip, \textit{etc}) tous les disques virtuels, A.K.A. les ISO, Qcow2 et autres.
+
+            Pour pouvoir reprendre les exercices en cas de souci.
+        \end{dangercolorbox}
         Avec le disque RAID créé précédemment, il est possible de créer un volume logique avec LVM~.
         \begin{itemize}
             \item Créer un volume physique~.
@@ -1852,6 +1857,98 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
             \item Ajouter le montage du volume logique dans \lstinline{/etc/fstab} pour que le volume se monte au démarrage de la machine.
             \item Redémarrer la machine pour tester.
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Système de fichier}{Exercice \execcounterdispinc}
+        \begin{small}
+            Reprendre l'installation archivée.
+            Le but cette fois est de migrer la racine du système de fichier \lstinline{/} sur le volume logique créé.
+            \bigbreak
+            Avec le disque RAID créé précédemment, il est possible de créer un volume logique avec LVM~.
+            \begin{itemize}
+                \item Créer un volume physique~.
+                \item Créer un groupe logique~.
+                \item Créer un volume logique~.
+                \item Monter le volume logique sur \lstinline{/}.
+                \item Ajouter le montage du volume logique dans \lstinline{/etc/fstab} pour que le volume se monte au démarrage de la machine.
+                \item Redémarrer la machine pour tester.
+                \item Réaffecter la place libérée par le disque \lstinline{/} au volume logique.
+            \end{itemize}
+            S'inspirer de l'article de blog \url{https://medium.com/@allypetitt/how-to-safely-convert-to-lvm-without-losing-your-data-258ce044448}
+        \end{small}
+    \end{frame}
+
+
+    \section{NFS}\label{sec:nfs}
+
+    \begin{frame}{Overview de NFS\footnote{\label{nfs}NFS : Network File System - le partage réseau sous Linux, \url{https://doc.ubuntu-fr.org/nfs}}}
+        \begin{itemize}
+            \item NFS signifie Network File System.
+            \item La version actuelle du protocole est la 4.
+            \item Permet le partage de fichiers principalement entre systèmes UNIX~.
+            \item Des clients à installer existent sous Windows et même intégrés d'office dans Windows 10 et 11 et Server qu'il faut activer et configuré\footnote{Vue d’ensemble du système de fichiers NFS, \url{https://learn.microsoft.com/fr-fr/windows-server/storage/nfs/nfs-overview}}.
+            \item Permet de gérer les droits en lecture seule ou lecture/écriture.
+            \item \item Compatible avec IPv4 et IPv6.
+            \item \item Il utilise le port 2049.
+            \item Le disque est sur le réseau, il est d'utiliser un firewall pour sécuriser le partage.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Pré-requis\cref{nfs}}
+        \begin{itemize}
+            \item Deux ordinateurs au moins.
+            \item Droits d'administration sur les deux machines.
+            \item Réseau de confiance.
+            \item Connaître les adresses IP locales de Serveur et de Client.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Installation du Serveur NFS\cref{nfs}}
+        \begin{itemize}
+            \item Installer les paquets \lstinline{nfs-kernel-server} et \lstinline{nfs-common}.
+            \item Configurer le fichier \lstinline{/etc/exports}.
+            \item Exemple : \lstinline{/dossier\_partagé 192.168.1.2(rw,sync,no\_subtree\_check)}.
+            \item On reload la configuration du serveur avec \lstinline{sudo service nfs-kernel-server reload}
+            \item On peut vérifier que le partage est bien configuré avec \lstinline{showmount -e}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Configuration du Client NFS\cref{nfs}}
+        \begin{itemize}
+            \item Installer le paquet \lstinline{nfs-common} avec \lstinline{apt}.
+            \item Ajouter le disque réseau dans \lstinline{/etc/fstab} avec la syntaxe suivante~:
+            \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ sudo mkdir /media/nfs
+$ car /etc/fstab
+...
+192.168.1.201:/home/chrichri/ /media/nfs nfs defaults,user,auto,_netdev,bg 0 0
+            \end{lstlisting}
+            \item Monter le partage avec la commande \lstinline{mount}.
+            \item Exemple : \lstinline{mount 192.168.1.1:/<path partagé> <path de montage>}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Rien ne change côté client}
+        Dans le bureau~:
+        \begin{columns}
+            \column{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=6cm]{image/nfs-linux} \\ Ubuntu \\
+            \end{center}
+            \column{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=6cm]{image/nfs-windows} \\ Windows 10 \\
+            \end{center}
+        \end{columns}
+        \bigbreak
+        Ni dans le terminal~:
+        \begin{lstlisting}[language=bash]
+$ ls /media/nfs/
+ 2023-09-01-18-15-13.071-VBoxSVC-4397.log   misc
+ Applications                               Music
+ BIT-front                                  nltk_data
+ blurryfaces                                nobleNote
+        \end{lstlisting}
     \end{frame}
 
 
@@ -1884,9 +1981,9 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         L'option \lstinline{-f} affiche plus d'informations sur les processus.
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ ps
-    PID TTY          TIME CMD
- 276321 pts/5    00:00:00 bash
- 338450 pts/5    00:00:00 ps
+PID TTY          TIME CMD
+276321 pts/5    00:00:00 bash
+338450 pts/5    00:00:00 ps
 $ ps -f
 UID          PID    PPID  C STIME TTY          TIME CMD
 chrichri  276321  265707  0 13:17 pts/5    00:00:00 /usr/bin/bash --rcfile /home/chrichri/pycharm-professional-2024.1.4/pycharm-2024.1.4/plugins/terminal/shell-integrations/bash/bash-integration.bash -i
@@ -1904,10 +2001,10 @@ chrichri  265707    8404 80 13:08 ?        00:42:46 /home/chrichri/pycharm...
         Les processus de l'utilisateur courant~:
         \begin{lstlisting}[language=bash]
 $ ps -u chrichri
-    PID TTY          TIME CMD
-   8059 ?        00:00:06 systemd
-   8068 ?        00:00:00 (sd-pam)
-   8090 ?        00:00:02 pipewire
+PID TTY          TIME CMD
+8059 ?        00:00:06 systemd
+8068 ?        00:00:00 (sd-pam)
+8090 ?        00:00:02 pipewire
 ...
         \end{lstlisting}
         \bigbreak
@@ -2136,7 +2233,7 @@ $ pkill -9 <nom>
     \begin{frame}[fragile]{Commandes \lstinline{nice} et \lstinline{renice}}{Exemple de commandes}
         Une priorité peut être attribuée au début de l'exécution et modifiée par la suite~:
         \begin{lstlisting}[language=bash]
-$ nohup nice -n 15 ./endless-loop.sh & 
+$ nohup nice -n 15 ./endless-loop.sh &
 [1] 906674
 $ nohup: les entrées sont ignorées et la sortie est ajoutée à 'nohup.out'
 $ renice -19 -p 906674
@@ -2476,8 +2573,8 @@ $ journalctl -u atd
         Toutes les distributions linux viennent avec un package manager au moins et un compilateur.
         Par exemple sous Ubuntu on trouve~:
         \begin{itemize}
-            \item Le package manager \lstinline{apt}
-            \item Le package manager \lstinline{snap}
+            \item Le package manager \lstinline{apt} (Advanced Package Tool).
+            \item Le package manager \lstinline{snap}.
             \item Git pour tirer du code depuis VCS comme GitHub par exemple.
             \item GCC un compilateur de plusieurs langages de programmation~:
             \begin{itemize}
@@ -2567,6 +2664,143 @@ $ journalctl -u atd
             \item \lstinline{apt show <package>} pour afficher des informations sur un package.
             \item \lstinline{apt autoremove} pour supprimer les packages inutiles.
             \item \lstinline{apt full-upgrade} pour mettre à jour les packages et résoudre les dépendances.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Installation de logiciels}{/etc/apt/sources.list ou /etc/apt/sources.list.d/ubuntu.sources\footnote{\label{sources}Ubuntu manuals, \url{https://manpages.ubuntu.com/manpages/focal/fr/man5/sources.list.5.html}}}
+        \begin{itemize}
+            \item Fichier principal de configuration des sources de paquets.
+            \item Chaque ligne spécifie une source de paquets.
+            \item Peut contenir des sources pour les paquets binaires (\lstinline{deb}) et les sources (\lstinline{deb-src}).
+            \item \textbf{One-Line Style} : Fichiers avec extension \lstinline{.list}.
+            \item \textbf{Deb822 Style} : Fichiers avec extension \lstinline{.sources}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Installation de logiciels}{Exemple de /etc/apt/sources.list.d/ubuntu.sources\cref{sources}}
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
+$ cat /etc/apt/sources.list
+# Ubuntu sources have moved to /etc/apt/sources.list.d/ubuntu.sources
+$ cat /etc/apt/sources.list.d/ubuntu.sources
+Types: deb
+URIs: http://fr.archive.ubuntu.com/ubuntu/
+Suites: noble noble-updates noble-backports
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Types: deb
+URIs: http://security.ubuntu.com/ubuntu
+Suites: noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Types: deb
+URIs: http://archive.ubuntu.com/ubuntu
+Suites: noble
+Components: main restricted multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Types: deb
+URIs: http://archive.ubuntu.com/ubuntu
+Suites: noble-updates
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Enabled: no
+Types: deb
+URIs: http://archive.ubuntu.com/ubuntu
+Suites: focal
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]{Installation de logiciels}{Exemple de /etc/apt/sources.lists\cref{sources}}
+        \begin{lstlisting}
+# Dépôts officiels
+deb http://archive.ubuntu.com/ubuntu focal main restricted
+deb http://archive.ubuntu.com/ubuntu focal-updates main restricted
+deb http://archive.ubuntu.com/ubuntu focal universe
+deb http://archive.ubuntu.com/ubuntu focal-updates universe
+deb http://archive.ubuntu.com/ubuntu focal multiverse
+deb http://archive.ubuntu.com/ubuntu focal-updates multiverse
+deb http://archive.ubuntu.com/ubuntu focal-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu focal-security main restricted
+deb http://security.ubuntu.com/ubuntu focal-security universe
+deb http://security.ubuntu.com/ubuntu focal-security multiverse
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}{Installation de logiciels}{/etc/apt/sources.list.d/s\cref{sources}}
+        \begin{itemize}
+            \item Répertoire pour ajouter des sources de paquets de manière modulaire.
+            \item Chaque fichier dans ce répertoire suit le même format que \lstinline{sources.list}.
+            \item Utilisé pour ajouter des PPA (Personal Package Archives) ou d'autres dépôts tiers.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Installation de logiciels}{Exemple de fichier .\lstinline{list} et \lstinline{.sources}s\cref{sources}}
+        \bigbreak
+        Fichier \lstinline{.sources}~:
+        \begin{lstlisting}
+# PPA pour LibreOffice
+deb http://ppa.launchpad.net/libreoffice/ppa/ubuntu focal main
+deb-src http://ppa.launchpad.net/libreoffice/ppa/ubuntu focal main
+        \end{lstlisting}
+        \bigbreak
+        Fichier \lstinline{.list}~:
+        \begin{lstlisting}
+Types: deb
+URIs: http://ppa.launchpad.net/libreoffice/ppa/ubuntu
+Suites: focal
+Components: main
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}{Installation de logiciels}{Overview des PPA\footnote{\label{ppa}Les dépôts personnels de paquets logiciels ou Personal Package Archives (PPA), \url{https://doc.ubuntu-fr.org/ppa}}}
+        \begin{itemize}
+            \item Les PPA (Personal Package Archives) sont des dépôts personnels de paquets logiciels.
+            \item Possible grâce à plate-forme LaunchPad.
+            \item Permettent aux développeurs de proposer facilement des versions récentes de leurs logiciels sans passer par les process de validation de Debian, Ubuntu ou autres.
+            \item À chaque ajout de PPA, deux fichiers seront générés, nommés respectivement \lstinline{<nom_du_ppa>.lis} et \lstinline{<nom_du_ppa>.list.save} dans le dossier \lstinline{/etc/apt/sources.list.d}~.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Installation de logiciels}{Avantages des PPA\cref{ppa}}
+        \begin{columns}
+            \column{0.7\textwidth}
+            \begin{itemize}
+                \item \textbf{Pour les développeurs}~: Distribution rapide des mises à jour.
+                \item \textbf{Pour les utilisateurs}~: Accès à des logiciels récents, fraîchement développés et à plus de logiciels dans l'absolu.
+                \item Mise à jour automatique des paquets installés depuis un PPA~.
+            \end{itemize}
+            \column{0.3\textwidth}
+            \centering
+            \includegraphics[width=4cm]{image/tux-adding-brick}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}{Installation de logiciels}{Risques et Précautions\cref{ppa}}
+        \begin{dangercolorbox}
+            \begin{itemize}
+                \item Confiance envers le mainteneur du PPA~.
+                \item Risques de sécurité si le PPA est compromis.
+                \item Conflits possibles entre paquets de différents PPA~.
+                \item Les paquets ne sont pas maintenus par Canonical, Debian ou autre.
+            \end{itemize}
+        \end{dangercolorbox}
+    \end{frame}
+
+    \begin{frame}[fragile]{Installation de logiciels}{Gestion des PPA\cref{ppa}}
+        \begin{itemize}
+            \item \textbf{Ajout d'un PPA} avec la commande~:
+            \begin{lstlisting}[language=bash]
+$ add-apt-repository ppa:<nom_du_dépôt>
+            \end{lstlisting}
+            \item \textbf{Suppression d'un PPA} avec la commande~:
+            \begin{lstlisting}[language=bash]
+$ add-apt-repository --remove ppa:<nom_du_dépôt>
+            \end{lstlisting}
         \end{itemize}
     \end{frame}
 
@@ -2697,15 +2931,15 @@ $ journalctl -u atd
         \begin{lstlisting}
 $ etc/netplan/90-NM-fe5da9eb-a7d0-4756-b0bf-cd94991253c4.yaml
 network:
-  version: 2
-  wifis:
-    NM-fe5da9eb-a7d0-4756-b0bf-cd94991253c4:
-      renderer: NetworkManager
-      match:
-        name: "wlp0s20f3"
-      dhcp4: true
-      dhcp6: true
-      ...
+version: 2
+wifis:
+NM-fe5da9eb-a7d0-4756-b0bf-cd94991253c4:
+renderer: NetworkManager
+match:
+name: "wlp0s20f3"
+dhcp4: true
+dhcp6: true
+...
         \end{lstlisting}
     \end{frame}
 
@@ -2713,18 +2947,18 @@ network:
         Si la configuration par défaut ne convient pas, on peut la définir dans un fichier YAML sous le chemin \lstinline{/etc/netplan/99_config.yaml}.
         \begin{lstlisting}
 network:
-  version: 2
-  renderer: networkd
-  ethernets:
-    eth0:
-      addresses:
-        - 10.10.10.2/24
-      routes:
-        - to: default
-          via: 10.10.10.1
-      nameservers:
-          search: [mydomain, otherdomain]
-          addresses: [10.10.10.1, 1.1.1.1]
+version: 2
+renderer: networkd
+ethernets:
+eth0:
+addresses:
+- 10.10.10.2/24
+routes:
+- to: default
+via: 10.10.10.1
+nameservers:
+search: [mydomain, otherdomain]
+addresses: [10.10.10.1, 1.1.1.1]
         \end{lstlisting}
     \end{frame}
 
@@ -2753,35 +2987,35 @@ network:
     \begin{frame}[fragile]{Réseau}{Connaître la configuration des interfaces réseau avec \lstinline{ip addr}}
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6~::1/128 scope host noprefixroute
-       valid_lft forever preferred_lft forever
+link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+inet 127.0.0.1/8 scope host lo
+valid_lft forever preferred_lft forever
+inet6~::1/128 scope host noprefixroute
+valid_lft forever preferred_lft forever
 2: wlp0s20f3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 98:8d:46:c0:e5:db brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.119/24 brd 192.168.1.255 scope global dynamic noprefixroute wlp0s20f3
-       valid_lft 86394sec preferred_lft 86394sec
-    inet6 2001:41d0:fe67:8200:dda2:c409:7bae:bb52/64 scope global temporary dynamic
-       valid_lft 604796sec preferred_lft 86220sec
-    inet6 2001:41d0:fe67:8200:2470:b78c:b039:e83c/64 scope global dynamic mngtmpaddr noprefixroute
-       valid_lft 2565226sec preferred_lft 578026sec
-    inet6 fe80::e196:bfb7:74ed:3653/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
+link/ether 98:8d:46:c0:e5:db brd ff:ff:ff:ff:ff:ff
+inet 192.168.1.119/24 brd 192.168.1.255 scope global dynamic noprefixroute wlp0s20f3
+valid_lft 86394sec preferred_lft 86394sec
+inet6 2001:41d0:fe67:8200:dda2:c409:7bae:bb52/64 scope global temporary dynamic
+valid_lft 604796sec preferred_lft 86220sec
+inet6 2001:41d0:fe67:8200:2470:b78c:b039:e83c/64 scope global dynamic mngtmpaddr noprefixroute
+valid_lft 2565226sec preferred_lft 578026sec
+inet6 fe80::e196:bfb7:74ed:3653/64 scope link noprefixroute
+valid_lft forever preferred_lft forever
 3: virbr0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
-    link/ether 52:54:00:c8:3e:e2 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
-       valid_lft forever preferred_lft forever
+link/ether 52:54:00:c8:3e:e2 brd ff:ff:ff:ff:ff:ff
+inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0
+valid_lft forever preferred_lft forever
 4: enx0050b627ae40: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 00:50:b6:27:ae:40 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.78/24 brd 192.168.1.255 scope global dynamic noprefixroute enx0050b627ae40
-       valid_lft 60582sec preferred_lft 60582sec
-    inet6 2001:41d0:fe67:8200:ad56:c31d:972b:45c2/64 scope global temporary dynamic
-       valid_lft 578985sec preferred_lft 60141sec
-    inet6 2001:41d0:fe67:8200:96eb:9f21:f2de:8d72/64 scope global dynamic mngtmpaddr noprefixroute
-       valid_lft 2565226sec preferred_lft 578026sec
-    inet6 fe80::e6d5:a06f:46a4:d8e8/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
+link/ether 00:50:b6:27:ae:40 brd ff:ff:ff:ff:ff:ff
+inet 192.168.1.78/24 brd 192.168.1.255 scope global dynamic noprefixroute enx0050b627ae40
+valid_lft 60582sec preferred_lft 60582sec
+inet6 2001:41d0:fe67:8200:ad56:c31d:972b:45c2/64 scope global temporary dynamic
+valid_lft 578985sec preferred_lft 60141sec
+inet6 2001:41d0:fe67:8200:96eb:9f21:f2de:8d72/64 scope global dynamic mngtmpaddr noprefixroute
+valid_lft 2565226sec preferred_lft 578026sec
+inet6 fe80::e6d5:a06f:46a4:d8e8/64 scope link noprefixroute
+valid_lft forever preferred_lft forever
         \end{lstlisting}
     \end{frame}
 
@@ -3297,8 +3531,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
     \end{frame}
 
     \subsection{Cryptographie Asymétrique}\label{subsec:cryptographie-asymetrique}
-    \begin{frame}
-        \frametitle{Cryptographie Asymétrique}
+    \begin{frame}{Cryptographie Asymétrique}
         \framesubtitle{Très brève introduction\footnote{Initiation à la cryptographie, Gilles Bubertret, 3\textsuperscript{eme} édition, Vuibert}}
         \transdissolve
         Deux grandes familles de cryptographie asymétrique~:
@@ -3324,8 +3557,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
     \end{frame}
 
     \subsection{Post-quantum cryptography}\label{subsec:pqc}
-    \begin{frame}
-        \frametitle{Post-quantum cryptography}
+    \begin{frame}{Post-quantum cryptography}
         \framesubtitle{Définition\footnote{Quantum-safe Cryptography Algorithms, \url{https://research.ibm.com/projects/quantum-safe-cryptography}}}
         \transdissolve
         Concerne la conception et la mise en œuvre de protocoles qui sont censés être sécurisés contre les capacités de calcul accrues des ordinateurs quantiques.
@@ -3337,8 +3569,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         Pour résister à l'algorithme de Shor, les tailles de clé devraient augmenter de manière exponentielle, ce qui les rendrait pratiquement inutilisables.
     \end{frame}
 
-    \begin{frame}
-        \frametitle{Post-quantum cryptography}
+    \begin{frame}{Post-quantum cryptography}
         \framesubtitle{La vidéo}
         \transdissolve
         Sur le channel Youtube \textquote{IBM Technology}, un super channel~! \url{https://www.youtube.com/watch?v=ecvCfTPRBrI}
@@ -3347,8 +3578,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         \includegraphics[width=3cm]{image/digicomp-video}
     \end{frame}
 
-    \begin{frame}
-        \frametitle{Post-quantum cryptography}
+    \begin{frame}{Post-quantum cryptography}
         \framesubtitle{Les débuts}
         \begin{footnotesize}
             \transdissolve
@@ -3459,15 +3689,15 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         On peut ajouter le fichier \lstinline{yourdomain} suivant~:
         \begin{lstlisting}
 server {
-    listen 80;
-    listen [::]:80;
+listen 80;
+listen [::]:80;
 
-    server_name your_domain;
+server_name your_domain;
 
-    location / {
-        proxy_pass http://localhost:8001;
-        include proxy_params;
-    }
+location / {
+proxy_pass http://localhost:8001;
+include proxy_params;
+}
 }
         \end{lstlisting}
         Cette configuration associe les domaines \lstinline{your_domain} au serveur d'application bindé au port 8001.
@@ -3479,15 +3709,15 @@ server {
         Par contre il est limité à une machine, car on a un file system par machine.
         \begin{lstlisting}
 server {
-    listen 80;
-    listen [::]:80;
+listen 80;
+listen [::]:80;
 
-    server_name your_domain;
+server_name your_domain;
 
-    location / {
-        proxy_pass http://unix:/var/run/sock-guni;
-        include proxy_params;
-    }
+location / {
+proxy_pass http://unix:/var/run/sock-guni;
+include proxy_params;
+}
 }
         \end{lstlisting}
         De son côté, Gunicorn est bindé sur ce même socket Unix~:
@@ -3526,24 +3756,24 @@ $ sudo certbot --nginx -d your_domain
         Modifie la configuration comme suit~:
         \begin{lstlisting}[basicstyle=\ttfamily\tiny]
 server {
-    listen 443 ssl; # Managed by Certbot
+listen 443 ssl; # Managed by Certbot
 
-    ssl on; # Managed by Certbot
-    ssl_certificate     /etc/letsencrypt/live/your_domain/fullchain.pem; # Managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/your_domain/privkey.pem; # Managed by Certbot
+ssl on; # Managed by Certbot
+ssl_certificate     /etc/letsencrypt/live/your_domain/fullchain.pem; # Managed by Certbot
+ssl_certificate_key /etc/letsencrypt/live/your_domain/privkey.pem; # Managed by Certbot
 
-    server_name your_domain;
+server_name your_domain;
 
-    location / {
-        proxy_pass http://unix:/var/run/sock-guni;
-        include proxy_params;
-    }
+location / {
+proxy_pass http://unix:/var/run/sock-guni;
+include proxy_params;
+}
 }
 
 server {
-    listen 80 default_server; # Managed by Certbot
-    server_name your_domain; # Managed by Certbot
-    return 301 https://$host$request_uri; # Managed by Certbot
+listen 80 default_server; # Managed by Certbot
+server_name your_domain; # Managed by Certbot
+return 301 https://$host$request_uri; # Managed by Certbot
 }
         \end{lstlisting}
     \end{frame}
@@ -3654,19 +3884,19 @@ sys     0m0,006s
             \item Boucle for de base~:
             \begin{lstlisting}[language=bash]
 for i in /etc/rc.*; do
-    echo "$i"
+echo "$i"
 done
             \end{lstlisting}
             \item Boucle de style C~:
             \begin{lstlisting}[language=bash]
 for ((i = 0 ; i < 100 ; i++)); do
-    echo "$i"
+echo "$i"
 done
             \end{lstlisting}
             \item Boucle while~:
             \begin{lstlisting}[language=bash]
 while read -r ligne; do
-    echo "$ligne"
+echo "$ligne"
 done < fichier.txt
             \end{lstlisting}
         \end{itemize}
@@ -3726,7 +3956,7 @@ aboyer
             \item Définir une fonction~:
             \begin{lstlisting}[language=bash,basicstyle=\ttfamily\tiny]
 mafunc() {
-    echo "Bonjour $1"
+echo "Bonjour $1"
 }
             \end{lstlisting}
             \lstinline{$1} est le premier argument passé à la fonction.
@@ -3738,12 +3968,12 @@ Bonjour Jean
             \item Gestion des erreurs~:
             \begin{lstlisting}[language=bash,basicstyle=\ttfamily\tiny]
 mafunc() {
-    return 1
+return 1
 }
 if mafunc; then
-    echo "Succès"
+echo "Succès"
 else
-    echo "Échec"
+echo "Échec"
 fi
 Échec
             \end{lstlisting}
@@ -3786,9 +4016,9 @@ fi
             \item Exemple :
             \begin{lstlisting}[language=bash]
 if [ -f fichier.txt ]; then
-    echo "Le fichier existe."
+echo "Le fichier existe."
 else
-    echo "Le fichier n'existe pas"
+echo "Le fichier n'existe pas"
 fi
 Le fichier n'existe pas
             \end{lstlisting}
@@ -3873,13 +4103,13 @@ multi-ligne.
         \begin{footnotesize}
             \begin{verbatim}
 function fib(n)
-    if n < 2 then
-        return n
-    else
-        val = fib(n-2) + fib(n-1)
-        cache[n] = val
-        return val
-    end if
+if n < 2 then
+return n
+else
+val = fib(n-2) + fib(n-1)
+cache[n] = val
+return val
+end if
 end function
             \end{verbatim}
         \end{footnotesize}
@@ -3894,17 +4124,17 @@ end function
         \begin{footnotesize}
             \begin{verbatim}
 function fib_cached(n, cache)
-    if n < 2 then
-        return n
-    elese
-        if cache contains n then
-            return cache[n]
-        else
-            val = fib_cached(n-2, cache) + fib_cached(n-1, cache)
-            cache[n] = val
-            return val
-        end if
-    end if
+if n < 2 then
+return n
+elese
+if cache contains n then
+return cache[n]
+else
+val = fib_cached(n-2, cache) + fib_cached(n-1, cache)
+cache[n] = val
+return val
+end if
+end if
 end function
             \end{verbatim}
         \end{footnotesize}
@@ -3958,29 +4188,29 @@ $ time <commande>
 $ shellcheck fibo.ksh
 
 In fibo.ksh line 7:
-        echo $n
-             ^-- SC2086 (info): Double quote to prevent globbing and word splitting.
+echo $n
+^-- SC2086 (info): Double quote to prevent globbing and word splitting.
 
 Did you mean:
-        echo "$n"
+echo "$n"
 
 
 In fibo.ksh line 11:
-    typeset val1=$(fibo $((n - 1)))
-            ^--^ SC2034 (warning): val1 appears unused. Verify use (or export if used externally).
-            ^--^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+typeset val1=$(fibo $((n - 1)))
+^--^ SC2034 (warning): val1 appears unused. Verify use (or export if used externally).
+^--^ SC2155 (warning): Declare and assign separately to avoid masking return values.
 
 
 In fibo.ksh line 12:
-    typeset val2=$(fibo $((n - 2)))
-            ^--^ SC2034 (warning): val2 appears unused. Verify use (or export if used externally).
-            ^--^ SC2155 (warning): Declare and assign separately to avoid masking return values.
+typeset val2=$(fibo $((n - 2)))
+^--^ SC2034 (warning): val2 appears unused. Verify use (or export if used externally).
+^--^ SC2155 (warning): Declare and assign separately to avoid masking return values.
 
 
 In fibo.ksh line 14:
-    typeset val=$((valeur1 + valeur2))
-                   ^-----^ SC2154 (warning): valeur1 is referenced but not assigned.
-                             ^-----^ SC2154 (warning): valeur2 is referenced but not assigned.
+typeset val=$((valeur1 + valeur2))
+^-----^ SC2154 (warning): valeur1 is referenced but not assigned.
+^-----^ SC2154 (warning): valeur2 is referenced but not assigned.
         \end{lstlisting}
     \end{frame}
 
@@ -4044,19 +4274,19 @@ rm -f $DB_NAME
 + rm -f hr.db
 # Check sqlite3 is installed
 if ! [ -x "$(command -v sqlite3)" ]; then
-  echo 'Error: sqlite3 is not installed.' >&2
-  exit 1
+echo 'Error: sqlite3 is not installed.' >&2
+exit 1
 fi
 + command -v sqlite3
 + [ -x /usr/bin/sqlite3 ]
 # Create a database named hr.db add employee table
 sqlite3 $DB_NAME <<EOF
 CREATE TABLE employee (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  age INTEGER NOT NULL,
-  salary INTEGER NOT NULL,
-  dept_it INTEGER NOT NULL
+id INTEGER PRIMARY KEY,
+name TEXT NOT NULL,
+age INTEGER NOT NULL,
+salary INTEGER NOT NULL,
+dept_it INTEGER NOT NULL
 );
 EOF
 + sqlite3 hr.db
@@ -4083,7 +4313,7 @@ $ bash -u ./add_values.sh
     \begin{frame}[fragile]{Shell debugging}{La commande \lstinline{trace}}
         \lstinline{trace} inspecte les appels au noyau Linux des commandes Shell après leur exécution.
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
-            $ sudo strace -c -fp 128996
+$ sudo strace -c -fp 128996
 [sudo] Mot de passe de chrichri :
 strace: Process 128996 attached
 ...
@@ -4091,21 +4321,21 @@ strace: Process 129580 attached
 strace: Process 129599 attached
 % time     seconds  usecs/call     calls    errors syscall
 ------ ----------- ----------- --------- --------- ----------------
- 60,69    0,010394         324        32        16 wait4
- 10,98    0,001881         117        16           execve
-  8,38    0,001435          89        16           clone
-  3,86    0,000661           2       272       176 openat
-  3,84    0,000657           3       176           mmap
-  2,43    0,000417           2       160           rt_sigprocmask
-  1,94    0,000333          20        16           write
-  1,21    0,000207          12        16           clock_nanosleep
+60,69    0,010394         324        32        16 wait4
+10,98    0,001881         117        16           execve
+8,38    0,001435          89        16           clone
+3,86    0,000661           2       272       176 openat
+3,84    0,000657           3       176           mmap
+2,43    0,000417           2       160           rt_sigprocmask
+1,94    0,000333          20        16           write
+1,21    0,000207          12        16           clock_nanosleep
 ...
-  0,12    0,000021           1        16           getrandom
-  0,12    0,000020           1        16           prlimit64
-  0,11    0,000018           0        32           set_robust_list
-  0,10    0,000017           1        16           set_tid_address
-  0,10    0,000017           1        16           rseq
-  0,01    0,000002           0        16           getpid
+0,12    0,000021           1        16           getrandom
+0,12    0,000020           1        16           prlimit64
+0,11    0,000018           0        32           set_robust_list
+0,10    0,000017           1        16           set_tid_address
+0,10    0,000017           1        16           rseq
+0,01    0,000002           0        16           getpid
 ------ ----------- ----------- --------- --------- ----------------
 100,00    0,017127          11      1456       224 total
 [1]+  Processus arrêté      nohup ./endless-loop.sh
