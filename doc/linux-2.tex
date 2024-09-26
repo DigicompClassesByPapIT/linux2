@@ -104,7 +104,7 @@
                 \item La première version libérée par Linus Torvald, date de 1991 et sa licence ne permet pas l'usage commercial.
                 \item Elle est compilée avec GCC 1.4, A.K.A. \textit{GNU C Compiler} de Richard Stallman.
                 La publication de GCC en version 0.9 date de 1987.
-                L.~Torvald a déjà porté GCC sous Minix, un OS éducatif\footnote{GCC,\url{https://gunkies.org/wiki/Gcc}}\footnotestep\footnote{A Brief Historu of GCC, \url{https://gcc.gnu.org/wiki/History}}.
+                L.~Torvald a déjà porté GCC sous Minix, un OS éducatif\footnote{GCC, \url{https://gunkies.org/wiki/Gcc}}\footnotestep\footnote{A Brief Historu of GCC, \url{https://gcc.gnu.org/wiki/History}}.
                 \item 1992, Linux est distribué sous license GNU GPL, donc pour tout usage, même commercial.
                 \item 1992, intégration de X11, le serveur graphique, pour favoriser l'usage en \textit{desktop}.
                 \item 1993, formation de la communauté Debian.
@@ -319,12 +319,12 @@
                     \lstinline{\#\!/bin/bash}                         & \lstinline{\#\!/bin/sh}                   \\ \hline
                     It has more functionality with up-gradation       & It has less functionality                 \\ \hline
                     Supports job controls                             & Does not support job control              \\ \hline
-                    bash is not a valid POSIX shell                   & sh is a valid POSIX shell                 \\ \hline
-                    Easy to use                                       & Not as easy as bash                       \\ \hline
-                    Less portable than sh                             & More portable than bash                   \\ \hline
+                    bash is not a valid POSIX shell                   & POSIX compliant, more portable            \\ \hline
+                    Easy to use                                       & Not as easy as Bash                       \\ \hline
                     Extended version of language                      & Original language                         \\ \hline
                     Bash scripting is scripting specifically for Bash & Shell scripting is scripting in any shell \\ \hline
                     Supports command history                          & Does not support command history          \\ \hline
+                    Associative arrays                                & Does not support associative arrays       \\ \hline
                 \end{tabular}
             \end{table}
         \end{footnotesize}
@@ -410,7 +410,7 @@ $ useradd -h | grep shell
         \bigbreak
         Un exemple de commande devient donc~:
         \begin{lstlisting}[language=bash]
-$ useradd -s /bin/bash -m -d $/home/digiformateur digicomp
+$ useradd -s /bin/bash -m -d /home/digiformateur digicomp
         \end{lstlisting}
         \bigbreak
         \lstinline{/bin/bash} passé à l'option \lstinline{-s} permet de spécifier le Shell.
@@ -785,7 +785,7 @@ c148c36111463e962f490742af787c1f8e49776f09d89e19f71c6cdcf220240d  employee.csv
         \begin{itemize}
             \item Initier la création d'un script Shell nommé \lstinline{discover.sh} dans votre \textquote{home} avec un commentaire descriptif.
             \item Afficher un message indiquant que le \textquote{current working directory} va s'afficher.
-            \item Afficher le \textquote{current working directory}.
+            \item Afficher ce current working directory.
             \item Afficher un message indiquant que les fichiers et répertoires du répertoire courant vont s'afficher.
             \item Afficher la liste des fichiers et répertoires du répertoire courant.
         \end{itemize}
@@ -1079,6 +1079,15 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \end{footnotesize}
     \end{frame}
 
+    \begin{frame}{Commandes de traitement de données}{Solution}
+        Plusieurs solutions possibles sont dans le script Shell \url{https://github.com/DigicompClassesByPapIT/linux2/blob/main/join-using-awk.sh}.
+        \bigbreak
+        Elles sont équivalentes au SQL qui est dans le script \url{https://github.com/DigicompClassesByPapIT/linux2/blob/main/sqlite-hr.sh}.
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/digicomp-lightbulb}
+    \end{frame}
+
     \begin{frame}{Commandes de traitement de données}{Exercice \execcounterdispinc{}~:}
         De la même manière, préparer les fichiers suivants \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/receveur.csv}{\lstinline{receveur.csv}} et \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/porteur.csv}{\lstinline{porteur.csv}} pour qu'ils soient \textit{loadés} en la base SQL par le script \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/sqlite-load-bank.sh}{\lstinline{sqlite-load-bank.sh}}.
         \bigbreak
@@ -1110,7 +1119,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
                 \hline
                 \lstinline{UPDATE}   & \lstinline{sed}, \lstinline{awk} \\
                 \hline
-                \lstinline{INSER}    & \lstinline{<}                    \\
+                \lstinline{INSERT}   & \lstinline{<}                    \\
                 \hline
                 \lstinline{WHERE}    & \lstinline{grep}                 \\
                 \hline
@@ -1118,7 +1127,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
                 \hline
                 \lstinline{GROUP BY} & \lstinline{awk}                  \\
                 \hline
-                \lstinline{SORT BY}  & \lstinline{sort}                 \\
+                \lstinline{ORDER BY} & \lstinline{sort}                 \\
                 \hline
             \end{tabular}
 %\caption{SQL functions and their Shell commands equivalents}
@@ -1182,7 +1191,7 @@ lentgh of the struct: 35
     \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les groupes}
         L'utilitaire \lstinline{addgroup} permet de créer un groupe.
 %bash listing
-        \begin{lstlisting}[language=bash]
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ whoami
 chrichri
 $ addgroup digicomp
@@ -1195,7 +1204,7 @@ fatal: Seul le superutilisateur est autorisé à ajouter un utilisateur ou un gr
             C'est à dire, avoir les droits \textquote{root}.
             Donc être \textquote{root}, ou utiliser \lstinline{sudo}, si on est \textquote{sudoer}, \textit{i.e.}, que l'on fait partie du groupe \textquote{sudo}.
         \end{dangercolorbox}
-        \begin{lstlisting}[language=bash]
+        \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ sudo addgroup digicomp
 info: Choix d'un GID dans la plage 1000 à 59999 ...
 info: Ajout du groupe « digicomp » (GID 1002)...
@@ -1208,7 +1217,7 @@ $ members digicomp
     \end{frame}
 
     \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les groupes}
-        \lstinline{groups} permet de lister les groupes auxquels appartient un utilisateur, mais aussi de lister tous les groupes~:
+        \lstinline{groups} permet de lister les groupes auxquels appartient un utilisateur, à défaut d'utilisateur, ceux de celui qui lance la commande~:
         \begin{lstlisting}[language=bash]
 $ groups chrichri
 chrichri~: chrichri adm dialout cdrom sudo audio dip video plugdev lpadmin pulse lxd sambashare nordvpn docker libvirt
@@ -1217,6 +1226,15 @@ chrichri~: chrichri adm dialout cdrom sudo audio dip video plugdev lpadmin pulse
         Il nous confirme que le groupe \lstinline{digicomp} est bien créé.
         Il n'a pas de membre.
         \bigbreak
+        Tous les groupes sont dans \lstinline{/etc/group}.
+    \end{frame}
+
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les groupes}
+        \lstinline{groups} permet de lister les groupes auxquels appartient un utilisateur, à défaut d'utilisateur, ceux de celui qui lance la commande~:
+        \begin{lstlisting}[language=bash]
+$ groups chrichri
+chrichri~: chrichri adm dialout cdrom sudo audio dip video plugdev lpadmin pulse lxd sambashare nordvpn docker libvirt
+        \end{lstlisting}
         Pour qu'une ressource, fichier, dossier, appartienne à un groupe, il faut que le groupe soit propriétaire de la ressource.
         Pour cela, la commande \lstinline{chown} (CHange OWNer) permet de changer le propriétaire d'une ressource.
 % Shell listing
@@ -1385,10 +1403,10 @@ $ echo "Le code de l'entrée est 8564" > digicomp-little-secret/secret.txt
     \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Les utilisateurs}
         Exemple avec la création du user \lstinline{digiformateur}.
         \begin{lstlisting}[language=bash]
-$ useradd -s /bin/bash -m -d $/home/digiformateur digiformateur
+$ useradd -s /bin/bash -m -d /home/digiformateur digiformateur
 useradd: Permission denied.
 useradd~: impossible de vérouiller /etc/passwd ; réessayer plus tard.
-$ sudo useradd -s /bin/bash -m -d $/home/digiformateur digiformateur # sudo
+$ sudo useradd -s /bin/bash -m -d /home/digiformateur digiformateur # sudo
 $ passwd digiformateur
 passwd~: Vous ne devriez pas voir ou modifier l'information du mot de passe pour digiformateur.
 $ sudo passwd digiformateur # superutilisateur
@@ -1406,6 +1424,23 @@ userdel: Permission denied.
 userdel~: impossible de vérouiller /etc/passwd ; réessayer plus tard.
 $ sudo userdel digiformateur
         \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[fragile]{Utilisateurs, groupes et droits d'accès}{Ajout d'un user à un groupe}
+        \begin{columns}
+            \column{0.6\textwidth}
+            Pour ajouter un user à un groupe, il faut utiliser la commande \lstinline{usermod}~:
+            \begin{lstlisting}[language=bash]
+usermod -a -G <group> <user name>
+            \end{lstlisting}
+            \column{0.4\textwidth}
+            \centering
+            \includegraphics[width=4cm]{image/tux-welcome}
+        \end{columns}
+        \begin{dangercolorbox}
+            Il est important de noter que le \lstinline{-a} de \textquote{add} est nécessaire pour ajouter un user à un groupe.
+            Sinon, le groupe sera remplacé par le groupe spécifié.
+        \end{dangercolorbox}
     \end{frame}
 
     \subsection{Mot de passe}\label{subsec:password}
@@ -1457,6 +1492,13 @@ $ sudo userdel digiformateur
             \item Un script Shell à exécuter grâce au shebang \lstinline{\#!/bin/bash} qui lance la commande Python \lstinline{python3 -m http.server -d /var/www/html/digicomp/}.
             Ce script Shell ne peut être exécuté par l'utilisateur de production uniquement et aucune resource ne doit pouvoir être modifiée.
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Utilisateurs, groupes et droits d'accès}{Solution}
+        Une des solutions possibles est dans le script \url{https://github.com/DigicompClassesByPapIT/linux2/blob/main/python-server-rights.sh}.
+        \bigbreak
+        \centering
+        \includegraphics[width=3cm]{image/digicomp-lightbulb}
     \end{frame}
 
 
@@ -1546,6 +1588,7 @@ dd if=<source> of=<cible> bs=<taille des blocs> skip= seek= conv=<conversion>
         \begin{scriptsize}
             \begin{itemize}
                 \item \lstinline{lsblk}~: Pour lister les disques et les partitions.
+                \item \lstinline{blkid}~: Pour lister les UUID des disques et partitions.
                 \item \lstinline{parted}~: Pour lister et modifier les disques et les partitions.
                 \item \lstinline{mount}~: Pour monter le disque.
                 \item \lstinline{df}~: Pour vérifier que le disque est bien monté.
@@ -1725,7 +1768,7 @@ UUID=EE30-267D  /boot/efi       vfat    umask=0077      0       1
 # Temp file in memory.
 tmpfs /tmp tmpfs defaults,size=2G 0 0
         \end{lstlisting}
-        On peut aussi utiliser ce fichier pour configurer le montage au moment du démarrage d'un disque supplémentaire, \textit{e.g.}, la clé USB sur un point de montage~:
+        On peut aussi utiliser le fichier \textit{device} de la partition pour configurer le montage au moment du démarrage d'un disque supplémentaire, \textit{e.g.}, la clé USB sur un point de montage~:
         \begin{lstlisting}[basicstyle=\tiny\ttfamily]
 # /boot was on /dev/sda5 during installation
 /dev/sda5                                    /boot           ext2    defaults          0       2
@@ -1776,9 +1819,9 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
     \end{frame}
 
     \begin{frame}{RAID}{Exercice \execcounterdispinc{}}
-        L'objectif est de maîtriser les commandes de base de l'outil \lstinline{mdadm}\cref{mdadm}.
+        L'objectif est de maîtriser les commandes de base de l'outil \lstinline{mdadm} en s'aidant de la documentation Ubuntu\cref{mdadm}.
         \begin{itemize}
-            \item Créer 2 disques vierges de 1 Go chacun.
+            \item Ajouter 2 disques vierges de 1 Go chacun à la VM~.
             \item Lancer la VM Ubuntu avec les 2 disques créés.
             \item Se connecter à la VM~.
             \item Vérifier l'ajout des 2 disques avec une commande vue précédemment.
@@ -1794,12 +1837,14 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
         \bigbreak
         \centering
         \includegraphics[width=5cm]{image/raid-0}
+        \pause
+        La probabilité de perdre des données est multipliée par le nombre de disques physiques~!
     \end{frame}
 
     \subsection{LVM}\label{subsec:lvm}
 
     \begin{frame}{Logical Volume Manager, A.K.A LVM}{Définition\footnote{\label{lvm}LVM, une autre manière de partitionner, \url{https://doc.ubuntu-fr.org/lvm}}}
-        Il permet la création et la création de volumes logiques.
+        Il permet la création et la gestion de volumes logiques.
         Ces derniers sont des partitions virtuelles qui peuvent être agrandies ou réduites sans perte de donnée.
         Et sont décorrélées des disques physiques (les PV ou \textquote{Physical Volume}).
         \bigbreak
@@ -1857,6 +1902,7 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
             \item Ajouter le montage du volume logique dans \lstinline{/etc/fstab} pour que le volume se monte au démarrage de la machine.
             \item Redémarrer la machine pour tester.
         \end{itemize}
+        Toutes ces commandes sont dans la documentation Ubuntu\cref{lvm}.
     \end{frame}
 
     \begin{frame}{Système de fichier}{Exercice \execcounterdispinc}
@@ -1884,12 +1930,13 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
     \begin{frame}{Overview de NFS\footnote{\label{nfs}NFS : Network File System - le partage réseau sous Linux, \url{https://doc.ubuntu-fr.org/nfs}}}
         \begin{itemize}
             \item NFS signifie Network File System.
+            \item Architecture client/serveur.
             \item La version actuelle du protocole est la 4.
             \item Permet le partage de fichiers principalement entre systèmes UNIX~.
             \item Des clients à installer existent sous Windows et même intégrés d'office dans Windows 10 et 11 et Server qu'il faut activer et configuré\footnote{Vue d’ensemble du système de fichiers NFS, \url{https://learn.microsoft.com/fr-fr/windows-server/storage/nfs/nfs-overview}}.
             \item Permet de gérer les droits en lecture seule ou lecture/écriture.
-            \item \item Compatible avec IPv4 et IPv6.
-            \item \item Il utilise le port 2049.
+            \item Compatible avec IPv4 et IPv6.
+            \item Il utilise les ports 111 et 2049 TCP et UDP~.
             \item Le disque est sur le réseau, il est d'utiliser un firewall pour sécuriser le partage.
         \end{itemize}
     \end{frame}
@@ -1923,7 +1970,7 @@ $ car /etc/fstab
 ...
 192.168.1.201:/home/chrichri/ /media/nfs nfs defaults,user,auto,_netdev,bg 0 0
             \end{lstlisting}
-            \item Monter le partage avec la commande \lstinline{mount}.
+            \item Monter le partage avec la commande \lstinline{mount -a}.
             \item Exemple : \lstinline{mount 192.168.1.1:/<path partagé> <path de montage>}.
         \end{itemize}
     \end{frame}
@@ -2509,6 +2556,34 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
         \includegraphics[width=3cm]{image/guy-in-front-of-desktop}
     \end{frame}
 
+    \begin{frame}[fragile]{Crontab}{Solution possible}
+        \begin{itemize}
+            \item Créer un script Shell \lstinline{backup.sh} dans \lstinline{/root/scripts/}~:
+            \begin{lstlisting}[language=bash]
+#!/bin/bash
+# Backup script to compress a disk image with Bzip2 and timestamp it
+
+# Define the source disk and the backup directory
+SOURCE_DISK="/dev/sda"
+BACKUP_DIR="/root/backup"
+
+# Create backup directory
+mkdir -p $BACKUP_DIR
+
+# Create a timestamp
+TIMESTAMP=$(date +"%Y%m%d%H%M")
+
+# Perform the backup and compress it
+dd if=$SOURCE_DISK | bzip2 > $BACKUP_DIR/disk_backup_$TIMESTAMP.bz2
+            \end{lstlisting}
+            \item Ajouter la tâche à crontab~:
+            \begin{lstlisting}[language=bash]
+30 22 * * * /root/scripts/backup.sh
+            \end{lstlisting}
+            \item Le rendre exécutable avec \lstinline{chmod +x /root/scripts/backup.sh}.
+        \end{itemize}
+    \end{frame}
+
     \subsection{Service VS Cron}\label{subsec:service-vs-cron}
 
     \begin{frame}{Service VS Cron}{2 outils différents}
@@ -2731,7 +2806,7 @@ deb http://security.ubuntu.com/ubuntu focal-security multiverse
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}{Installation de logiciels}{/etc/apt/sources.list.d/s\cref{sources}}
+    \begin{frame}{Installation de logiciels}{/etc/apt/sources.list.d/\cref{sources}}
         \begin{itemize}
             \item Répertoire pour ajouter des sources de paquets de manière modulaire.
             \item Chaque fichier dans ce répertoire suit le même format que \lstinline{sources.list}.
@@ -2760,7 +2835,7 @@ Components: main
     \begin{frame}{Installation de logiciels}{Overview des PPA\footnote{\label{ppa}Les dépôts personnels de paquets logiciels ou Personal Package Archives (PPA), \url{https://doc.ubuntu-fr.org/ppa}}}
         \begin{itemize}
             \item Les PPA (Personal Package Archives) sont des dépôts personnels de paquets logiciels.
-            \item Possible grâce à plate-forme LaunchPad.
+            \item Possible grâce à la plate-forme LaunchPad.
             \item Permettent aux développeurs de proposer facilement des versions récentes de leurs logiciels sans passer par les process de validation de Debian, Ubuntu ou autres.
             \item À chaque ajout de PPA, deux fichiers seront générés, nommés respectivement \lstinline{<nom_du_ppa>.lis} et \lstinline{<nom_du_ppa>.list.save} dans le dossier \lstinline{/etc/apt/sources.list.d}~.
         \end{itemize}
@@ -2931,14 +3006,14 @@ $ add-apt-repository --remove ppa:<nom_du_dépôt>
         \begin{lstlisting}
 $ etc/netplan/90-NM-fe5da9eb-a7d0-4756-b0bf-cd94991253c4.yaml
 network:
-version: 2
-wifis:
-NM-fe5da9eb-a7d0-4756-b0bf-cd94991253c4:
-renderer: NetworkManager
-match:
-name: "wlp0s20f3"
-dhcp4: true
-dhcp6: true
+  version: 2
+  wifis:
+    NM-fe5da9eb-a7d0-4756-b0bf-cd94991253c4:
+      renderer: NetworkManager
+      match:
+        name: "wlp0s20f3"
+      dhcp4: true
+      dhcp6: true
 ...
         \end{lstlisting}
     \end{frame}
@@ -2947,18 +3022,18 @@ dhcp6: true
         Si la configuration par défaut ne convient pas, on peut la définir dans un fichier YAML sous le chemin \lstinline{/etc/netplan/99_config.yaml}.
         \begin{lstlisting}
 network:
-version: 2
-renderer: networkd
-ethernets:
-eth0:
-addresses:
-- 10.10.10.2/24
-routes:
-- to: default
-via: 10.10.10.1
-nameservers:
-search: [mydomain, otherdomain]
-addresses: [10.10.10.1, 1.1.1.1]
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      addresses:
+        - 10.10.10.2/24
+      routes:
+        - to: default
+          via: 10.10.10.1
+      nameservers:
+        search: [mydomain, otherdomain]
+        addresses: [10.10.10.1, 1.1.1.1]
         \end{lstlisting}
     \end{frame}
 
@@ -3689,15 +3764,15 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         On peut ajouter le fichier \lstinline{yourdomain} suivant~:
         \begin{lstlisting}
 server {
-listen 80;
-listen [::]:80;
+    listen 80;
+    listen [::]:80;
 
-server_name your_domain;
+    server_name your_domain;
 
-location / {
-proxy_pass http://localhost:8001;
-include proxy_params;
-}
+    location / {
+        proxy_pass http://localhost:8001;
+        include proxy_params;
+    }
 }
         \end{lstlisting}
         Cette configuration associe les domaines \lstinline{your_domain} au serveur d'application bindé au port 8001.
@@ -3709,15 +3784,15 @@ include proxy_params;
         Par contre il est limité à une machine, car on a un file system par machine.
         \begin{lstlisting}
 server {
-listen 80;
-listen [::]:80;
+    listen 80;
+    listen [::]:80;
 
-server_name your_domain;
+    server_name your_domain;
 
-location / {
-proxy_pass http://unix:/var/run/sock-guni;
-include proxy_params;
-}
+    location / {
+        proxy_pass http://unix:/var/run/sock-guni;
+        include proxy_params;
+    }
 }
         \end{lstlisting}
         De son côté, Gunicorn est bindé sur ce même socket Unix~:
@@ -3756,24 +3831,24 @@ $ sudo certbot --nginx -d your_domain
         Modifie la configuration comme suit~:
         \begin{lstlisting}[basicstyle=\ttfamily\tiny]
 server {
-listen 443 ssl; # Managed by Certbot
+    listen 443 ssl; # Managed by Certbot
 
-ssl on; # Managed by Certbot
-ssl_certificate     /etc/letsencrypt/live/your_domain/fullchain.pem; # Managed by Certbot
-ssl_certificate_key /etc/letsencrypt/live/your_domain/privkey.pem; # Managed by Certbot
+    ssl on; # Managed by Certbot
+    ssl_certificate     /etc/letsencrypt/live/your_domain/fullchain.pem; # Managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/your_domain/privkey.pem; # Managed by Certbot
 
-server_name your_domain;
+    server_name your_domain;
 
-location / {
-proxy_pass http://unix:/var/run/sock-guni;
-include proxy_params;
-}
+    location / {
+        proxy_pass http://unix:/var/run/sock-guni;
+        include proxy_params;
+    }
 }
 
 server {
-listen 80 default_server; # Managed by Certbot
-server_name your_domain; # Managed by Certbot
-return 301 https://$host$request_uri; # Managed by Certbot
+    listen 80 default_server; # Managed by Certbot
+    server_name your_domain; # Managed by Certbot
+    return 301 https://$host$request_uri; # Managed by Certbot
 }
         \end{lstlisting}
     \end{frame}
@@ -3884,19 +3959,19 @@ sys     0m0,006s
             \item Boucle for de base~:
             \begin{lstlisting}[language=bash]
 for i in /etc/rc.*; do
-echo "$i"
+    echo "$i"
 done
             \end{lstlisting}
             \item Boucle de style C~:
             \begin{lstlisting}[language=bash]
 for ((i = 0 ; i < 100 ; i++)); do
-echo "$i"
+    echo "$i"
 done
             \end{lstlisting}
             \item Boucle while~:
             \begin{lstlisting}[language=bash]
 while read -r ligne; do
-echo "$ligne"
+    echo "$ligne"
 done < fichier.txt
             \end{lstlisting}
         \end{itemize}
@@ -3956,7 +4031,7 @@ aboyer
             \item Définir une fonction~:
             \begin{lstlisting}[language=bash,basicstyle=\ttfamily\tiny]
 mafunc() {
-echo "Bonjour $1"
+    echo "Bonjour $1"
 }
             \end{lstlisting}
             \lstinline{$1} est le premier argument passé à la fonction.
@@ -3968,12 +4043,12 @@ Bonjour Jean
             \item Gestion des erreurs~:
             \begin{lstlisting}[language=bash,basicstyle=\ttfamily\tiny]
 mafunc() {
-return 1
+    return 1
 }
 if mafunc; then
-echo "Succès"
+    echo "Succès"
 else
-echo "Échec"
+    echo "Échec"
 fi
 Échec
             \end{lstlisting}
@@ -4016,9 +4091,9 @@ fi
             \item Exemple :
             \begin{lstlisting}[language=bash]
 if [ -f fichier.txt ]; then
-echo "Le fichier existe."
+    echo "Le fichier existe."
 else
-echo "Le fichier n'existe pas"
+    echo "Le fichier n'existe pas"
 fi
 Le fichier n'existe pas
             \end{lstlisting}
@@ -4103,13 +4178,12 @@ multi-ligne.
         \begin{footnotesize}
             \begin{verbatim}
 function fib(n)
-if n < 2 then
-return n
-else
-val = fib(n-2) + fib(n-1)
-cache[n] = val
-return val
-end if
+    if n < 2 then
+        return n
+    else
+        val = fib(n-2) + fib(n-1)
+        return val
+    end if
 end function
             \end{verbatim}
         \end{footnotesize}
@@ -4119,22 +4193,45 @@ end function
         \end{itemize}
     \end{frame}
 
+    \begin{frame}[fragile]{Une des solutions possibles en Shell Posix}
+        \begin{lstlisting}[language=bash]
+#!/bin/sh
+
+fibo() {
+    n=$1
+    if [ "$n" -lt 2 ]; then
+        echo "$n"
+        return
+    fi
+
+    val1=$(fibo $((n - 1)))
+    val2=$(fibo $((n - 2)))
+
+    val=$((val1 + val2))
+
+    echo "$val"
+}
+
+fibo "$1"
+        \end{lstlisting}
+    \end{frame}
+
     \begin{frame}[fragile]{Exercice\cref{fibo-ross} \execcounterdispinc{}}
         Écrire une fonction récursive qui calcul la série de Fibonacci avec caching à l'image du pseudo-code suivant~:
         \begin{footnotesize}
             \begin{verbatim}
 function fib_cached(n, cache)
-if n < 2 then
-return n
-elese
-if cache contains n then
-return cache[n]
-else
-val = fib_cached(n-2, cache) + fib_cached(n-1, cache)
-cache[n] = val
-return val
-end if
-end if
+    if n < 2 then
+        return n
+    elese
+        if cache contains n then
+            return cache[n]
+        else
+            val = fib_cached(n-2, cache) + fib_cached(n-1, cache)
+            cache[n] = val
+            return val
+        end if
+    end if
 end function
             \end{verbatim}
         \end{footnotesize}
@@ -4142,6 +4239,34 @@ end function
             \item Quel(s) Shell peut-on utiliser~?
             \item Charger la function avec \lstinline{source} pour l'utiliser dans votre Shell.
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Une des solutions possibles en Bash}
+        \begin{lstlisting}[language=bash]
+#!/bin/bash
+declare -A cache  # Declare an associative array for caching
+
+fibo_cached() {
+    local n=$1
+    if (( n < 2 )); then
+        echo "$n"
+        return
+    fi
+
+    if [[ -n "${cache[$n]}" ]]; then
+        echo "${cache[$n]}"
+        return
+    fi
+
+    local val1=$(fibo_cached $((n - 1)))
+    local val2=$(fibo_cached $((n - 2)))
+    local val=$((val1 + val2))
+    cache[$n]=$val  # Cache the result
+    echo "$val"
+}
+
+fibo_cached "$1"
+        \end{lstlisting}
     \end{frame}
 
     \begin{frame}[fragile]{Exercice\cref{fibo-ross} \execcounterdispinc{}}
@@ -4170,7 +4295,7 @@ $ time <commande>
             \item Ouvrir ou créer le fichier contenant le code Shell.
             \item Trouver un plugin dédié au développement Shell dans la \textit{marketplace}.
             Ici \textquote{ShellCheck} pour la vérification de la syntaxe.
-            En lisant la doc on comprend que c'est une intégration de ShellCheck qui vient sans ce dernier sur certaines plateformes.
+            En lisant la documentation on comprend que c'est une intégration de ShellCheck qui vient sans ce dernier sur certaines plateformes.
             Il faut installer ShellCheck.
             \item Installer le plugin.
             \item Tester le plugin en écrivant sciemment un code erroné.
@@ -4289,7 +4414,6 @@ salary INTEGER NOT NULL,
 dept_it INTEGER NOT NULL
 );
 EOF
-+ sqlite3 hr.db
         \end{lstlisting}
     \end{frame}
 
