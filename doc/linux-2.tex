@@ -954,7 +954,7 @@ $ cut employee.csv -f 1,3 --delimiter=';' | head -n 3
 0;30
 1;25
         \end{lstlisting}
-        \lstinline{-f 1,3} pour sélectionner les colonnes de 1 à 3~:
+        \lstinline{-f 1-3} pour sélectionner les colonnes de 1 à 3~:
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ cut employee.csv -f 1-3 --delimiter=';' | head -n 3
 "id";"name";"age"
@@ -1159,10 +1159,8 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \begin{lstlisting}[language=python]
 from sys import getsizeof
 from struct import pack
-print("lentgh of the string:", getsizeof("65535"))
-print("lentgh of the struct:", getsizeof(pack(">H", 0xffff)))
-lentgh of the string: 46
-lentgh of the struct: 35
+print("lentgh of the string:", getsizeof("65535")) # lentgh of the string: 46
+print("lentgh of the struct:", getsizeof(pack(">H", 0xffff))) # lentgh of the struct: 35
         \end{lstlisting}
         La valeur d'un octet est comprise entre 0 et 255, mais pour obtenir du texte, on passe par une table de correspondance, un encodage, qui donnera un seul caractère.
         La valeur numérique la plus élevée pour ce même octet en texte est donc 9.
@@ -1510,6 +1508,7 @@ usermod -a -G <group> <user name>
             Les systèmes de fichiers les plus répandus à l'heure actuelle sont sûrement le FAT32 et
             le NTFS, qui sont les deux seuls systèmes de fichiers que Microsoft® Windows® peut nativement lire.
             Il existe de nombreux autres systèmes de fichiers~: ext2, ext3, ext4, ReiserFS, JFS, XFS, Btrfs, ZFS\ldots
+            (iB = bibyte)
             \begin{table}[h!]
                 \centering
                 \begin{tabular}{|c|c|c|c|c|}
@@ -1835,8 +1834,9 @@ tmpfs /tmp tmpfs defaults,size=2G 0 0
     \begin{frame}{RAID}{Exercice \execcounterdispinc{}}
         Quel est un des dangers de RAID 0?
         \bigbreak
-        \centering
-        \includegraphics[width=5cm]{image/raid-0}
+        \begin{center}
+            \includegraphics[width=5cm]{image/raid-0}
+        \end{center}
         \pause
         La probabilité de perdre des données est multipliée par le nombre de disques physiques~!
     \end{frame}
@@ -2055,6 +2055,8 @@ PID TTY          TIME CMD
 ...
         \end{lstlisting}
         \bigbreak
+        À ne pas confondre avec \lstinline{ps -u} qui affiche les états des processus.
+        \bigbreak
         Les processus de l'utilisateur courant et de tous les autres utilisateurs, \textit{i.e.}, tous les processus~:
         \begin{lstlisting}[language=bash]
 $ ps -Af
@@ -2263,6 +2265,7 @@ $ pkill -9 <nom>
             \item La valeur de nice varie de -20 (priorité élevée) à 19 (priorité faible).
             \item Exemple~: \lstinline{nice -n 10 myprocess}
             \item On retrouve ce niveau de priorité dans \lstinline{top} avec la colonne \textquote{NI}.
+            \item Il faut être \textit{sudoer} pour une priorité négative.
         \end{itemize}
     \end{frame}
 
@@ -2270,10 +2273,10 @@ $ pkill -9 <nom>
         \begin{itemize}
             \item \lstinline{renice} modifie la priorité d'un processus en cours d'exécution.
             \item Elle nécessite les droits superutilisateur.
-            \item Syntaxe~: \lstinline{renice [valeur] -p [PID]}.
+            \item Syntaxe~: \lstinline{renice -n [valeur] -p [PID]}.
             \item PID (Process ID) est l'identifiant unique du processus.
             \item Utiliser \lstinline{ps} pour trouver le PID du processus.
-            \item Exemple~: \lstinline{renice -5 -p 1234}
+            \item Exemple~: \lstinline{renice -n 5 -p 1234}
         \end{itemize}
     \end{frame}
 
@@ -2358,10 +2361,10 @@ WantedBy=multi-user.target
         \bigbreak
         Quelques exemples de commandes utiles~:
         \begin{itemize}
-            \item \lstinline{journalctl --unit<service>} pour afficher les logs d'un service.
-            \item \lstinline{journalctl --unit<service> -f} pour afficher les logs en temps réel.
-            \item \lstinline{journalctl --unit<service> --since "2024-04-17 00:00:00"} pour afficher les logs depuis une date.
-            \item \lstinline{journalctl --unit<service> --since "2024-04-17 00:00:00" --until "2024-04-17 23:59:59"} pour afficher les logs entre deux dates.
+            \item \lstinline{journalctl --unit==<service>} pour afficher les logs d'un service.
+            \item \lstinline{journalctl --unit==<service> -f} pour afficher les logs en temps réel.
+            \item \lstinline{journalctl --unit==<service> --since "2024-04-17 00:00:00"} pour afficher les logs depuis une date.
+            \item \lstinline{journalctl --unit==<service> --since "2024-04-17 00:00:00" --until "2024-04-17 23:59:59"} pour afficher les logs entre deux dates.
             \item \lstinline{journalctl --unit=<service> -n 100 --no-pager} pour afficher les 100 dernière lignes.
         \end{itemize}
     \end{frame}
@@ -2441,25 +2444,6 @@ WantedBy=multi-user.target
         Expliquer chaque option de la configuration du service.
     \end{frame}
 
-    \begin{frame}[fragile]{Exercice pratique \execcounterdispinc{}}{Une des solutions (commande à exécuter sur la VM)}
-        Commande pour configurer la VM~:
-        \begin{lstlisting}[language=bash]
-# Install gunicorn, pip install gunicorn is no longer recommanded
-$ sudo apt-get install python3-gunicorn
-# Configure SSH
-$ sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
-$ sudo sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-# Restart SSH with the new configuration
-$ sudo systemctl restart sshd
-# Create the .ssh directory and the authorized_keys file
-$ mkdir -p ~/.ssh
-$ touch ~/.ssh/authorized_keys
-# Add the public key to the authorized_keys file
-$ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/.ssh/authorized_keys
-        \end{lstlisting}
-        Expliquer chaque commande.
-    \end{frame}
-
 
     \section{Ordonnancement et automatisation des tâches}\label{sec:scheduling}
 
@@ -2494,7 +2478,7 @@ $ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQ8z4... chrichri@localhost" >> ~/
             \item Les fichiers \lstinline{/etc/cron.allow} et \lstinline{/etc/cron.deny} contrôlent l'accès à crontab.
             \item Seuls les utilisateurs listés dans \lstinline{cron.allow} peuvent utiliser crontab si ce fichier existe.
             \item Si \lstinline{cron.allow} n'existe pas, les utilisateurs ne figurant pas dans \lstinline{cron.deny} peuvent utiliser crontab.
-            \item il faut être superutilisateur.
+            \item Il faut être superutilisateur pour lancer une tâche en user root, à défaut elle est lancée avec le user loggé.
             \item \lstinline{crontab -l}~: Liste les tâches planifiées de l'utilisateur.
             \item \lstinline{crontab -e}~: Édite les tâches planifiées de l'utilisateur.
             \item \lstinline{crontab -r}~: Supprime toutes les tâches planifiées de l'utilisateur.
@@ -2837,8 +2821,21 @@ Components: main
             \item Les PPA (Personal Package Archives) sont des dépôts personnels de paquets logiciels.
             \item Possible grâce à la plate-forme LaunchPad.
             \item Permettent aux développeurs de proposer facilement des versions récentes de leurs logiciels sans passer par les process de validation de Debian, Ubuntu ou autres.
-            \item À chaque ajout de PPA, deux fichiers seront générés, nommés respectivement \lstinline{<nom_du_ppa>.lis} et \lstinline{<nom_du_ppa>.list.save} dans le dossier \lstinline{/etc/apt/sources.list.d}~.
+            \item À chaque ajout de PPA, deux fichiers seront générés, nommés respectivement \lstinline{<nom_du_ppa>.list} et \lstinline{<nom_du_ppa>.list.save} dans le dossier \lstinline{/etc/apt/sources.list.d}~.
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Installation de logiciels}{Installation de package de repos hors de la distributiuon avec \lstinline{yum}}
+        On peut par exemple installer des packages de \url{https://rpms.remirepo.net/} en passant l'URL à \lstinline{yum}~:
+        \begin{lstlisting}[language=bash]
+sudo yum install https://rpms.remirepo.net/archives/fedora/31/test74/x86_64/php-fpm-7.4.15~RC2-1.fc31.remi.x86_64.rpm
+        \end{lstlisting}
+        Ici, cette commande permet d'installer une autre version de PHP que celle packagée avec la distribution.
+        \bigbreak
+        Pour l'activer, il faut l'argument \lstinline{module enable} de \lstinline{yum}~:
+        \begin{lstlisting}[language=bash]
+sudo yum module enable php:remi-7.4
+        \end{lstlisting}
     \end{frame}
 
     \begin{frame}{Installation de logiciels}{Avantages des PPA\cref{ppa}}
@@ -3003,8 +3000,8 @@ $ add-apt-repository --remove ppa:<nom_du_dépôt>
         Le client DHCP est activé.
         Il permet de récupérer automatiquement une adresse IP, un masque de sous-réseau, une passerelle et des serveurs DNS~.
         Par exemple sous Ubuntu, les configurations que l'on trouve sous \lstinline{/etc/netplan/} indiquent que l'interface réseau \lstinline{wlp0s20f3}, le WiFi, a activée le DHCP~:
-        \begin{lstlisting}
-$ etc/netplan/90-NM-fe5da9eb-a7d0-4756-b0bf-cd94991253c4.yaml
+        \begin{lstlisting}[language=bash]
+$ cat /etc/netplan/90-NM-fe5da9eb-a7d0-4756-b0bf-cd94991253c4.yaml
 network:
   version: 2
   wifis:
@@ -3120,7 +3117,7 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
 
     \begin{frame}{Réseau}{Configuration d'un réseau avec un serveur routeur sous Linux\footnote{How to Configure and use Linux as a Router, \url{https://www.computernetworkingnotes.com/linux-tutorials/how-to-configure-and-use-linux-as-a-router.html}}}
         Exercice \execcounterdispinc{}~:
-        En vous inspirant du tutorial \href{How to Configure and use Linux as a Router}{How to Configure and use Linux as a Router}, créer un Linux router qui connecte 2 réseaux distincts.
+        En vous inspirant du tutorial \href{https://www.computernetworkingnotes.com/linux-tutorials/how-to-configure-and-use-linux-as-a-router.htmlsky}{How to Configure and use Linux as a Router}, créer un Linux router qui connecte 2 réseaux distincts.
         Pour cela créer les 3 VMs suivantes.
         \begin{columns}
             \column{0.55\textwidth}
@@ -3196,9 +3193,11 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
                     \hline
                     \lstinline{iiptables -A INPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT}    & Permettre à une connexion déjà ouverte de recevoir du trafic.        \\
                     \hline
-                    \lstinline{iptables-save}                                                      & Sauvegarde les règles actuelles d'iptables.                          \\
+                    \lstinline{iptables-save}                                                      & Dump les règles actuelles d'iptables.                                \\
                     \hline
-                    \lstinline{service iptables-persistent save}                                   & Rend les règles actuelles persistentes après redémarrage.            \\
+                    \lstinline{iptables-restore}                                                   & Charge les règles dumpées avec \lstinline{iptables-save}.            \\
+                    \hline
+                    \lstinline{service iptables-persistent save}                                   & Rend les règles actuelles persistantes après redémarrage.            \\
                     \hline
                 \end{tabular}
             \end{table}
@@ -3230,9 +3229,11 @@ $ ssh chrichri@192.168.122.1 -p 5022 -v -i /home/chrichri/vms/virt-ubuntu
         Lorsqu'une correspondance est trouvée une ou plusieurs actions sont exécutées.
         Typiquement, fail2ban cherche des tentatives répétées de connexions infructueuses dans les fichiers journaux et procède à un bannissement en ajoutant une règle au pare-feu \lstinline{iptables} ou \lstinline{nftables} pour bannir l'adresse IP de la source.
         \begin{dangercolorbox}
-            Fail2ban en analysant les logs permet de bannir les IP au bout d'un certain nombre de tentatives, ce qui limitera le remplissage des logs et l'utilisation de la bande passante.
-
-            Ceci va également rendre les attaques par force brute ou par dictionnaire beaucoup plus longues mais ce n'est pas une sécurité absolue contre ce type d'attaque.
+            \begin{itemize}
+                \item Limite le remplissage des logs et l'utilisation de la bande passante.
+                \item Ceci va également rendre les attaques par force brute ou par dictionnaire beaucoup plus longues mais ce n'est pas une sécurité absolue contre ce type d'attaque.
+                \item Toujours vérifier et tester la configuration par défaut qui peut-être différente en fonction des distributions et des versions.
+            \end{itemize}
         \end{dangercolorbox}
     \end{frame}
 
@@ -3522,9 +3523,9 @@ $ ssh-keygen -t ed25519 -C "your_email@example.com"
         \begin{columns}
             \column{0.7\textwidth}
             Rsync est un outil de synchronisation de fichiers qui permet de copier des fichiers locaux ou distants.
-            Mais son réel atout est bien pour les fichiers distants, en local on a \lstinline{cp}\ldots
+            Mais son réel atout est bien pour la synchronisation de fichiers, en local on a \lstinline{cp} pour copier ou pour pousser à travers le SSH sans juste synchroniser il existe \lstinline{scp}\ldots
             \bigbreak
-            Il est souvent utilisé pour synchroniser des fichiers entre un serveur et un client SSH~.
+            Il est souvent utilisé pour synchroniser des fichiers entre un serveur et un client SSH, donc de ne déplacer que le nécessaire.
             \bigbreak
             Par exemple les IDE JetBrains peuvent synchroniser le code avec d'autres machines pour le déploiement sur les environnements de développement/testing, \textit{etc}.
             \column{0.3\textwidth}
@@ -3535,12 +3536,12 @@ $ ssh-keygen -t ed25519 -C "your_email@example.com"
 
     \begin{frame}[fragile]{Réseau}{La commande \lstinline{rsync}\footnote{Rsync Command in Linux with Examples, \url{https://linuxize.com/post/how-to-use-rsync-for-local-and-remote-data-transfer-and-synchronization/}}}
         La syntaxe générale de la commande est \lstinline{rsync <OPTION(S)> <SRC> <DEST>}.
-        Pour pousser du code sur une autre machine (qui est donc serveur SSH) la destination est préfixée par le user et l'hôte~:
+        Pour synchroniser des fichiers locaux sur une autre machine (qui est donc serveur SSH) la destination est préfixée par le user et l'hôte~:
         \bigbreak
         \begin{lstlisting}[language=bash]
 $ rsync -a /chemin/vers/mon-dossier/ utilisateur@serveur:/chemin/vers/mon-dossier/
         \end{lstlisting}
-        Pour récupérer du code depuis une autre machine la source est préfixée par le user et l'hôte~:
+        Pour synchroniser des fichiers distants depuis une autre machine la source est préfixée par le user et l'hôte~:
         \begin{lstlisting}[language=bash]
 $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossier/
         \end{lstlisting}
@@ -3676,7 +3677,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
         De même sous Nginx avec le package \lstinline{fcgiwrap}\footnote{Serving CGI Scripts With Nginx On Debian Squeeze/Ubuntu 11.04, \url{https://www.howtoforge.com/serving-cgi-scripts-with-nginx-on-debian-squeeze-ubuntu-11.04-p3}}.
         \bigbreak
         Apache peut-être programmer en Python grâce à son API Python disponible dans le module \lstinline{mod_cgi}\footnote{Mod\_python Documentation, Tutorial, \url{https://modpython.org/live/current/doc-html/tutorial.html}}.
-        Similaire au module \lstinline{ngx_python_module} de Nginx\footnote{Nginx Python Module, \footnote{Nginx Python Module, \url{https://github.com/arut/nginx-python-module}}}.
+        Similaire au module \lstinline{ngx_python_module} de Nginx\footnote{Nginx Python Module, \url{https://github.com/arut/nginx-python-module}}.
         \setlength\parindent{0pt}
     \end{frame}
 
@@ -3802,8 +3803,9 @@ $ gunicorn app.py -b /var/run/sock-guni
     \end{frame}
 
     \begin{frame}{Apache et Nginx}{Exercice \execcounterdispinc{}, développer une configuration de Reverse Proxy}
-        Dans la VM de l'exercice précédent, configurer un Reverse Proxy pour servir l'application Gunicorn.
+        Dans la VM qui fait serveur DNS, configurer un Reverse Proxy pour servir l'application Gunicorn.
         Le Reverse Proxy et l'application doivent communiquer par un socket Unix.
+        Retourner un domaine interne vers l'application Gunicorn grâce au serveur DNS~.
     \end{frame}
 
     \subsection{Certificat SSL}\label{subsec:certificat-ssl}
@@ -4077,30 +4079,34 @@ fi
             \end{lstlisting}
             \item Expansion d'historique~:
             \begin{lstlisting}[language=bash]
-!!    # Répéter la dernière commande
-!n <chiffre>   # Répéter la n-ième commande de l'historique
+!!              # Répéter la dernière commande
+!-<chiffre>     # Répéter la n-ième commande de l'historique
             \end{lstlisting}
         \end{itemize}
     \end{frame}
 
 
     \begin{frame}[fragile]{Les différentes parenthèses en Bash\footnote{\label{penthesisbash}Référence rapide des supports Bash, \url{https://dev-to.translate.goog/rpalo/bash-brackets-quick-reference-4eh6?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=fr&_x_tr_pto=rq}}}{Crochets simples \texttt{[ ]}}
-        \begin{itemize}
-            \item Utilisés pour des tests de conditions comme la commande \lstinline{test}.
-            \item Supporte les tests sur les fichiers, les chaînes de caractères et les nombres.
-            \item Exemple :
-            \begin{lstlisting}[language=bash]
+        \begin{small}
+            \begin{itemize}
+                \item Utilisés pour des tests de conditions comme la commande \lstinline{test}.
+                \item Supporte les tests sur les fichiers, les chaînes de caractères et les nombres.
+                \item Exemple :
+                \begin{lstlisting}[language=bash]
 if [ -f fichier.txt ]; then
     echo "Le fichier existe."
 else
     echo "Le fichier n'existe pas"
 fi
 Le fichier n'existe pas
-            \end{lstlisting}
-            \begin{dangercolorbox}
-                Supporte les expansion de fichiers donc peut causer des erreurs s'il y a plusieurs résultats.
-            \end{dangercolorbox}
-        \end{itemize}
+                \end{lstlisting}
+                \begin{dangercolorbox}
+                    Supporte l'expansion de nom de fichier\footnotemark{} avec \lstinline{[ -f *.txt ];} donc peut causer des erreurs s'il y a plusieurs résultats.
+                    En effet on aura une liste de fichiers et non un fichier, d'où une erreur de syntaxe Bash.
+                \end{dangercolorbox}
+            \end{itemize}
+        \end{small}
+        \footnotetext{Filename Expansion, \url{https://www.gnu.org/software/bash/manual/html_node/Filename-Expansion.html}}
     \end{frame}
 
     \begin{frame}[fragile]{Les différentes parenthèses en Bash\cref{penthesisbash}}{Doubles crochets \texttt{[[ ]]}}
@@ -4133,11 +4139,15 @@ a b c d e
         \begin{itemize}
             \item Utilisées pour l'expansion de variables.
             \item Permet des manipulations avancées des variables (longueur, remplacement, sous-chaîne).
-            \item Exemple :
+            \item Exemple de \textit{slicing}:
             \begin{lstlisting}[language=bash]
 $ nom="Ryan"
-$ echo ${nom:1:3}  # Produit : yan
+$ echo ${nom:1:3}  # Entre 1 et 3
 yan
+$ echo ${nom:1} # À partir de 1 inclus
+yan
+$ echo ${nom::3} # Jusqu'à 3 exclu
+Rya
             \end{lstlisting}
         \end{itemize}
     \end{frame}
@@ -4417,7 +4427,7 @@ EOF
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}[fragile]{Shell debugging}{Les variables non définies, l'option \lstinline{-u}\footnote{\label{baeldung-shell}Identifying Unset Variables\url{https://www.baeldung.com/linux/debug-bash-script\#4-identifying-unset-variables}}}
+    \begin{frame}[fragile]{Shell debugging}{Les variables non définies, l'option \lstinline{-u}\footnote{\label{baeldung-shell}Identifying Unset Variables, \url{https://www.baeldung.com/linux/debug-bash-script\#4-identifying-unset-variables}}}
         L'option \lstinline{-u} permet de détecter les variables non définies alors que cette erreur peut passer inaperçue en Shell qui est un langage très permissif.
         \bigbreak
         \begin{lstlisting}[language=bash]
@@ -4466,15 +4476,13 @@ strace: Process 129599 attached
         \end{lstlisting}
     \end{frame}
 
-    \begin{frame}{Shell debugging}{Pas de debugguer avec point d'arret et pas-à-pas\cref{baeldung-shell}}
-        La quasi totalité des langages de programmation même ceux plus anciens que Shell on un débuggeur.
-
-        On peut mettre des points d'arrêt, avancer pas-à-pas, voir les valeurs des variables, \textit{etc}.
-
-        Mais à ma connaissance, cela n'existe pas pour Shell.
+    \begin{frame}{Bash debugging}{débuggeur pas-à-pas avec point d'arrêt}
+        Comme pour la quasi totalité des langages de programmation, même les plus anciens, Shell a un débuggeur pas-à-pas.
+        \bigbreak
+        On peut mettre des points d'arrêt, avancer pas-à-pas, voir les valeurs des variables, \textit{etc} avec \lstinline{bashdb}\footnote{bashdb - a gdb-like debugger for bash, \url{https://bashdb.readthedocs.io/en/latest/}} ou son viewer VS Code\footnote{\label{bash-debug}Bash Debug, \url{https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug}} pour plus de simplicité.
         \bigbreak
         \centering
-        \includegraphics[width=5cm]{image/tux-reassure-shell}
+        \includegraphics[width=3cm]{image/tux-reassure-shell}
     \end{frame}
 
 
